@@ -31,6 +31,16 @@ framework:
     php_errors:
         log: true
 
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    service:                               # this lines
+        mailer: fos_user.mailer.twig_swift # this lines
+    from_email:
+        address: "you.sekhari@gmail.com"
+        sender_name: "test"
+
 # Twig Configuration
 twig:
     debug: '%kernel.debug%'
