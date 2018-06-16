@@ -1,5 +1,4 @@
 security:
-
     encoders:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
@@ -20,6 +19,8 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
+app/config/security.yml
+>>>>>>> adds form, folder twig, config mailer, roles, create User and configs security, routing
             logout:       true
             anonymous:    true
 
@@ -28,3 +29,7 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
+<<<<<<< 1c730e8301062e5984821fbb021e3137bf3a3c59
+=======
+        - { path: ^/user/, role: ROLE_USER }
+>>>>>>> adds form, folder twig, config mailer, roles, create User and configs security, routing

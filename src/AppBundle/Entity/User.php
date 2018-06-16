@@ -1,11 +1,6 @@
 <?php
 
-
-/**
- * User.php
- * @copyright 2018-2019 Barber
- * @author  Youssouf SEKHARI < you.sekhari@gmail.com >
- */
+// src/AppBundle/Entity/User.php
 
 namespace AppBundle\Entity;
 
@@ -13,30 +8,22 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * User
- *
- * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\Entity
+ * @ORM\Table(name="User")
  */
 class User extends BaseUser
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
-
-    /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId()
+    public function __construct()
     {
-        return $this->id;
+        parent::__construct();
+        // your own logic
     }
 }
+
