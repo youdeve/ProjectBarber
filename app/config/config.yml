@@ -49,7 +49,7 @@ fos_user:
             from_email:
                 address: noreply@barber.com
                 sender_name: Admin du tuto FosUserBundle
-            template: AppBundle:User:registration.email.twig
+            template: 'email/registration.email.twig'
 
 # Twig Configuration
 twig:
