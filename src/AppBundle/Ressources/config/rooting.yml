@@ -1,4 +1,0 @@
-front_homepage:
-    path:     /
-    methods: [ get ]
-    defaults: {_controller: AppBundle:App:index}
