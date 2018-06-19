@@ -2,7 +2,6 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: "@AppBundle/Resources/config/services.yml" }
 
 parameters:
     locale: en
@@ -54,6 +53,8 @@ fos_user:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+
+
 
 # Doctrine Configuration
 doctrine:

@@ -13,10 +13,14 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+      $isUrmet = $request->query->get('urmet');
+      $isUrmet = isset($isUrmet) ? true : false;
         // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+        if($this->getUser() == null)
+          return $this->redirect($this->generateUrl('fos_user_security_login'));
+        else{
+            return $this->forward('FrontBundle:Default:index', ['isUrmet' => $isUrmet]);
+        }
     }
 
     /**
@@ -38,7 +42,7 @@ class DefaultController extends Controller
       $em = $this->getDoctrine()->getManager();
       $em->persist($user);
       $em->flush();
-      
+
       $this->denyAccessUnlessGranted('ROLE_ADMIN');
       return $this->render('Exemple_Roles/admin-login.html.twig');
     }
