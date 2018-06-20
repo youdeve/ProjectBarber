@@ -2,6 +2,8 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@BackBundle/Resources/config/services.yml" }
+    - { resource: "@FrontBundle/Resources/config/services.yml" }
 
 parameters:
     locale: en
