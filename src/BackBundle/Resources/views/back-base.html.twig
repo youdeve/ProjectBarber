@@ -1,0 +1,15 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block bundlestyles %}
+  <link rel="stylesheet" href="{{ asset('bundles/back/css/back.css') }}"/>
+  {% block stylesheets %}{% endblock %}
+{% endblock %}
+
+
+{% block bundlejs %}
+
+  {% block scriptsBefore %}{% endblock %}
+  <script src="{{ asset('bundles/back/js/back.js') }}"></script>
+  {% block scripts %}{% endblock %}
+
+{% endblock %}
