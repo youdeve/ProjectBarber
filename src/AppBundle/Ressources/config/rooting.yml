@@ -1,4 +1,1 @@
-hello_the_world:
-    path:     /
-    defaults: { _controller: AppBundle:App:index }
-    
+FrontBundle

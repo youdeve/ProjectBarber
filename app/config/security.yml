@@ -14,6 +14,12 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        urmet:
+            pattern:   ^/login/urmet
+            context: main
+            http_basic: ~
+            provider: fos_userbundle
+
         main:
             pattern: ^/
             form_login:
@@ -28,3 +34,4 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/user/, role: ROLE_USER }
+        - { path: /, roles: [ROLE_BACK_ACCESS, ROLE_FRONT_ACCESS] }

@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * DefaultController.php
+ * @copyright 2017-2018 Barber
+ * @author  Youssouf SEKHARI <You.sekhari@gmail.com>
+ */
+
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -10,6 +16,7 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
+     * @return RedirectResponse|Response
      */
     public function indexAction(Request $request)
     {
@@ -19,7 +26,7 @@ class DefaultController extends Controller
         if($this->getUser() == null)
           return $this->redirect($this->generateUrl('fos_user_security_login'));
         else{
-            return $this->forward('FrontBundle:Default:index', ['isUrmet' => $isUrmet]);
+          return $this->render('FrontBundle/Default/index-client.html.twig');
         }
     }
 

@@ -1,0 +1,13 @@
+{% extend "AppBundle::base.html.twig"%}
+
+{% block bundlestyles %}
+
+
+
+{% endblock %}
+
+
+{% block bundlejs %}
+  {% block scripts %}{% endblock %}
+  <script src="{{ asset('bundles/front/js/front.js') }}"></script>
+{% endblock %}
