@@ -23,9 +23,9 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
 
-        if($this->getUser()->hasGroup('GROUP_ADMIN'))
-          return $this->render('BackBundle:Default:index-admin.html.twig');
-        else if($this->getUser()->hasGroup('GROUP_CLIENT'))
+        if($this->getUser()->hasRole('ROLE_ADMIN'))
+          return $this->render('Exemple_Roles/hello-world-admin.html.twig');
+        else if($this->getUser()->hasROLE('ROLE_CLIENT'))
           return $this->render('FrontBundle:Default:index-client.html.twig');
         else
           return $this->redirect($this->generateUrl('fos_user_security_login'));

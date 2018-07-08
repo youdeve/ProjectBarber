@@ -17,7 +17,7 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
 
-      if($this->getUser()->hasGroup('GROUP_CLIENT'))
+      if($this->getUser()->hasGroup('ROLE_CLIENT'))
           return $this->render('FrontBundle:Default:index-client.html.twig');
       else
         return $this->redirect($this->generateUrl('homepage'));

@@ -31,4 +31,40 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+      * @ORM\ManyToOne(targetEntity="Groups", inversedBy="users")
+      */
+      protected $groups;
+
+
+
+      /**
+       * @param $role
+       * @return bool
+       */
+    public function hasRole($role) {
+      return in_array($role, $this->getRoles());
+    }
+
+        /**
+     * @return array
+     */
+    public function getRoles()
+    {
+      $roles = $this->roles;
+      if (null !== $this->getGroups()) {
+        $roles = array_merge($roles, $this->getGroups()->getRoles());
+      }
+      return $roles;
+    }
+
+        /**
+     * Get groups
+     *
+     * @return Collection|Group[]
+     */
+    public function getGroups()
+    {
+      return $this->groups;
+    }
 }

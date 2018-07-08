@@ -3,8 +3,9 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
-      GROUP_ADMIN:    [ROLE_ADMIN, ROLE_ADD_ADMIN, ROLE_BACK_ACCESS]
-      GROUP_CLIENT:   [ROLE_USER, ROLE_FRONT_ACCESS]
+      ROLE_ADMIN:    [ROLE_SUPER_ADMIN, ROLE_ADD_ADMIN, ROLE_BACK_ACCESS]
+      ROLE_CLIENT:   [ROLE_USER, ROLE_FRONT_ACCESS]
+      ROLE_TEAM:   [ROLE_BACK_ACCESS, ROLE_FRONT_ACCESS]
 
     providers:
       fos_userbundle:
@@ -24,9 +25,9 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
-            # logout:
-            #     path:       fos_user_security_logout
-            #     target:     fos_user_security_login
+            logout:
+                path:       fos_user_security_logout
+                target:     fos_user_security_login
 
             remember_me:
                 secret:      '%secret%'
