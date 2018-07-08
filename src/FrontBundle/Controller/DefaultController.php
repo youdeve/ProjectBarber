@@ -10,41 +10,22 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/user", name="front_homepage")
-     * @Security("has_role('ROLE_FRONT_ACCESS')")
-     */
-    public function indexAction(Request $request)
-    {
 
-      if($this->getUser()->hasGroup('ROLE_CLIENT'))
-          return $this->render('FrontBundle:Default:index-client.html.twig');
-      else
-        return $this->redirect($this->generateUrl('homepage'));
-    }
+        /**
+         * @Route("/user", name="front_homepage")
+         * @Security("has_role('ROLE_FRONT_ACCESS' ) ")
+         */
+        public function indexAction(Request $request)
+        {
+          $user = $this->getUser();
+            if($this->getUser()->hasRole('ROLE_CLIENT')){
+              return $this->render('FrontBundle::index-client.html.twig');
+            }else{
+              return $this->redirect($this->generateUrl('fos_user_security_login'));
+            }
+
+        }
 
 
-    /**
-     * @Route("/user/test", name="testRolesUser")
-     */
-    public function testRolesUsersAction(Request $request) {
 
-      $this->denyAccessUnlessGranted('ROLE_USER');
-      return $this->render('Exemple_Roles/admin-login.html.twig');
-    }
-
-    /**
-     * @Route("/admin/test", name="testRolesAdmin")
-     */
-    public function testRolesAdminAction(Request $request) {
-
-      $user = $this->getUser()->setEmail('Youssouf@orange.fr');
-
-      $em = $this->getDoctrine()->getManager();
-      $em->persist($user);
-      $em->flush();
-
-      $this->denyAccessUnlessGranted('ROLE_ADMIN');
-      return $this->render('Exemple_Roles/admin-login.html.twig');
-    }
 }

@@ -2,7 +2,7 @@
 
 /**
  * DefaultController.php
- * @copyright 2017-2018 Barber
+ * @copyright 2018-2019 Barber
  * @author  Youssouf SEKHARI <You.sekhari@gmail.com>
  */
 
@@ -17,49 +17,19 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class DefaultController extends Controller
 {
-  public $container;
-
-  public function __construct() {
-
-  }
-
     /**
-     * @Route("/", name="homepage")
-     * @Security("has_role('ROLE_BACK_ACCESS')")
-     */
-    public function indexAction(Request $request)
+    * @Route("/", name="homepage")
+    */
+    public function indexAction()
     {
-      $security = $this->container->get('security.authorization_checker');
-      if($this->getUser()->hasRole('ROLE_ADMIN'))
-          return $this->render('profiles/admin.html.twig');
-        else if($this->getUser()->hasROLE('ROLE_CLIENT'))
-          return $this->render('FrontBundle:Default:index-client.html.twig');
-        else
+      $user = $this->getUser();
+        if(!$user){
           return $this->redirect($this->generateUrl('fos_user_security_login'));
-
+        }elseif($user->hasRole('ROLE_CLIENT')){
+          return $this->redirect($this->generateUrl('front_homepage'));
+        }elseif($user->hasRole('ROLE_ADMIN')){
+          return $this->redirect($this->generateUrl('back_homepage'));
+        }
     }
 
-    /**
-     * @Route("/user/test", name="testRolesUser")
-     */
-    public function testRolesUsersAction(Request $request) {
-
-      $this->denyAccessUnlessGranted('ROLE_USER');
-      return $this->render('Exemple_Roles/hello-world-admin.html.twig');
-    }
-
-    /**
-     * @Route("/admin/test", name="testRolesAdmin")
-     */
-    public function testRolesAdminAction(Request $request) {
-
-      $user = $this->getUser()->setEmail('Youssouf@orange.fr');
-
-      $em = $this->getDoctrine()->getManager();
-      $em->persist($user);
-      $em->flush();
-
-      $this->denyAccessUnlessGranted('ROLE_ADMIN');
-      return $this->render('Exemple_Roles/admin-login.html.twig');
-    }
 }

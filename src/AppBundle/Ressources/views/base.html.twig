@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>{% block title %}Barber - Salon de coiffure{% endblock %}</title>
-        {% block stylesheets %}
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
+{% extends 'bundle::base.html.twig' %}
+
+{% block title %}Kabolt Support{% endblock %}
+
     <body>
-        {% include 'AppBundle::menus.html.twig' %}
+        {% include 'menus.html.twig' %}
         {% block bundlestyles %}{% endblock %}
         {% block body %}{% endblock %}
         {% block bundlejs %}{% endblock %}
