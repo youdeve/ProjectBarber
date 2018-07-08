@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %} 
+
+{% block body %}
+
+<div class="container">
+    <div class="section">
+      <div class="row page-title">
+        <h2>Bonjour {{ app.user.username }}</h2>
+        <hr class='white' style="margin-bottom:1rem"/>
+      </div>
+      <div class="row">
+        <div class="col offset-m1 m10 s12 center-align">
+
+            <a title="Gestion des propriétés" class="btn-floating white hoverable huge-floating-button btn-with-text"
+               href="">
+              <i class="fa fa-building-o" aria-hidden="true"></i>
+              <span>Propriétés</span>
+            </a>
+
+            <a title="Gestion des comptes employés"
+               class="btn-floating white hoverable huge-floating-button btn-with-text"
+               href="">
+              <i class="fa fa-users" aria-hidden="true"></i>
+              <span>Utilisateurs</span>
+            </a>
+
+
+            <a title="Messagerie" class="btn-floating white hoverable huge-floating-button btn-with-text"
+               href="">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <span>Messagerie</span>
+            </a>
+
+
+            <a title="Gestion des publications" class="btn-floating white hoverable huge-floating-button btn-with-text"
+               href="">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              <span>Publications</span>
+            </a>
+
+            <a title="Modération des publications"
+               class="btn-floating white hoverable huge-floating-button btn-with-text"
+               href="">
+              <span>Modération</span>
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+{% endblock %}

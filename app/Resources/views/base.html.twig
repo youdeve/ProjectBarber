@@ -12,9 +12,9 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
-        <div>
+        <div id='link_logout'>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ 'Connexion : '|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                {{ ''|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
                 <a href="{{ path('fos_user_security_logout') }}">
                     {{ 'Déconnexion'|trans({}, 'FOSUserBundle') }}
                 </a>

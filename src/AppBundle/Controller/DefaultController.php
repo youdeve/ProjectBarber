@@ -17,14 +17,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class DefaultController extends Controller
 {
+  public $container;
+
+  public function __construct() {
+
+  }
+
     /**
      * @Route("/", name="homepage")
+     * @Security("has_role('ROLE_BACK_ACCESS')")
      */
     public function indexAction(Request $request)
     {
-
-        if($this->getUser()->hasRole('ROLE_ADMIN'))
-          return $this->render('Exemple_Roles/hello-world-admin.html.twig');
+      $security = $this->container->get('security.authorization_checker');
+      if($this->getUser()->hasRole('ROLE_ADMIN'))
+          return $this->render('profiles/admin.html.twig');
         else if($this->getUser()->hasROLE('ROLE_CLIENT'))
           return $this->render('FrontBundle:Default:index-client.html.twig');
         else
