@@ -8,26 +8,28 @@
 
 namespace AppBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
-     * @return RedirectResponse|Response
      */
     public function indexAction(Request $request)
     {
-      $isUrmet = $request->query->get('urmet');
-      $isUrmet = isset($isUrmet) ? true : false;
-        // replace this example code with whatever you need
-        if($this->getUser() == null)
+
+        if($this->getUser()->hasGroup('GROUP_ADMIN'))
+          return $this->render('BackBundle:Default:index-admin.html.twig');
+        else if($this->getUser()->hasGroup('GROUP_CLIENT'))
+          return $this->render('FrontBundle:Default:index-client.html.twig');
+        else
           return $this->redirect($this->generateUrl('fos_user_security_login'));
-        else{
-          return $this->render('FrontBundle/Default/index-client.html.twig');
-        }
+
     }
 
     /**

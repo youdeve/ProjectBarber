@@ -2,32 +2,35 @@
 
 namespace FrontBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="index")
+     * @Route("/user", name="front_homepage")
+     * @Security("has_role('ROLE_FRONT_ACCESS')")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
 
-      if($this->getUser() == null)
-        return $this->redirect($this->generateUrl('fos_user_security_login'));
-      else{
-        return $this->render('FrontBundle/Default/index.html.twig');
-      }
+      if($this->getUser()->hasGroup('GROUP_CLIENT'))
+          return $this->render('FrontBundle:Default:index-client.html.twig');
+      else
+        return $this->redirect($this->generateUrl('homepage'));
     }
 
 
     /**
-     * @Route("/user", name="testRolesUser")
+     * @Route("/user/test", name="testRolesUser")
      */
     public function testRolesUsersAction(Request $request) {
 
       $this->denyAccessUnlessGranted('ROLE_USER');
-      return $this->render('');
+      return $this->render('Exemple_Roles/admin-login.html.twig');
     }
 
     /**
