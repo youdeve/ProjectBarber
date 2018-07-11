@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\User;
 
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -20,14 +21,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $user = $this->getUser();
-      if($user->hasRole('ROLE_ADMIN')){
-        return $this->render('BackBundle:default:index.html.twig', [
-          'user'=> $user,
-        ]);
-      }else{
-        return $this->redirect($this->generateUrl('fos_user_security_login'));
-      }
+        return $this->render('@Back/default/index.html.twig');
     }
 
 }

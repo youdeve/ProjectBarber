@@ -18,8 +18,8 @@ class DefaultController extends Controller
         public function indexAction(Request $request)
         {
           $user = $this->getUser();
-            if($this->getUser()->hasRole('ROLE_CLIENT')){
-              return $this->render('FrontBundle::index-client.html.twig');
+            if($this->getUser()->hasRole('ROLE_CLIENT')) {
+              return $this->render('@Front/default/index-client.html.twig');
             }else{
               return $this->redirect($this->generateUrl('fos_user_security_login'));
             }
