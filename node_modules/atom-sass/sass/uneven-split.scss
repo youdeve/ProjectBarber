@@ -1,0 +1,30 @@
+$atom_uneven_split_split_match: true !default;
+$atom_uneven_split_split_fill: true !default;
+$atom_uneven_split_split_basis: 12 !default;
+$atom_uneven_split_split_options: (1, 2, 3, 4) !default;
+
+.uneven-split {
+    display: flex;
+
+    .split-item {
+        box-sizing: border-box;
+
+        @if($atom_uneven_split_split_match) {
+            &.split-match {
+                flex: 0 0;
+            }
+        }
+
+        @if($atom_uneven_split_split_fill) {
+            &.split-fill {
+                flex: 1;
+            }
+        }
+
+        @each $option in $atom_uneven_split_split_options {
+            &.split-#{$option} {
+                flex: 0 0 #{($option / $atom_uneven_split_split_basis) * 100%};
+            }
+        }
+    }
+}

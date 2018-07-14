@@ -1,0 +1,21 @@
+$atom_icon_ul_icon_font: FontAwesome !default;
+$atom_icon_ul_icon: '\f00c' !default;
+$atom_icon_ul_color: #000 !default;
+
+.icon-ul {
+    padding-left: 40px;
+    list-style-type: none;
+
+    li {
+        position: relative;
+
+        &:before {
+            position: absolute;
+            top: 0px;
+            left: -25px;
+            font-family: $atom_icon_ul_icon_font;
+            content: $atom_icon_ul_icon;
+            color: $atom_icon_ul_color;
+        }
+    }
+}

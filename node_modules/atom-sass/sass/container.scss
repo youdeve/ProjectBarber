@@ -1,0 +1,10 @@
+$atom_container_max: 1151px !default;
+$atom_container_gutter: 15px !default;
+
+.container {
+    width: 100%;
+    max-width: $atom_container_max;
+    padding: 0 $atom_container_gutter;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
