@@ -23,7 +23,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" title="Vos prestation" class="icons-menu">
+                    <a href="" title="Vos prestations" class="icons-menu">
                         <i class="material-icons">mode_edit</i>
                     </a>
                 </li>
@@ -38,19 +38,19 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" title="Gestion des comptes " class="icons-menu ">
+                    <a href="" title="Déconnexion" class="icons-menu ">
                         <i class="material-icons">lock_open</i>
                     </a>
                 </li>
 
             {% else %}
                 <li>
-                    <a href=""  class="icons-menu btn-floating hoverable white huge-floating-button btn-with-text">
+                    <a href="" title="Connexion"  class="icons-menu">
                         <i class="material-icons left">lock</i> Connexion
                     </a>
                 </li>
                 <li>
-                    <a href=""  class="icons-menu">
+                    <a href="{{ path('') }}" title="Inscription" class="icons-menu">
                         <i class="material-icons left">account_circle</i>Inscription
                     </a>
                 </li>
@@ -63,9 +63,20 @@
         {% block content %}{% endblock %}
       </div>
     </main>
-
 {% endblock %}
 
 {% block javascripts %}
-    {% block pagejs %}{% endblock %}
+
+  <script type="text/javascript">
+
+
+  $(document).ready(function(){
+    console.log('test');
+    $('.button-collapse').sidenav();
+  });
+
+
+  </script>
+
+{% block pagejs %}{% endblock %}
 {% endblock %}
