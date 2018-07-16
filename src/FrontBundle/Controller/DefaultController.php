@@ -17,6 +17,8 @@ class DefaultController extends Controller
    */
   public function indexAction(Request $request)
   {
+    // if(!$this->getUser())
+    // return RedirectToRoute('')
     return $this->render('@Front/Default/index-client.html.twig');
   }
 

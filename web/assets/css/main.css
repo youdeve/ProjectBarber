@@ -1,0 +1,90 @@
+body
+{
+    color: white;
+    background-attachment: fixed;
+    background: linear-gradient(631deg,#FD6814,#FD6814,#E0280C);
+}
+
+
+li.logo {
+      margin: 2em 0 9em 4px;
+}
+.side-nav {
+  background-color: #ECF0F1!important;
+  width: 240px!important;
+}
+
+
+.side-nav a#logo
+{
+  padding-bottom:120px;
+}
+
+.container {
+  margin: 61px auto!important;
+}
+nav
+{
+  background-color: #34495E!important;
+}
+
+.button-collapse i
+{
+  margin: 23px 0 0px 10px;
+  font-size: 3em;
+  color: white;
+}
+
+/** icon  */
+
+.btn-floating {
+    width: 169px!important;
+    height: 173px!important;
+    color: #CD5C5C!important;
+}
+.side-nav li > a > i {
+      margin: 0 71px auto!important;
+      color: #CD5C5C!important;
+      font-size: 3.5em;
+      display: inline-table;
+      line-height: 20%!important;
+      padding: 28px 10px 10px 9px!important;
+}
+
+.side-nav li > a > i:hover {
+      color: #CD5C5C!important;
+}
+.btn-floating{
+  vertical-align: initial!important;
+  border-radius: 0px!important;
+
+}
+
+.btn-floating i {
+    color: #CD5C5C!important;
+    font-size: 5.6rem!important;
+    line-height: 121px!important;
+}
+ .btn-floating-menu {
+   width: 169px!important;
+   height: 173px!important;
+   color: #CD5C5C!important;
+ }
+ .side-nav li > a:hover {
+    background-color:  inherit!important;
+}
+.side-nav li > a > i:hover {
+   color: #873600 !important;
+}
+
+ul#slide-out li {
+    line-height: 25px;
+    padding-bottom: 35px;
+}
+
+.icons-menu i.material-icons {
+    width: 100%;
+    border: 3.5px solid;
+    margin: 0 0 0px 43px!important;
+    /* vertical-align: middle; */
+}

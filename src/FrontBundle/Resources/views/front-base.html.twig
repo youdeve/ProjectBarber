@@ -1,11 +1,71 @@
-{% extends "base.html.twig"%}
+{% extends "base.html.twig" %}
 
 {% block bundlestyles %}
 
+        {% block pagestyle %}{% endblock %}
 {% endblock %}
 
 
 {% block bundlejs %}
   {% block scripts %}{% endblock %}
   <script src="{{ asset('bundles/front/js/front.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <main class="row">
+      <div class="navbar col s2">
+          <ul id="slide-out" class="side-nav fixed hoverable">
+            <li class="logo"><a id="logo-container" href="{{ path('front_homepage') }}"  class="brand-logo"><img src="{{ asset('logo-menu.png') }}"/></a></li>
+            {% if app.user is not null %}
+                <li>
+                    <a href=""  title="Gestion du compte" class="icons-menu ">
+                        <i class="material-icons">account_circle</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="" title="Vos prestation" class="icons-menu">
+                        <i class="material-icons">mode_edit</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="" title="Gestion rendez-vous" class="icons-menu ">
+                        <i class="material-icons">perm_contact_calendar</i>
+                    </a>
+                </li>
+                <li>
+                    <a href=""  title="Gestion messagerie" class="icons-menu">
+                        <i class="material-icons">message</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="" title="Gestion des comptes " class="icons-menu ">
+                        <i class="material-icons">lock_open</i>
+                    </a>
+                </li>
+
+            {% else %}
+                <li>
+                    <a href=""  class="icons-menu btn-floating hoverable white huge-floating-button btn-with-text">
+                        <i class="material-icons left">lock</i> Connexion
+                    </a>
+                </li>
+                <li>
+                    <a href=""  class="icons-menu">
+                        <i class="material-icons left">account_circle</i>Inscription
+                    </a>
+                </li>
+            {% endif %}
+
+          </ul>
+          <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+      </div>
+      <div class="col s10">
+        {% block content %}{% endblock %}
+      </div>
+    </main>
+
+{% endblock %}
+
+{% block javascripts %}
+    {% block pagejs %}{% endblock %}
 {% endblock %}
