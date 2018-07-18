@@ -1,5 +1,3 @@
-{% set route = app.request.get('_route') %}
-
 {% extends "base.html.twig" %}
 
 {% block stylesheets %}
@@ -25,18 +23,18 @@
                     </a>
                 </li>
                 <li>
-                    <a  href="" title="Vos prestations" class="icons-menu">
-                        <i class="{{ route ==  'front_profile' ? "active" }} material-icons">mode_edit</i>
+                    <a  href="{{ path('front_prestation') }}" title="Vos prestations" class="icons-menu">
+                        <i class="{{ route ==  'front_prestation' ? "active" }} material-icons">mode_edit</i>
                     </a>
                 </li>
                 <li>
-                    <a href="" title="Gestion rendez-vous" class="icons-menu ">
-                        <i class="{{ route ==  'front_profile' ? "active" }}material-icons">perm_contact_calendar</i>
+                    <a href="{{ path('front_appointment') }}" title="Gestion rendez-vous" class="icons-menu ">
+                        <i class="{{ route ==  'front_appointment' ? "active" }} material-icons">perm_contact_calendar</i>
                     </a>
                 </li>
                 <li>
                     <a href=""  title="Gestion messagerie" class="icons-menu">
-                        <i class="{{ route ==  'front_profile' ? "active" }} material-icons">message</i>
+                        <i class="{{ route ==  '' ? "active" }} material-icons">message</i>
                     </a>
                 </li>
                 <li>
