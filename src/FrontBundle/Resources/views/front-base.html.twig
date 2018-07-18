@@ -1,6 +1,8 @@
+{% set route = app.request.get('_route') %}
+
 {% extends "base.html.twig" %}
 
-{% block bundlestyles %}
+{% block stylesheets %}
 
         {% block pagestyle %}{% endblock %}
 {% endblock %}
@@ -18,27 +20,27 @@
             <li class="logo"><a id="logo-container" href="{{ path('front_homepage') }}"  class="brand-logo"><img src="{{ asset('logo-menu.png') }}"/></a></li>
             {% if app.user is not null %}
                 <li>
-                    <a href=""  title="Gestion du compte" class="icons-menu ">
-                        <i class="material-icons">account_circle</i>
+                    <a  href="{{ path('front_profile') }}"  title="Gestion du compte" class="icons-menu ">
+                        <i class="{{ route ==  'front_profile' ? "active" }} material-icons">account_circle</i>
                     </a>
                 </li>
                 <li>
-                    <a href="" title="Vos prestations" class="icons-menu">
-                        <i class="material-icons">mode_edit</i>
+                    <a  href="" title="Vos prestations" class="icons-menu">
+                        <i class="{{ route ==  'front_profile' ? "active" }} material-icons">mode_edit</i>
                     </a>
                 </li>
                 <li>
                     <a href="" title="Gestion rendez-vous" class="icons-menu ">
-                        <i class="material-icons">perm_contact_calendar</i>
+                        <i class="{{ route ==  'front_profile' ? "active" }}material-icons">perm_contact_calendar</i>
                     </a>
                 </li>
                 <li>
                     <a href=""  title="Gestion messagerie" class="icons-menu">
-                        <i class="material-icons">message</i>
+                        <i class="{{ route ==  'front_profile' ? "active" }} material-icons">message</i>
                     </a>
                 </li>
                 <li>
-                    <a href="" title="Déconnexion" class="icons-menu ">
+                    <a href="{{ path('fos_user_security_logout') }}" title="Déconnexion" class="icons-menu ">
                         <i class="material-icons">lock_open</i>
                     </a>
                 </li>
@@ -50,7 +52,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ path('') }}" title="Inscription" class="icons-menu">
+                    <a href="" title="Inscription" class="icons-menu">
                         <i class="material-icons left">account_circle</i>Inscription
                     </a>
                 </li>
@@ -69,11 +71,6 @@
 
   <script type="text/javascript">
 
-
-  $(document).ready(function(){
-    console.log('test');
-    $('.button-collapse').sidenav();
-  });
 
 
   </script>

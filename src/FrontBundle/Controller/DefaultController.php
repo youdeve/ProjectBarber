@@ -11,15 +11,13 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
 
-  /**
-   * @Route("/user", name="front_homepage")
-   * @Security("has_role('ROLE_FRONT_ACCESS' ) ")
-   */
-  public function indexAction(Request $request)
-  {
-    // if(!$this->getUser())
-    // return RedirectToRoute('')
-    return $this->render('@Front/Default/index-client.html.twig');
-  }
+    /**
+     * @Route("/user", name="front_homepage")
+     * @Security("has_role('ROLE_FRONT_ACCESS' ) ")
+     */
+    public function indexAction(Request $request)
+    {
+      return $this->render('@Front/Default/index-client.html.twig');
+    }
 
 }

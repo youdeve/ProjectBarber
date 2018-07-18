@@ -19,7 +19,10 @@ li.logo {
 {
   padding-bottom:120px;
 }
-
+.side-nav > li > a > i.active
+{
+  color:#873600!important;
+}
 .container {
   margin: 61px auto!important;
 }

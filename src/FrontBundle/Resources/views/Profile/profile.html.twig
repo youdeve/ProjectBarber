@@ -1,0 +1,120 @@
+{% set route = app.request.get('_route') %}
+
+{% extends "@Front/front-base.html.twig" %}
+
+  {% block pagestyle %}
+      <link rel="stylesheet" href="{{ asset('assets/css/front/profile.css') }}"/>
+  {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="section">
+          <div class="row page-title">
+            <h2 style="">Gestion du compte</h2>
+            <hr class='white' style="margin-bottom:1rem"/>
+          </div>
+          <div class="row">
+            <div class="col m12 s12 ">
+
+            <div class="col m6 s6 ">
+              <ul class="collapsible" data-collapsible="expandable">
+                <li>
+                  <div class="collapsible-header">
+                    <i class="material-icons ">filter_drama</i>
+                    Compte
+                    <i class="material-icons">arrow_drop_down</i>
+                  </div>
+                  <div class="collapsible-body">
+                    <p> Nom : {{ app.user.username }}</p>
+                     <p> Email : {{ app.user.email }}</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="collapsible-header">
+                    <i class="material-icons ">place</i>Modifiez votre mot de passe   <i class="material-icons ">arrow_drop_down</i></div>
+                  <div class="collapsible-body">
+                    <div class="row">
+                       <form class="col s12">
+                         <div class="row">
+                           <div class="input-field col s12">
+                             <input  id="first_name" type="text" class="validate">
+                             <label for="first_name">Nouveau mot de passe</label>
+                           </div>
+                         </div>
+                         <div class="row">
+                           <div class="input-field col s12">
+                             <input id="password" type="password" class="validate">
+                             <label for="password">Rteapez le mot de passe</label>
+                           </div>
+                         </div>
+                         <div class="row">
+                           <div class="col m12 s12">
+                             <button class="btn waves-effect waves-light"
+                             type="submit" name="action">
+                             Modifier
+                               <i class="material-icons right">send</i>
+                             </button>
+                           </div>
+                         </div>
+                       </form>
+                     </div>
+
+                  </div>
+                </li>
+                <li>
+                  <div class="collapsible-header">
+                    <i class="material-icons ">whatshot</i>Third   <i class="material-icons  ">arrow_drop_down</i></div>
+                  <div class="collapsible-body">
+                    <span>Lorem ipsum dolor sit amet.</span></div>
+                </li>
+              </ul>
+            </div>
+
+              <div class="col m6 s6 center-align">
+                <ul class="collapsible" data-collapsible="expandable">
+                  <li>
+                    <div class="collapsible-header ">
+                      <i class="material-icons ">filter_drama</i>
+                      First
+                      <i class="material-icons ">arrow_drop_down</i>
+                    </div>
+                    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                  </li>
+                  <li>
+                    <div class="collapsible-header">
+                      <i class="material-icons  ">place</i>
+                      Second
+                        <i class="material-icons ">arrow_drop_down</i></div>
+                    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                  </li>
+                  <li>
+                    <div class="collapsible-header">
+                      <i class="material-icons  ">place</i>
+                      Second
+                        <i class="material-icons ">arrow_drop_down</i></div>
+                    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                  </li>
+                </ul>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+{% endblock %}
+
+{% block pagejs %}
+<script type="text/javascript">
+$(document).ready(function(){
+    $( ".collapsible-header" ).click(function() {
+        var divCollaspse = $(this).hasClass('active');
+
+        if(divCollaspse)
+            $(this).children().next().css('transform', "rotate(360deg)");
+        else
+            $(this).children().next().css('transform', "rotate(180deg)");
+    });
+});
+</script>
+{% endblock %}
