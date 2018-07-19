@@ -20,4 +20,4 @@ class ProfileController extends Controller
       return $this->render('@Front/Profile/profile.html.twig');
   }
 
-}
+} 

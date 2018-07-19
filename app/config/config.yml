@@ -7,9 +7,10 @@ imports:
     - { resource: "@ApiBundle/Resources/config/services.yml" }
 
 parameters:
-    locale: en
+    locale: fr_FR
 
 framework:
+    serializer: true
     #esi: ~
     translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'

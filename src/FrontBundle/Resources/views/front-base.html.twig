@@ -1,5 +1,4 @@
 {% extends "base.html.twig" %}
-
 {% block stylesheets %}
 
         {% block pagestyle %}{% endblock %}
@@ -19,7 +18,7 @@
             {% if app.user is not null %}
                 <li>
                     <a  href="{{ path('front_profile') }}"  title="Gestion du compte" class="icons-menu ">
-                        <i class="{{ route ==  'front_profile' ? "active" }} material-icons">account_circle</i>
+                        <i class="{{ route == 'front_profile' ? "active" }} material-icons">account_circle</i>
                     </a>
                 </li>
                 <li>
