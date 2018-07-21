@@ -33,16 +33,17 @@ li.logo {
     margin: 90px auto!important;
   }
 }
+
 @media only screen and (min-width: 601px){
   .container {
-    margin: 84px 20% auto!important;
+    margin: 84px 15% auto!important;
+
   }
 }
-nav
-{
+
+nav {
   background-color: #34495E!important;
 }
-
 .button-collapse i
 {
   margin: 23px 0 0px 10px;
