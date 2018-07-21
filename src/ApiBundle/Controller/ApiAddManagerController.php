@@ -2,7 +2,7 @@
 
 namespace ApiBundle\Controller;
 
-use AppBundle\Entity\Department;
+use AppBundle\Entity\User;
 use AppBundle\Form\Type\DepartmentType;
 use FOS\RestBundle\Controller\FOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -22,16 +22,16 @@ class ApiAddManagerController extends FosRestController
   protected $container;
 
   /**
-   * @Post("/departments/new")
-   * @Security("has_role('ROLE_CREATE_DEPARTMENT')")
+   * @Post("/Teams/new")
+   * @Security("has_role('ROLE_ADD_ADMIN')")
    * @param Request $request
    * @return View
    */
-  public function createDepartmentAction(Request $request)
+  public function createPersonalTeamAction(Request $request)
   {
     try {
 
-      $department = new Department();
+      $User = new User();
       $formDepartment = $this->createForm(DepartmentType::class, $department);
       $formDepartment->handleRequest($request);
 
