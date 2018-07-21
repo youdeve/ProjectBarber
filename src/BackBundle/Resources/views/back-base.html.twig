@@ -1,52 +1,37 @@
 {% extends "base.html.twig" %}
+{% set route = app.request.get('_route') %}
 
-{% block bundlestyles %}
-  <link rel="stylesheet" href="{{ asset('bundles/back/css/back.css') }}"/>
-  {% block stylesheets %}{% endblock %}
+{% block stylesheets %}
+
+        {% block pagestyle %}{% endblock %}
 {% endblock %}
 
 
 {% block bundlejs %}
-  {% block scriptsBefore %}{% endblock %}
-  <script src="{{ asset('bundles/back/js/back.js') }}"></script>
   {% block scripts %}{% endblock %}
+  <script src="{{ asset('bundles/front/js/front.js') }}"></script>
 {% endblock %}
 
+{% block body %}
 
-{% block subbundlecontent %}
+<main class="row">
 
-    <ul id="slide-out" class="side-nav fixed">
-        <li>
-            <div class="userView">
-                <div class="background blue"></div>
-                <a href="{{ path('back_homepage') }}">
-                    <img class="circle" src="">
-                    <span>Kabolt Support</span>
-                </a>
-                <a href="{{ path('user_profile') }}">
-                    <div class="row">
-                        <span class="white-text name">{{ app.user.usedName }}</span>
-                        <span class="white-text email"></span>
-                    </div>
+  {#********** Menu ***********#}
+  {% include "menus.html.twig" %}
+  <div class="col s10">
+    {% block content %}{% endblock %}
+  </div>
+</main>
 
-                </a>
-            </div>
-        </li>
-        <li><a href=""><i class="material-icons">home</i>Tableau de bord</a></li>
-        <li><a href=""><i class="material-icons">assignment</i>Tickets</a></li>
-        <li><a href=""><i class="material-icons">work</i>Projets</a></li>
-        <li><a href=""><i class="material-icons">group</i>Teams</a></li>
-        <li><a href=""><i class="material-icons">account_balance</i>Organisations</a></li>
-        <li><a href=""><i class="material-icons">business</i>Départements</a>
-        </li>
-        <li>
-            <div class="divider"></div>
-        </li>
-        <li><a class="waves-effect" href="#!"><i class="material-icons">settings</i>Paramètres</a></li>
-        <li><a class="waves-effect" href="{{ path('logout') }}"><i class="material-icons">exit_to_app</i>Déconnexion</a>
-        </li>
-    </ul>
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+{% endblock %}
+
+{% block javascripts %}
+
+  <script type="text/javascript">
+
+
+
+  </script>
+
+{% block pagejs %}{% endblock %}
 {% endblock %}

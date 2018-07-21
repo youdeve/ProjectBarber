@@ -1,7 +1,6 @@
 {% extends "@Back/back-base.html.twig" %}
 
 {% block  content  %}
-
 <div class="container">
     <div class="section">
       <div class="row page-title">
@@ -9,40 +8,34 @@
         <hr class='white' style="margin-bottom:1rem"/>
       </div>
       <div class="row">
-        <div class="col offset-m1 m10 s12 center-align">
+        <div class="col m12 s12 l12 center-align">
 
-            <a title="Gestion des propriétés" class="btn-floating white hoverable huge-floating-button btn-with-text"
-               href="">
-              <i class="fa fa-building-o" aria-hidden="true"></i>
-              <span>Propriétés</span>
-            </a>
-
-            <a title="Gestion des comptes employés"
-               class="btn-floating white hoverable huge-floating-button btn-with-text"
-               href="">
-              <i class="fa fa-users" aria-hidden="true"></i>
-              <span>Utilisateurs</span>
-            </a>
-
-
-            <a title="Messagerie" class="btn-floating white hoverable huge-floating-button btn-with-text"
-               href="">
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-              <span>Messagerie</span>
-            </a>
-
-
-            <a title="Gestion des publications" class="btn-floating white hoverable huge-floating-button btn-with-text"
-               href="">
-              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-              <span>Publications</span>
-            </a>
-
-            <a title="Modération des publications"
-               class="btn-floating white hoverable huge-floating-button btn-with-text"
-               href="">
-              <span>Modération</span>
-            </a>
+          <a title="Gestion Employés" class="btn-floating hoverable white huge-floating-button btn-with-text"
+             href="">
+             <i class="material-icons">people</i>
+            <span>Gestion Employés</span>
+          </a>
+          <a title="Gestion des rendez-vous"
+             class="btn-floating white hoverable huge-floating-button btn-with-text"
+             href="">
+            <i class="material-icons">wifi_tethering</i>
+            <span>Centre de controle</span>
+          </a>
+          <a title="Centre de notification" class="btn-floating white hoverable huge-floating-button btn-with-text"
+             href="">
+            <i class="material-icons">notifications</i>
+            <span>Centre de notification</span>
+          </a>
+          <a title="Gestion Administrateur" class="btn-floating white hoverable huge-floating-button btn-with-text"
+             href="{{ path('front_profile') }}">
+            <i class="material-icons">settings</i>
+            <span>Compte</span>
+          </a>
+          <a title="Déconnexion" class="btn-floating white hoverable huge-floating-button btn-with-text"
+             href="{{ path('fos_user_security_logout') }}">
+            <i class="material-icons">lock_open</i>
+            <span>Déconnexion</span>
+          </a>
         </div>
       </div>
     </div>
