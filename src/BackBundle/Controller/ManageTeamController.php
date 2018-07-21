@@ -19,7 +19,7 @@ class ManageTeamController extends Controller
      * @Route("/admin/teams", name="back_team")
      * @Security("has_role('ROLE_BACK_ACCESS')")
      */
-    public function indexAction(Request $request)
+    public function ManageTeamAction(Request $request)
     {
         return $this->render('@Back/ManageTeam/manage-team.html.twig');
     }

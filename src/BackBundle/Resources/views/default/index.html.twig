@@ -11,7 +11,7 @@
         <div class="col m12 s12 l12 center-align">
 
           <a title="Gestion Employés" class="btn-floating hoverable white huge-floating-button btn-with-text"
-             href="">
+             href="{{ path('back_team') }}">
              <i class="material-icons">people</i>
             <span>Gestion Employés</span>
           </a>
@@ -22,12 +22,12 @@
             <span>Centre de controle</span>
           </a>
           <a title="Centre de notification" class="btn-floating white hoverable huge-floating-button btn-with-text"
-             href="">
+             href="{{ path('back_notification') }}">
             <i class="material-icons">notifications</i>
             <span>Centre de notification</span>
           </a>
           <a title="Gestion Administrateur" class="btn-floating white hoverable huge-floating-button btn-with-text"
-             href="{{ path('front_profile') }}">
+             href="{{ path('back_setting') }}">
             <i class="material-icons">settings</i>
             <span>Compte</span>
           </a>

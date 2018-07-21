@@ -2,7 +2,15 @@
 
   <div class="{{ route == 'front_homepage' ? "hidden" }} {{  route == 'back_homepage' ? "hidden" }} navbar col s2">
     <ul id="slide-out" class="side-nav fixed hoverable">
-      <li class="logo"><a id="logo-container" href="{{ path('front_homepage') }}"  class="brand-logo"><img src="{{ asset('logo-menu.png') }}"/></a></li>
+      <!-- *********** LOGO **********-->
+    {% if app.user.hasRole('ROLE_CLIENT')  %}
+        <li class="logo"><a id="logo-container" href="{{ path('front_homepage') }}"
+           class="brand-logo"><img src="{{ asset('logo-menu.png') }}"/></a></li>
+    {% elseif app.user.hasRole('ROLE_ADMIN') %}
+        <li class="logo"><a id="logo-container" href="{{ path('back_homepage') }}"
+           class="brand-logo"><img src="{{ asset('logo-menu.png') }}"/></a></li>
+    {% endif %}
+        <!-- *********** LOGO **********-->
       {% if app.user.hasRole('ROLE_CLIENT')  %}
           <li>
             <a  href="{{ path('front_profile') }}"  title="Gestion du compte" class="icons-menu ">
@@ -16,11 +24,11 @@
           </li>
           <li>
             <a href="{{ path('front_appointment') }}" title="Gestion rendez-vous" class="icons-menu ">
-              <i class="{{ route ==  'front_appointment' ? "active" }} material-icons">event</i>
+              <i class="{{ route == 'front_appointment' ? "active" }} material-icons">event</i>
             </a>
           </li>
           <li>
-            <a href=""  title="Gestion messagerie" class="icons-menu">
+            <a href="{{ path('front_message') }}"  title="Gestion messagerie" class="icons-menu">
               <i class="{{ route ==  'front_message' ? "active" }} material-icons">message</i>
             </a>
           </li>
@@ -33,8 +41,8 @@
       {% elseif app.user.hasRole('ROLE_ADMIN') %} {# USER ADMIN + TEAM #}
 
           <li>
-            <a  href=""  title="Gestion Employés" class="icons-menu ">
-              <i class="{{ route == '' ? "active" }} material-icons">people</i>
+            <a  href="{{ path('back_team') }}"  title="Gestion Employés" class="icons-menu ">
+              <i class="{{ route == 'back_team' ? "active" }} material-icons">people</i>
             </a>
           </li>
           <li>
@@ -43,13 +51,13 @@
             </a>
           </li>
           <li>
-            <a href="{{ path('front_appointment') }}" title="Centre de notification" class="icons-menu ">
-              <i class="{{ route ==  '' ? "active" }} material-icons">notifications</i>
+            <a href="{{ path('back_notification') }}" title="Centre de notification" class="icons-menu ">
+              <i class="{{ route ==  'back_notification' ? "active" }} material-icons">notifications</i>
             </a>
           </li>
           <li>
-            <a href=""  title="Gestion Administrateur" class="icons-menu">
-              <i class="{{ route ==  '' ? "active" }} material-icons">settings</i>
+            <a href="{{ path('back_setting') }}"  title="Gestion Administrateur" class="icons-menu">
+              <i class="{{ route == 'back_setting' ? "active" }} material-icons">settings</i>
             </a>
           </li>
           <li>
@@ -59,23 +67,23 @@
           </li>
       {% elseif app.user.hasRole('ROLE_TEAM') %}
           <li>
-            <a  href=""  title="Gestion Employés" class="icons-menu ">
-              <i class="{{ route == '' ? "active" }} material-icons">people</i>
+            <a  href="{{ path('back_team') }}"  title="Gestion Employés" class="icons-menu ">
+              <i class="{{ route == 'back_' ? "active" }} material-icons">people</i>
             </a>
           </li>
           <li>
-            <a  href="" title="Centre de controle" class="icons-menu">
-              <i class="{{ route ==  '' ? "active" }} material-icons">wifi_tethering</i>
+            <a  href="{{ path('back_notification') }}" title="Centre de controle" class="icons-menu">
+              <i class="{{ route ==  'back_' ? "active" }} material-icons">wifi_tethering</i>
             </a>
           </li>
           <li>
-            <a href="{{ path('front_appointment') }}" title="Centre de notification" class="icons-menu ">
-              <i class="{{ route ==  '' ? "active" }} material-icons">notifications</i>
+            <a href="{{ path('back_notification') }}" title="Centre de notification" class="icons-menu ">
+              <i class="{{ route ==  'back_notification' ? "active" }} material-icons">notifications</i>
             </a>
           </li>
           <li>
-            <a href=""  title="Gestion Administrateur" class="icons-menu">
-              <i class="{{ route ==  '' ? "active" }} material-icons">settings</i>
+            <a href="{{ path('back_setting') }}"  title="Gestion Administrateur" class="icons-menu">
+              <i class="{{ route ==  'back_setting' ? "active" }} material-icons">settings</i>
             </a>
           </li>
           <li>
