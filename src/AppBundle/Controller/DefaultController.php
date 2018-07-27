@@ -11,7 +11,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
@@ -29,6 +29,10 @@ class DefaultController extends Controller
           return $this->redirect($this->generateUrl('front_homepage'));
         }elseif($user->hasRole('ROLE_ADMIN')){
           return $this->redirect($this->generateUrl('back_homepage'));
+        }elseif($user->hasRole('ROLE_TEAM')){
+          return $this->redirect($this->generateUrl('back_homepage'));
+        } else {
+          throw new AccessDeniedHttpException();
         }
     }
 

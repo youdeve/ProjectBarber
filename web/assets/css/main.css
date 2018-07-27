@@ -14,7 +14,9 @@ li.logo {
   background-color: #ECF0F1!important;
   width: 240px!important;
 }
-
+.flash-message{
+  display: none;
+}
 
 .side-nav a#logo
 {
@@ -51,8 +53,10 @@ nav {
   color: white;
 }
 
+.modal {
+  color:black;
+}
 /** icon  */
-
 .btn-floating {
     width: 169px!important;
     height: 173px!important;

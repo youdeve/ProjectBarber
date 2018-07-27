@@ -3,9 +3,9 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
-      ROLE_ADMIN:    [ROLE_SUPER_ADMIN, ROLE_ADD_ADMIN, ROLE_BACK_ACCESS]
-      ROLE_CLIENT:   [ROLE_USER, ROLE_FRONT_ACCESS]
-      ROLE_TEAM:   [ROLE_BACK_ACCESS, ROLE_FRONT_ACCESS]
+      ROLE_ADMIN:   [ROLE_SUPER_ADMIN, ROLE_ADD_ADMIN, ROLE_BACK_ACCESS]
+      ROLE_TEAM:    [ROLE_BACK_ACCESS, ROLE_ADMIN]
+      ROLE_CLIENT:  [ROLE_USER, ROLE_FRONT_ACCESS]
 
     providers:
       fos_userbundle:
@@ -15,11 +15,6 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        urmet:
-            pattern:   ^/login/urmet
-            context: main
-            http_basic: ~
-            provider: fos_userbundle
         main:
             pattern: ^/
             form_login:
@@ -43,4 +38,5 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: [ROLE_BACK_ACCESS, ROLE_SUPER_ADMIN] }
         - { path: ^/user/, role: ROLE_FRONT_ACCESS }
+        - { path: ^/api, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /, roles: [ROLE_BACK_ACCESS, ROLE_FRONT_ACCESS] }

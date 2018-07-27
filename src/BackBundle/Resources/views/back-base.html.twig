@@ -2,15 +2,9 @@
 {% set route = app.request.get('_route') %}
 
 {% block stylesheets %}
-
-        {% block pagestyle %}{% endblock %}
+      {% block pagestyle %}{% endblock %}
 {% endblock %}
 
-
-{% block bundlejs %}
-  {% block scripts %}{% endblock %}
-  <script src="{{ asset('bundles/front/js/front.js') }}"></script>
-{% endblock %}
 
 {% block body %}
 
@@ -18,7 +12,7 @@
 
   {#********** Menu ***********#}
   {% include "menus.html.twig" %}
-  <div class="col l10 m9 s10">
+  <div class="col offset-m1 offset-l1 l10 m9 s12">
     {% block content %}{% endblock %}
   </div>
 </main>
@@ -26,12 +20,6 @@
 {% endblock %}
 
 {% block javascripts %}
-
-  <script type="text/javascript">
-
-
-
-  </script>
-
-{% block pagejs %}{% endblock %}
+  <script src="{{ asset('bundles/back/js/back.js') }}"></script>
+  {% block pagejs %}{% endblock %}
 {% endblock %}

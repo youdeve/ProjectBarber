@@ -21,7 +21,15 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->render('@Back/default/index.html.twig');
+
+      if($this->getUser()->hasRole('ROLE_ADMIN') || $this->getUser()->hasRole('ROLE_TEAM'))
+          return $this->render('@Back/default/index.html.twig');
+      else
+       throw new AccessDeniedHttpException('Vous n\'avez pas les droits pour accédé à cette page ');
+
+
     }
+
+
 
 }

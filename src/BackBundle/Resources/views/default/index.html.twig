@@ -10,6 +10,7 @@
       <div class="row">
         <div class="col m12 s12 l12 center-align">
 
+      {% if app.user.hasRole('ROLE_ADMIN') %}
           <a title="Gestion Employés" class="btn-floating hoverable white huge-floating-button btn-with-text"
              href="{{ path('back_team') }}">
              <i class="material-icons">people</i>
@@ -21,16 +22,30 @@
             <i class="material-icons">wifi_tethering</i>
             <span>Centre de controle</span>
           </a>
-          <a title="Centre de notification" class="btn-floating white hoverable huge-floating-button btn-with-text"
-             href="{{ path('back_notification') }}">
-            <i class="material-icons">notifications</i>
-            <span>Centre de notification</span>
-          </a>
           <a title="Gestion Administrateur" class="btn-floating white hoverable huge-floating-button btn-with-text"
              href="{{ path('back_setting') }}">
             <i class="material-icons">settings</i>
             <span>Compte</span>
           </a>
+          <!-- Connecté en tant que TEAM -->
+      {% elseif app.user.hasRole('ROLE_TEAM') %}
+          <a title="Gestion des rendez-vous"
+             class="btn-floating white hoverable huge-floating-button btn-with-text"
+             href="{{ path('front_appointment') }}">
+            <i class="material-icons">today</i>
+            <span>Gestion Rendez-vous</span>
+          </a>
+          <a title="Messagerie" class="btn-floating white hoverable huge-floating-button btn-with-text"
+             href="{{ path('front_message') }}">
+            <i class="material-icons">group</i>
+            <span>Gestion client</span>
+          </a>
+          <a title="Centre de notification" class="btn-floating white hoverable huge-floating-button btn-with-text"
+             href="{{ path('back_notification') }}">
+            <i class="material-icons">notifications</i>
+            <span>Centre de notification</span>
+          </a>
+      {% endif %}
           <a title="Déconnexion" class="btn-floating white hoverable huge-floating-button btn-with-text"
              href="{{ path('fos_user_security_logout') }}">
             <i class="material-icons">lock_open</i>

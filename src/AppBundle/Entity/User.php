@@ -37,6 +37,27 @@ class User extends BaseUser
       protected $groups;
 
 
+        /**
+         * @param $role
+         * @return bool
+         */
+      public function hasGroup($role) {
+        return in_array( (array) $role, (array) $this->getGroups());
+      }
+
+
+      /**
+      * {@inheritdoc}
+      */
+      public function getGroupNames()
+      {
+        $names = array();
+        foreach ($this->getGroups() as $group) {
+        $names[] = $group->getName();
+      }
+
+        return $names;
+      }
 
       /**
        * @param $role
@@ -53,15 +74,14 @@ class User extends BaseUser
     {
       $roles = $this->roles;
       if (null !== $this->getGroups()) {
-        $roles = array_merge($roles, $this->getGroups()->getRoles());
+        $roles = array_merge( (array) $roles, (array) $this->getGroups()->getRoles());
       }
       return $roles;
     }
 
         /**
      * Get groups
-     *
-     * @return Collection|Group[]
+     * @return array
      */
     public function getGroups()
     {

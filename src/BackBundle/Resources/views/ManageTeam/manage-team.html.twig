@@ -3,13 +3,73 @@
 {% block  content  %}
 <div class="container">
     <div class="section">
+
       <div class="row page-title">
         <h2>Gestion employés</h2>
         <hr class='white' style="margin-bottom:1rem"/>
       </div>
       <div class="row">
         <div class=" col offset-m1 m10 s12 center-align">
-          
+          <a class="btn-floatings btn-large waves-effect waves-light modal-trigger red right" href="#modal1"><i class="material-icons">add</i></a>
+        <table>
+           <thead>
+             <tr>
+               <th>Nom Team</th>
+               <th>Client Lié</th>
+               <th>Salon</th>
+             </tr>
+           </thead>
+           <tbody>
+             <tr>
+               <td>Alvin</td>
+               <td>Eclair</td>
+               <td>$0.87</td>
+             </tr>
+             <tr>
+               <td>Alan</td>
+               <td>Jellybean</td>
+               <td>$3.76</td>
+             </tr>
+             <tr>
+               <td>Jonathan</td>
+               <td>Lollipop</td>
+               <td>$7.00</td>
+             </tr>
+           </tbody>
+         </table>
+
+                 <!-- Modal Structure -->
+         <div id="modal1" class="modal">
+           <div id="ajax-container" class="modal-content">
+             <div class="row">
+               <h3>Ajouter un employé</h4>
+
+               <div class="col offset-m2 offset-l2 offset-s2  l9 m9 s9 ">
+
+                 {{ form_start(form) }}
+                 <div class="input-field col s12 m9">
+                    {{ form_row(form.Enabled) }}
+                  </div>
+                  <div class="input-field col s12 m10">
+                    {{ form_row(form.Email,  {'attr': {'class': 'input-field'}}) }}
+                  </div>
+                  <div class="input-field col s12 m10">
+                    {{ form_row(form.Username,  {'attr': {'class': 'input-field'}}) }}
+                  </div>
+                   <div class="input-field col s12 m10">
+                     {{ form_row(form.plainPassword.first, {'attr': {'class': 'input-field'}}) }}
+                   </div>
+                  <div class="input-field col s12 m10">
+                     {{ form_row(form.plainPassword.second, {'attr': {'class': 'input-field'}}) }}
+                  </div>
+               </div>
+             </div>
+           </div>
+             <div class="modal-footer">
+                <button type="submit" class="btn" style="width:100%" value="Créer un utilisateur">Créer un utilisateur</button>
+             </div>
+           {{ form_end(form) }}
+         </div>
         </div>
       </div>
     </div>
@@ -17,4 +77,42 @@
 
 
 
+{% endblock %}
+
+{% block pagejs %}
+  <script type="text/javascript">
+
+//
+// $(document).ready(function() {
+//   $('#modal1').on('submit', '#ajax-form', function() {
+//     console.log('click');
+//     data = {};
+//     var $this = $(this);
+//     $.ajax({
+//       url : $this.attr('action'),
+//       type : $this.attr('method'),
+//       data : new FormData($this[0]),
+//       processData: false,
+//       contentType: false
+//     })
+//     .done(function(response) {
+//       // console.log(response);
+//       displayToast(response, 'success');
+//       // $("#modal1").modal('close');
+//     })
+//     .fail(function(response) {
+//       displayToast(response, 'error');
+//     })
+//   });
+// });
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal({
+      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+      opacity: .5, // Opacity of modal background
+      inDuration: 300, // Transition in duration
+      outDuration: 200, // Transition out duration
+      startingTop: '4%', // Starting top style attribute
+      endingTop: '20%', // Ending top style attribute
+    });
+  </script>
 {% endblock %}
