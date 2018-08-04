@@ -1,5 +1,6 @@
 {% extends "@Back/back-base.html.twig" %}
 
+
 {% block  content  %}
 <div class="container">
     <div class="section">
@@ -10,11 +11,10 @@
       </div>
       <div class="row">
         <div class=" col offset-m1 m10 s12 center-align">
-          <div class="">
-            <a class="btn-floatings btn-large waves-effect waves-light modal-trigger red right" href="#modal1"><i class="material-icons">add</i></a>
+          <div class="add_employees">
+            <a class="right" title="Ajouter un employé" href="#modal1"><i class="material-icons ">add_circle_outline</i></a>
           </div>
           <div id="employees" class="" style="padding-top:70px;"></div>
-          <div id="externalLink"></div>
 
                  <!-- Modal Structure -->
          <div id="modal1" class="modal">
@@ -71,7 +71,7 @@
   function showEmployee(employees){
     var container = $('#employees');
 
-    div = document.createElement('hr');
+    hr = document.createElement('hr');
 
     table = document.createElement('table');
     table.className = 'responsive-table';

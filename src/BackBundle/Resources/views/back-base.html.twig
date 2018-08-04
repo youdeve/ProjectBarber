@@ -1,7 +1,8 @@
 {% extends "base.html.twig" %}
-{% set route = app.request.get('_route') %}
+
 
 {% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('assets/css/back/back.css') }}"/>
       {% block pagestyle %}{% endblock %}
 {% endblock %}
 
