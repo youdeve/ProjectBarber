@@ -10,33 +10,11 @@
       </div>
       <div class="row">
         <div class=" col offset-m1 m10 s12 center-align">
-          <a class="btn-floatings btn-large waves-effect waves-light modal-trigger red right" href="#modal1"><i class="material-icons">add</i></a>
-        <table>
-           <thead>
-             <tr>
-               <th>Nom Team</th>
-               <th>Client Lié</th>
-               <th>Salon</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <td>Alvin</td>
-               <td>Eclair</td>
-               <td>$0.87</td>
-             </tr>
-             <tr>
-               <td>Alan</td>
-               <td>Jellybean</td>
-               <td>$3.76</td>
-             </tr>
-             <tr>
-               <td>Jonathan</td>
-               <td>Lollipop</td>
-               <td>$7.00</td>
-             </tr>
-           </tbody>
-         </table>
+          <div class="">
+            <a class="btn-floatings btn-large waves-effect waves-light modal-trigger red right" href="#modal1"><i class="material-icons">add</i></a>
+          </div>
+          <div id="employees" class="" style="padding-top:70px;"></div>
+          <div id="externalLink"></div>
 
                  <!-- Modal Structure -->
          <div id="modal1" class="modal">
@@ -82,6 +60,71 @@
 {% block pagejs %}
   <script type="text/javascript">
 
+  console.log('test');
+  function displayEmployee() {
+    $.get(Routing.generate('api_apiemployee_getemployees'))
+    .done(function(employees) {
+      showEmployee(employees);
+    });
+  }
+
+  function showEmployee(employees){
+    var container = $('#employees');
+
+    div = document.createElement('hr');
+
+    table = document.createElement('table');
+    table.className = 'responsive-table';
+    thead = document.createElement('thead');
+    table.append(thead);
+
+    tr = document.createElement('tr');
+
+    th1 = document.createElement('th');
+    th1Texte = document.createTextNode('Nom');
+    th1.append(th1Texte);
+
+    th2 = document.createElement('th');
+    th2Texte = document.createTextNode('Client Lié');
+    th2.append(th2Texte);
+
+    th3 = document.createElement('th');
+    th3Texte = document.createTextNode('Action');
+    th3.append(th3Texte);
+
+    tr.append(th1, th2, th3);
+
+    thead.append(tr);
+    tbody = document.createElement('tbody');
+    table.append(tbody);
+    $.each(employees, function(i, item) {
+
+      trUsername = document.createElement('tr');
+      tdUsername = document.createElement('td');
+      tdClient = document.createElement('td');
+      tdAction = document.createElement('td');
+
+      tdTexteUsername = document.createTextNode(item.username);
+      tdUsername.append(tdTexteUsername);
+      tdTexteClient = document.createTextNode(item.username);
+      tdClient.append(tdTexteClient);
+      tdTexteAction = document.createTextNode(item.username);
+      tdAction.append(tdTexteAction);
+
+      //action client + nom
+      trUsername.append(tdUsername,tdClient,tdAction);
+
+
+      tbody.append(trUsername);
+
+    });
+      container.append(table);
+  }
+
+  $( document ).ready(function() {
+    displayEmployee();
+
+  });
 //
 // $(document).ready(function() {
 //   $('#modal1').on('submit', '#ajax-form', function() {

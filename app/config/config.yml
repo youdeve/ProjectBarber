@@ -33,6 +33,15 @@ framework:
     php_errors:
         log: true
 
+fos_rest:
+    routing_loader:
+        include_format: false
+    view:
+        view_response_listener: true
+    # format_listener:
+    #     rules:
+    #         - { path: '^/', priorities: ['json'], fallback_format: 'json' }
+
 # FosUser Configuration
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
@@ -99,7 +108,6 @@ doctrine:
         auto_mapping: true
 
 
-
 # lexik_jwt_authentication Configuration
 # lexik_jwt_authentication:
 #     private_key_path: %kernel.root_dir%/../var/jwt/private.pem
@@ -114,3 +122,8 @@ swiftmailer:
     username:   '%mailer_user%'
     password:   '%mailer_password%'
     spool: { type: memory }
+
+# FosJsRoutingBundle Configuration
+fos_js_routing:
+    routes_to_expose:
+      - ^api

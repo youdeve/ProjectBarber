@@ -1,9 +1,14 @@
 app_api_default:
     type: rest
-    ressource:    "ApiBundle:ApiDefault"
-    name_prefix:  api_
+    ressource:     "ApiBundle:ApiDefault"
+    name_prefix:   api_
 
 app_api_add_manager:
     type: rest
-    ressource:    "ApiBundle:ApiAddManager"
-    name_prefix:  api_
+    ressource:     "ApiBundle:ApiAddManager"
+    name_prefix:   api_
+
+app_api_employee:
+    type: rest
+    ressource:     "ApiBundle:ApiEmployee"
+    name_prefix:   api_
