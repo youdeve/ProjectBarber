@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class ServiceCatalog
 {
     /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -29,7 +29,7 @@ class ServiceCatalog
     private $hairCuts;
 
     /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="price", type="integer")
      */

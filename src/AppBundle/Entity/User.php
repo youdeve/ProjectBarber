@@ -31,10 +31,16 @@ class User extends BaseUser
      */
     protected $id;
 
-    /**
-      * @ORM\ManyToOne(targetEntity="Groups", inversedBy="users")
+   /**
+    * @ORM\ManyToOne(targetEntity="Groups", inversedBy="users")
+    */
+    protected $groups;
+
+     /**
+      * @ORM\ManyToMany(targetEntity="ServiceList", inversedBy="users")
       */
-      protected $groups;
+    protected $serviceList;
+
 
 
         /**
@@ -86,5 +92,55 @@ class User extends BaseUser
     public function getGroups()
     {
       return $this->groups;
+    }
+
+    /**
+     * Set groups.
+     *
+     * @param \AppBundle\Entity\Groups|null $groups
+     *
+     * @return User
+     */
+    public function setGroups(\AppBundle\Entity\Groups $groups = null)
+    {
+        $this->groups = $groups;
+
+        return $this;
+    }
+
+    /**
+     * Add serviceList.
+     *
+     * @param \AppBundle\Entity\ServiceList $serviceList
+     *
+     * @return User
+     */
+    public function addServiceList(\AppBundle\Entity\ServiceList $serviceList)
+    {
+        $this->serviceList[] = $serviceList;
+
+        return $this;
+    }
+
+    /**
+     * Remove serviceList.
+     *
+     * @param \AppBundle\Entity\ServiceList $serviceList
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeServiceList(\AppBundle\Entity\ServiceList $serviceList)
+    {
+        return $this->serviceList->removeElement($serviceList);
+    }
+
+    /**
+     * Get serviceList.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getServiceList()
+    {
+        return $this->serviceList;
     }
 }

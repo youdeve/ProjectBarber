@@ -44,6 +44,13 @@ class ServiceList
 
 
     /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="ServiceList")
+     */
+    private $user;
+
+
+
+    /**
      * Get id.
      *
      * @return int
@@ -123,5 +130,48 @@ class ServiceList
     public function getPrice()
     {
         return $this->price;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add user.
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return ServiceList
+     */
+    public function addUser(\AppBundle\Entity\User $user)
+    {
+        $this->user[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user.
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeUser(\AppBundle\Entity\User $user)
+    {
+        return $this->user->removeElement($user);
+    }
+
+    /**
+     * Get user.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
