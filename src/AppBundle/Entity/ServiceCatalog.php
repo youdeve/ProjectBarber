@@ -35,7 +35,7 @@ class ServiceCatalog
      */
     private $price;
 
-
+    
     /**
      * Get id.
      *

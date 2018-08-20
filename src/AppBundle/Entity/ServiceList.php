@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * ServiceList
@@ -47,6 +48,13 @@ class ServiceList
      * @ORM\ManyToMany(targetEntity="User", inversedBy="ServiceList")
      */
     private $user;
+
+    /**
+     * A Service is affected to a customer (front user).
+     * @Assert\NotNull(message = "A service requires a customer affected")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="affectedService")
+     */
+    protected $affectedCustomer;
 
 
 
@@ -173,5 +181,29 @@ class ServiceList
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set affectedCustomer.
+     *
+     * @param \AppBundle\Entity\User|null $affectedCustomer
+     *
+     * @return ServiceList
+     */
+    public function setAffectedCustomer(\AppBundle\Entity\User $affectedCustomer = null)
+    {
+        $this->affectedCustomer = $affectedCustomer;
+
+        return $this;
+    }
+
+    /**
+     * Get affectedCustomer.
+     *
+     * @return \AppBundle\Entity\User|null
+     */
+    public function getAffectedCustomer()
+    {
+        return $this->affectedCustomer;
     }
 }

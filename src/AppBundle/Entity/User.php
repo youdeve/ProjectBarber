@@ -36,12 +36,21 @@ class User extends BaseUser
     */
     protected $groups;
 
-     /**
-      * @ORM\ManyToMany(targetEntity="ServiceList", inversedBy="users")
-      */
-    protected $serviceList;
+    /**
+     * @ORM\ManyToOne(targetEntity="TeamMember", inversedBy="affectedClient")
+     */
+    protected $affectedAgentBarber;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ServiceList", mappedBy="affectedCustomer")
+     */
+    protected $affectedService;
 
 
+    /**
+     * @ORM\OneToMany(targetEntity="TeamMember", mappedBy="user")
+     */
+    protected $teamMemberships;
 
         /**
          * @param $role
@@ -142,5 +151,127 @@ class User extends BaseUser
     public function getServiceList()
     {
         return $this->serviceList;
+    }
+
+    /**
+     * Add affectedAgentBarber.
+     *
+     * @param \AppBundle\Entity\TeamMember $affectedAgentBarber
+     *
+     * @return User
+     */
+    public function addAffectedAgentBarber(\AppBundle\Entity\TeamMember $affectedAgentBarber)
+    {
+        $this->affectedAgentBarber[] = $affectedAgentBarber;
+
+        return $this;
+    }
+
+    /**
+     * Remove affectedAgentBarber.
+     *
+     * @param \AppBundle\Entity\TeamMember $affectedAgentBarber
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeAffectedAgentBarber(\AppBundle\Entity\TeamMember $affectedAgentBarber)
+    {
+        return $this->affectedAgentBarber->removeElement($affectedAgentBarber);
+    }
+
+    /**
+     * Get affectedAgentBarber.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAffectedAgentBarber()
+    {
+        return $this->affectedAgentBarber;
+    }
+
+    /**
+     * Add affectedService.
+     *
+     * @param \AppBundle\Entity\ServiceList $affectedService
+     *
+     * @return User
+     */
+    public function addAffectedService(\AppBundle\Entity\ServiceList $affectedService)
+    {
+        $this->affectedService[] = $affectedService;
+
+        return $this;
+    }
+
+    /**
+     * Remove affectedService.
+     *
+     * @param \AppBundle\Entity\ServiceList $affectedService
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeAffectedService(\AppBundle\Entity\ServiceList $affectedService)
+    {
+        return $this->affectedService->removeElement($affectedService);
+    }
+
+    /**
+     * Get affectedService.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAffectedService()
+    {
+        return $this->affectedService;
+    }
+
+    /**
+     * Add teamMembership.
+     *
+     * @param \AppBundle\Entity\TeamMember $teamMembership
+     *
+     * @return User
+     */
+    public function addTeamMembership(\AppBundle\Entity\TeamMember $teamMembership)
+    {
+        $this->teamMemberships[] = $teamMembership;
+
+        return $this;
+    }
+
+    /**
+     * Remove teamMembership.
+     *
+     * @param \AppBundle\Entity\TeamMember $teamMembership
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeTeamMembership(\AppBundle\Entity\TeamMember $teamMembership)
+    {
+        return $this->teamMemberships->removeElement($teamMembership);
+    }
+
+    /**
+     * Get teamMemberships.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTeamMemberships()
+    {
+        return $this->teamMemberships;
+    }
+
+    /**
+     * Set affectedAgentBarber.
+     *
+     * @param \AppBundle\Entity\TeamMember|null $affectedAgentBarber
+     *
+     * @return User
+     */
+    public function setAffectedAgentBarber(\AppBundle\Entity\TeamMember $affectedAgentBarber = null)
+    {
+        $this->affectedAgentBarber = $affectedAgentBarber;
+
+        return $this;
     }
 }
