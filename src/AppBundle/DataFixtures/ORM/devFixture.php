@@ -9,6 +9,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use AppBundle\Entity\User;
+use AppBundle\Entity\TeamMember;
 use AppBundle\Entity\ServiceCatalog;
 use AppBundle\Entity\ServiceList;
 
@@ -40,21 +41,58 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $userManager = $this->container->get('fos_user.user_manager');
 
         // Admin TEST
-        $newUser = $userManager->createUser();
-        $newUser->setUsername('admin');
-        $newUser->setEmail('admin@barber.fr');
-        $newUser->setPlainPassword('$2y$13$aRbKO77ssoQKNqCScFa/yuR7teyInphJIIF88nw2ahyJ4Et4Ugedy');
-        $newUser->setEnabled(true);
-        $newUser->addRole("ROLE_ADMIN");
 
         $newUser = $userManager->createUser();
-        $newUser->setUsername('TEAM');
-        $newUser->setEmail('team@barber.fr');
-        $newUser->setPlainPassword('$2y$13$aRbKO77ssoQKNqCScFa/yuR7teyInphJIIF88nw2ahyJ4Et4Ugedy');
+        $newUser->setUsername('Jean');
+        $newUser->setEmail('jean@barber.fr');
+        $newUser->setPlainPassword('KaboltDev42');//123456
         $newUser->setEnabled(true);
-        $newUser->addRole("ROLE_TEAM");
+        $newUser->addRole("ROLE_CLIENT");
 
         $userManager->updateUser($newUser, true);
+
+        $newUserT = $userManager->createUser();
+        $newUserT->setUsername('Thomas');
+        $newUserT->setEmail('Thomas@barber.fr');
+        $newUserT->setPlainPassword('KaboltDev42');//123456
+        $newUserT->setEnabled(true);
+        $newUserT->addRole("ROLE_CLIENT");
+
+        $userManager->updateUser($newUserT, true);
+
+        $newUser2 = $userManager->createUser();
+        $newUser2->setUsername('Team');
+        $newUser2->setEmail('team@barber.fr');
+        $newUser2->setPlainPassword('KaboltDev42');//123456
+        $newUser2->setEnabled(true);
+        $newUser2->addRole("ROLE_TEAM");
+
+        $userManager->updateUser($newUser2, true);
+
+        $newUser21 = $userManager->createUser();
+        $newUser21->setUsername('Team2');
+        $newUser21->setEmail('team2@barber.fr');
+        $newUser21->setPlainPassword('KaboltDev42');//123456
+        $newUser21->setEnabled(true);
+        $newUser21->addRole("ROLE_TEAM");
+
+        $userManager->updateUser($newUser21, true);
+
+        $newUser3 = $userManager->createUser();
+        $newUser3->setUsername('admin');
+        $newUser3->setEmail('admin@barber.fr');
+        $newUser3->setPlainPassword('KaboltDev42');//123456
+        $newUser3->setEnabled(true);
+        $newUser3->addRole("ROLE_ADMIN");
+
+        $userManager->updateUser($newUser3, true);
+
+        $agentTeam = $manager->getRepository(User::class)->findOneByEmail('team2@barber.fr');
+        $client = $manager->getRepository(User::class)->findOneByEmail('Thomas@barber.fr');
+
+        $affectedAgentBarber = $client->setAffectedAgentBarber($agentTeam);
+        $manager->persist($affectedAgentBarber);
+        $manager->flush();
 
       }
 
@@ -87,10 +125,11 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
 
           foreach ($ServiceLists as $ServiceList) {
             $u = $manager->getRepository(User::class)->findOneByEmail($ServiceList['user']);
+            $affectedAgentBarber = $manager->getRepository(User::class)->findOneByEmail('');
             if(null === $u) {
               $u = $userManager->createUser();
-              $u->SetEmail($ServiceList['user'])->setUsername('NewClient')
-              ->setPlainPassword('$2y$13$aRbKO77ssoQKNqCScFa/yuR7teyInphJIIF88nw2ahyJ4Et4Ugedy')
+              $u->SetEmail($ServiceList['user'])->setUsername('Client')
+              ->setPlainPassword('$2y$10$i5CJcBJW50634gVgpXcLCO0tF1Lx2RDh6H2zDrh192G7odmh9NY0y')//123456
               ->addRole("ROLE_CLIENT");
             }
 
@@ -108,15 +147,20 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
       }
 
       function createTeamMember(ObjectManager $manager) {
-         $agentTeam = $manager->getRepository(User::class)->findOneByEmail('team@barber.fr');
 
-         $client = $manager->getRepository(User::class)->findOneByEmail('jean@barber.fr');
 
-         $teamMemberBarber = new TeamMember();
-         $teamMemberBarber->setUser($agentTeam);
-         $teamMemberBarber->setAffectedClient($client);
+
+           $teamMemberBarber = new TeamMember();
+           $teamMemberBarber->setUser($agentTeam);
+           $teamMemberBarber->addAffectedClient($client);
+
+
          $manager->persist($teamMemberBarber);
+         $affectedAgentBarber = $client->addAffectedAgentBarber($teamMemberBarber);
+         $manager->persist($affectedAgentBarber);
          $manager->flush();
+
+
       }
 
       function createServiceCatalog(ObjectManager $manager) {
