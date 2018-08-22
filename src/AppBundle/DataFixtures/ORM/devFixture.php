@@ -45,7 +45,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $newUser = $userManager->createUser();
         $newUser->setUsername('Jean');
         $newUser->setEmail('jean@barber.fr');
-        $newUser->setPlainPassword('KaboltDev42');//123456
+        $newUser->setPlainPassword('123456');//123456
         $newUser->setEnabled(true);
         $newUser->addRole("ROLE_CLIENT");
 
@@ -54,7 +54,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $newUserT = $userManager->createUser();
         $newUserT->setUsername('Thomas');
         $newUserT->setEmail('Thomas@barber.fr');
-        $newUserT->setPlainPassword('KaboltDev42');//123456
+        $newUserT->setPlainPassword('123456');//123456
         $newUserT->setEnabled(true);
         $newUserT->addRole("ROLE_CLIENT");
 
@@ -63,7 +63,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $newUser2 = $userManager->createUser();
         $newUser2->setUsername('Team');
         $newUser2->setEmail('team@barber.fr');
-        $newUser2->setPlainPassword('KaboltDev42');//123456
+        $newUser2->setPlainPassword('123456');//123456
         $newUser2->setEnabled(true);
         $newUser2->addRole("ROLE_TEAM");
 
@@ -72,7 +72,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $newUser21 = $userManager->createUser();
         $newUser21->setUsername('Team2');
         $newUser21->setEmail('team2@barber.fr');
-        $newUser21->setPlainPassword('KaboltDev42');//123456
+        $newUser21->setPlainPassword('123456');//123456
         $newUser21->setEnabled(true);
         $newUser21->addRole("ROLE_TEAM");
 
@@ -81,7 +81,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $newUser3 = $userManager->createUser();
         $newUser3->setUsername('admin');
         $newUser3->setEmail('admin@barber.fr');
-        $newUser3->setPlainPassword('KaboltDev42');//123456
+        $newUser3->setPlainPassword('123456');//123456
         $newUser3->setEnabled(true);
         $newUser3->addRole("ROLE_ADMIN");
 
@@ -129,7 +129,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
             if(null === $u) {
               $u = $userManager->createUser();
               $u->SetEmail($ServiceList['user'])->setUsername('Client')
-              ->setPlainPassword('$2y$10$i5CJcBJW50634gVgpXcLCO0tF1Lx2RDh6H2zDrh192G7odmh9NY0y')//123456
+              ->setPassword('123456')//123456
               ->addRole("ROLE_CLIENT");
             }
 
