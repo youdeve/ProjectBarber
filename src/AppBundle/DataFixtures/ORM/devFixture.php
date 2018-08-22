@@ -61,7 +61,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $userManager->updateUser($newUserT, true);
 
         $newUser2 = $userManager->createUser();
-        $newUser2->setUsername('Team');
+        $newUser2->setUsername('BarberyAntoine');
         $newUser2->setEmail('team@barber.fr');
         $newUser2->setPlainPassword('123456');//123456
         $newUser2->setEnabled(true);
@@ -70,7 +70,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $userManager->updateUser($newUser2, true);
 
         $newUser21 = $userManager->createUser();
-        $newUser21->setUsername('Team2');
+        $newUser21->setUsername('BarberyPhilip');
         $newUser21->setEmail('team2@barber.fr');
         $newUser21->setPlainPassword('123456');//123456
         $newUser21->setEnabled(true);
@@ -87,11 +87,27 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
 
         $userManager->updateUser($newUser3, true);
 
-        $agentTeam = $manager->getRepository(User::class)->findOneByEmail('team2@barber.fr');
-        $client = $manager->getRepository(User::class)->findOneByEmail('Thomas@barber.fr');
+        //affectedAgentBarber
+        $agentTeam = $manager->getRepository(User::class)->findOneByEmail("team2@barber.fr");
 
+        $client = $manager->getRepository(User::class)->findOneByEmail('Thomas@barber.fr');
         $affectedAgentBarber = $client->setAffectedAgentBarber($agentTeam);
+
+
+        //affectedAgentBarber
+        $agentTeam = $manager->getRepository(User::class)->findOneByEmail("team@barber.fr");
+
+        $client = $manager->getRepository(User::class)->findOneByEmail('jean@barber.fr');
+        $affectedAgentBarber = $client->setAffectedAgentBarber($agentTeam);
+
+        //affected Emplloyee
+        //
+        // $admin = $manager->getRepository(User::class)->findOneByEmail("Thomas@barber.fr");
+        // $agentBarber = $manager->getRepository(User::class)->findBy(["roles" => 'ROLE_TEAM']);
+        // $affectedEmployee = $admin->getAffectedEmployee($agentBarber);
+
         $manager->persist($affectedAgentBarber);
+        // $manager->persist($affectedEmployee);
         $manager->flush();
 
       }
@@ -123,9 +139,23 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
 
           ];
 
+          $ServiceLists[] = [
+            "haircut" => "coupe carré",
+            "dateHaircut" => $date,
+            "price" => "12",
+            'user' => 'Thomas@barber.fr'
+          ];
+
+          $ServiceLists[] = [
+            "haircut" => "Tout court",
+            "dateHaircut" => $date,
+            "price" => "23",
+            'user' => 'Thomas@barber.fr'
+          ];
+
+
           foreach ($ServiceLists as $ServiceList) {
             $u = $manager->getRepository(User::class)->findOneByEmail($ServiceList['user']);
-            $affectedAgentBarber = $manager->getRepository(User::class)->findOneByEmail('');
             if(null === $u) {
               $u = $userManager->createUser();
               $u->SetEmail($ServiceList['user'])->setUsername('Client')

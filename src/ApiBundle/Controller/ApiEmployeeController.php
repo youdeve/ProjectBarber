@@ -28,7 +28,10 @@ class ApiEmployeeController extends FOSRestController
   public function getEmployeesAction(Request $request)
   {
     try {
+        // $employees = $this->getDoctrine()->getRepository("AppBundle:User")->findBy(['roles'=> 'ROLE_TEAM']);
         $employees = $this->getDoctrine()->getRepository("AppBundle:User")->findAll();
+        // $employees = $this->getDoctrine()->getRepository(User::class)->findOneByEmail("Team@kabolt.fr");
+        $this->get('logger')->info('0000000000000000000000000000000000000000000000000000000000', [  $employees]);
 
         $view = View::create($employees);
        $view->setFormat('json');

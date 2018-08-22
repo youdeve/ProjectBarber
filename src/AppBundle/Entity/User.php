@@ -38,7 +38,7 @@ class User extends BaseUser
     protected $groups;
 
     /**
-     * @ORM\ManyToOne(targetEntity="user", inversedBy="affectedClient")
+     * @ORM\ManyToOne(targetEntity="user")
      */
     protected $affectedAgentBarber;
 
