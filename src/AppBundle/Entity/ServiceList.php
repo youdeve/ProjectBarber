@@ -34,7 +34,7 @@ class ServiceList
      *
      * @ORM\Column(name="date_haircut", type="datetime")
      */
-    private $dateHaircut;
+      private $dateHaircut;
 
     /**
      * @var int
@@ -42,12 +42,6 @@ class ServiceList
      * @ORM\Column(name="price", type="integer")
      */
     private $price;
-
-
-    /**
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="ServiceList")
-     */
-    private $user;
 
     /**
      * A Service is affected to a customer (front user).

@@ -24,12 +24,13 @@ class PrestationController extends Controller
       throw new \Exception("L'utilisateur n'existe pas");
 
       $serviceLists = $this->getDoctrine()->getManager()->getRepository(ServiceList::class)->findByAffectedCustomer($user);
-
       if(!$serviceLists)
         throw new \Exception("Service n'existe pas");
+        $affectedAgentBarber = $user->getAffectedAgentBarber();
 
       return $this->render('@Front/Prestation/prestation.html.twig',[
-              'serviceLists' => $serviceLists
+              'serviceLists' => $serviceLists,
+              "affectedAgentBarber"=> $affectedAgentBarber
       ]);
   }
 }
