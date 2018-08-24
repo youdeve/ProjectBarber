@@ -27,7 +27,7 @@ class User extends BaseUser
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
-     * @ORM\ManyToOne(targetEntity="affectedAgentBarber" )
+     * @ORM\ManyToOne(targetEntity="affectedAgentBarber")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;

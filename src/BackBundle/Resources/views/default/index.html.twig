@@ -31,12 +31,12 @@
       {% elseif app.user.hasRole('ROLE_TEAM') %}
           <a title="Gestion des rendez-vous"
              class="btn-floating white hoverable huge-floating-button btn-with-text"
-             href="{{ path('front_appointment') }}">
+             href="{{ path('back_appointment') }}">
             <i class="material-icons">today</i>
             <span>Gestion Rendez-vous</span>
           </a>
           <a title="Gestion client" class="btn-floating white hoverable huge-floating-button btn-with-text"
-             href="{{ path('front_message') }}">
+             href="{{ path('back_manage_client') }}">
             <i class="material-icons">group</i>
             <span>Gestion client</span>
           </a>
