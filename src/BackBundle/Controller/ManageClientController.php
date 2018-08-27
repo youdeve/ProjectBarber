@@ -18,7 +18,7 @@ class ManageClientController extends Controller
 {
     /**
      * @Route("/admin/manage/clients", name="back_manage_client")
-     * @Security("has_role('ROLE_BACK_ACCESS')")
+     * @Security("has_role('ROLE_MANAGE_CLIENT')")
      */
     public function ManageClientAction(Request $request)
     {

@@ -17,8 +17,6 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
 {
     protected $container;
 
-
-
     public function __construct( )
     {
     }
@@ -52,6 +50,15 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $userManager->updateUser($newUser, true);
 
         $newUserT = $userManager->createUser();
+        $newUserT->setUsername('FrancLemanager');
+        $newUserT->setEmail('francTeam@barber.fr');
+        $newUserT->setPlainPassword('123456');//123456
+        $newUserT->setEnabled(true);
+        $newUserT->addRole("ROLE_CLIENT");
+
+        $userManager->updateUser($newUserT, true);
+
+        $newUserT = $userManager->createUser();
         $newUserT->setUsername('Thomas');
         $newUserT->setEmail('Thomas@barber.fr');
         $newUserT->setPlainPassword('123456');//123456
@@ -61,8 +68,8 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $userManager->updateUser($newUserT, true);
 
         $newUser2 = $userManager->createUser();
-        $newUser2->setUsername('BarberyAntoine');
-        $newUser2->setEmail('team@barber.fr');
+        $newUser2->setUsername('AntoineLeManager');
+        $newUser2->setEmail('antoineTeam@barber.fr');
         $newUser2->setPlainPassword('123456');//123456
         $newUser2->setEnabled(true);
         $newUser2->addRole("ROLE_TEAM");
@@ -70,8 +77,8 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $userManager->updateUser($newUser2, true);
 
         $newUser21 = $userManager->createUser();
-        $newUser21->setUsername('BarberyPhilip');
-        $newUser21->setEmail('team2@barber.fr');
+        $newUser21->setUsername('PhilipLeManager');
+        $newUser21->setEmail('philipTeam@barber.fr');
         $newUser21->setPlainPassword('123456');//123456
         $newUser21->setEnabled(true);
         $newUser21->addRole("ROLE_TEAM");
@@ -173,7 +180,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
 
         //affectedAgentBarber
         // $User = $manager->getRepository(User::class)->findAll();
-        $agentTeam = $manager->getRepository(User::class)->findOneByEmail("team2@barber.fr");
+        $agentTeam = $manager->getRepository(User::class)->findOneByEmail("philipTeam@barber.fr");
         // $clients = $manager->getRepository(User::class)->findBy(["roles" => "ROLE_CLIENT"]);
         // foreach ($clients as $client) {
         //   $mailClient = $client->getEmail();
@@ -193,7 +200,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $affectedAgentBarber = $client5->setAffectedAgentBarber($agentTeam);
 
         //affectedAgentBarber
-        $agentTeam = $manager->getRepository(User::class)->findOneByEmail("team@barber.fr");
+        $agentTeam = $manager->getRepository(User::class)->findOneByEmail("antoineTeam@barber.fr");
         $client = $manager->getRepository(User::class)->findOneByEmail('jean@barber.fr');
         $client2 = $manager->getRepository(User::class)->findOneByEmail("eva@barber.fr");
         $client3 = $manager->getRepository(User::class)->findOneByEmail("john@barber.fr");

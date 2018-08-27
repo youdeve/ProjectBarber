@@ -26,25 +26,17 @@
                         <i class="material-icons black-text">arrow_drop_down</i>
                       </div>
                       <div class="collapsible-body white black-text">
-                          {% if users is defined %}
-                            <table class=" responsive-table">
-                               <thead>
-                                 <tr>
-                                     <th>Prestation</th>
-                                 </tr>
-                               </thead>
+                        {% if users is defined %}
+                              {% for user in users %}
+                              <div class="chip">
+                                <a href="#">{{ user.username }}</a>
+                                <i class="close material-icons">close</i>
 
-                               <tbody>
-                                {% for user in users %}
-                                  <tr>
-                                    <td>{{ user.username }}</td>
-                                   </tr>
-                                 {% endfor %}
-                               </tbody>
-                             </table>
+                              </div>
+                              {% endfor %}
                           {% else %}
                               <h4>Aucun Epmoyée</h4>
-                          {% endif %}
+                        {% endif %}
                       </div>
                     </li>
                   </ul>
@@ -58,5 +50,10 @@
 {% endblock %}
 
 {% block pagejs %}
+  <script type="text/javascript">
 
+    $(document).ready(function(){
+      $('.chips').chips();
+    });
+  </script>
 {% endblock %}
