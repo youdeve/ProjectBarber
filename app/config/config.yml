@@ -10,6 +10,7 @@ parameters:
     locale: en_EN
 
 framework:
+    # templating: { engines: ['twig'] }
     serializer: true
     #esi: ~
     translator: { fallbacks: ['%locale%'] }
@@ -34,10 +35,26 @@ framework:
         log: true
 
 fos_rest:
-    routing_loader:
-        include_format: false
-    view:
-        view_response_listener: true
+  param_fetcher_listener: true
+  body_listener: true
+  format_listener: true
+  view:
+      view_response_listener: 'force'
+      formats:
+          xml: true
+          json : true
+      templating_formats:
+          html: true
+      force_redirects:
+          html: true
+      failed_validation: HTTP_BAD_REQUEST
+      default_engine: twig
+  routing_loader:
+      default_format: json
+    # routing_loader:
+    #     include_format: false
+    # view:
+    #     view_response_listener: true
     # format_listener:
     #     rules:
     #         - { path: '^/', priorities: ['json'], fallback_format: 'json' }

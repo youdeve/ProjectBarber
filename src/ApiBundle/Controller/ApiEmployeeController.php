@@ -2,18 +2,19 @@
 
 namespace ApiBundle\Controller;
 
-use AppBundle\Entity\User;
-use FOS\RestBundle\Controller\FOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use FOS\RestBundle\View\ViewHandler;
-use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\View\View;
+use FOS\RestBundle\View\ViewHandler;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Get;
 
+use AppBundle\Entity\User;
 
 
 class ApiEmployeeController extends FOSRestController

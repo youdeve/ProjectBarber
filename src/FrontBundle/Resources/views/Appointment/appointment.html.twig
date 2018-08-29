@@ -1,17 +1,20 @@
 {% set route = app.request.get('_route') %}
-
 {% extends "@Front/front-base.html.twig" %}
+
+{% block pagestyle %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css">
+{% endblock %}
 
 {% block content %}
     <div class="container">
         <div class="section">
           <div class="row page-title">
-            <h2>Bonjour {{ app.user.username }}</h2>
+            <h2>Prenez RDV</h2>
             <hr class='white' style="margin-bottom:1rem"/>
           </div>
           <div class="row">
-            <div class="col offset-m1 m10 s12 center-align">
-              <h3>Rendez-vous</h3>
+            <div class="col offset-m1 l12 m12 s12 center-align">
+              <div id='calendar'></div>
             </div>
           </div>
         </div>
@@ -20,4 +23,54 @@
 
 {% block pagejs %}
 
+<script src='https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/jquery.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+<script src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>
+<script type="text/javascript">
+
+  $(function() {
+    $('#calendar').fullCalendar({
+      defaultView: 'agendaWeek',
+        header: {
+        left: 'prev,next',
+        center: 'title',
+        right: ''
+      },
+      selectable: true,
+      selectHelper: true,
+      select: function(start, end) {
+        // var title = $('').htlm();
+        var title = prompt('Event Title:');
+        var eventData;
+        if (title) {
+          // end = $.fullCalendar.formatDate(end, "yyyy-MM-dd HH:mm");
+          // start = $.fullCalendar.formatDate(start, "yyyy-MM-dd HH:mm");
+          // eventData = {
+            $.ajax(Routing.generate('api_apifullcalendar_postappointement'),
+            {
+              data:'title='+title+'start='+start+'end='+end,
+              type:"POST",
+              success: function(json) {
+                alert('OK');
+              }
+            });
+          // };
+          $('#calendar').fullCalendar('renderEvent', {
+            title: title,
+            start: start,
+            end: end
+          }, true); // stick? = true
+        }
+        $('#calendar').fullCalendar('unselect');
+      },
+      // editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+
+      ]
+    })
+
+  });
+
+</script>
 {% endblock %}
