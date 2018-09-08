@@ -7,6 +7,10 @@ body
 .hidden {
   display: none;
 }
+.toast {
+  background-color: white!important;
+  color:black!important;
+}
 li.logo {
       margin: 2em 0 9em 4px;
 }
@@ -38,7 +42,7 @@ li.logo {
 
 @media only screen and (min-width: 601px){
   .container {
-    margin: 120px 15% auto!important;
+    margin: 17px 15% auto!important;
 
   }
 }

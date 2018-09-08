@@ -6,6 +6,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+use Symfony\Component\Validator\Constraints\DateTime;
 
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
@@ -18,12 +21,12 @@ use AppBundle\Entity\Appointement;
 
 
 
-class ApiFullCalendarController extends FOSRestController
+class ApiFullCalendarController extends FosRestController
 {
 
   /**
    * @Rest\Post("/appoitment/new")
-   * @Security("has_role('ROLE_USER')")
+   * @Security("has_role('ROLE_CLIENT')")
    * @param Request $request
    * @return Response
    */
@@ -34,33 +37,56 @@ class ApiFullCalendarController extends FOSRestController
         $title = $request->get('title');
         $start = $request->get('start');
         $end = $request->get('end');
-        
-        if(!$title && !$start && !$end)
-          return new View('Le champ prestation ou une date n\'est pas defini', Response::HTTP_NO_CONTENT);
 
+        $dateStart = new \DateTime($start);
+        $dateEnd = new \DateTime($end);
+        if(!$title && !$dateStart && !$dateEnd)
+          return new JsonResponse('Le champ prestation ou une date n\'est pas defini', Response::HTTP_NO_CONTENT);
         if(!$barberAffected)
            return new JsonResponse('l\'utilisateur barber affecté n\'existe pas',Response::HTTP_UNPROCESSABLE_ENTITY);
-        $appointement = $this->getDoctrine()->getRepository(Appointement::class);
 
-        $appointement->setTitle($title)->setStartAppointement($start)
-        ->setEndAppointement($end)->setUser($barberAffected);
-        $this->get('logger')->info('0000000000000000000000000000000000000000000000000000000000',
-        [$appointement]);
+        $appointment = new Appointement;
+        $appointment->setTitle($title)->setStartAppointement($dateStart)
+        ->setEndAppointement($dateEnd)->setBarber($barberAffected);
 
+        $barber =$appointment->getBarber();
         $em = $this->getDoctrine()->getManager();
-        $em->persist($appointement);
+        $em->persist($appointment);
         $em->flush();
+        // $this->get('logger')->info('00000000000000000000000000000000000000000000000000000000002',[$appointment]);
+       return new JsonResponse('Le rendez-vous avec ' .$barber. ' à bien été ajouté', Response::HTTP_OK);
+       // return new View(['message' => ''], Response::HTTP_OK);
+    } catch (\Exception $e) {
+      return new JsonResponse([$e->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+  }
 
-        $this->get('logger')->info('00000000000000000000000000000000000000000000000000000000002',
-        [$appointement]);
+  /**
+   * @Get("/appoitments")
+   * @Security("has_role('ROLE_CLIENT')")
+   * @param Request $request
+   * @return Response
+   */
+  public function getAppointementAction()
+  {
+    try {
+        if(!$this->getUser()->hasRole("ROLE_CLIENT"))
+          return new JsonResponse('Permission invalide', Response::HTTP_FORBIDDEN);
+        // $user = $this->getUser();
+        $barberAffected = $this->getUser()->getAffectedAgentBarber();
+        $em = $this->getDoctrine()->getManager();
+        $appointment = $em->getRepository(Appointement::class)->findByBarber($barberAffected);
+        // $test[] = $appointment[1]->getTitle();
+       // return new JsonResponse($appointment, Response::HTTP_OK);
+       // return new View($appointment Response::HTTP_OK);
 
-       $view = View::create($appointement);
+       $view = View::create($appointment);
        $view->setFormat('json');
        return $view;
-       // return new View('Mise à jour des événements effectuée', Response::HTTP_OK);
+       // return new View($view, Response::HTTP_OK);
 
     } catch (\Exception $e) {
-      return new View([$e->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
+      return new JsonResponse([$e->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
     }
   }
 

@@ -14,18 +14,18 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
-class ManageClientController extends Controller
+class ManageTeamAppointmentController extends Controller
 {
     /**
-     * @Route("/admin/manage/clients", name="back_manage_client")
+     * @Route("/admin/manage/appointment", name="back_manage_appointment")
      * @Security("has_role('ROLE_MANAGE_CLIENT')")
      */
-    public function ManageClientAction(Request $request)
+    public function ManageTeamAppointmentAction(Request $request)
     {
         $user = $this->getUser();
         $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findByAffectedAgentBarber($user);
         // $this->get('logger')->info('0000000000000000000000000000000000000000000000000000000000', [$users]);
-        return $this->render('@Back/ManageClient/manage-client.html.twig' , [
+        return $this->render('@Back/ManageAppointment/manage-team-appointment.html.twig' , [
           'users' => $users,
         ]);
 

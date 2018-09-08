@@ -130,4 +130,28 @@ class Appointement
     {
         return $this->title;
     }
+
+    /**
+     * Set barber.
+     *
+     * @param \AppBundle\Entity\User|null $barber
+     *
+     * @return Appointement
+     */
+    public function setBarber(\AppBundle\Entity\User $barber = null)
+    {
+        $this->barber = $barber;
+
+        return $this;
+    }
+
+    /**
+     * Get barber.
+     *
+     * @return \AppBundle\Entity\User|null
+     */
+    public function getBarber()
+    {
+        return $this->barber;
+    }
 }

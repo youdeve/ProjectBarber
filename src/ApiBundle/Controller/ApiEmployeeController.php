@@ -35,14 +35,14 @@ class ApiEmployeeController extends FOSRestController
         $this->get('logger')->info('0000000000000000000000000000000000000000000000000000000000', [  $employees]);
 
         $view = View::create($employees);
-       $view->setFormat('json');
-       if($view == null)
-       return new JsonResponse(['message' => 'Les utilisateurs n\'existes pas'], Response::HTTP_UNPROCESSABLE_ENTITY);
+         $view->setFormat('json');
+         if($view == null)
+         return new JsonResponse(['message' => 'Les utilisateurs n\'existes pas'], Response::HTTP_UNPROCESSABLE_ENTITY);
 
        return $view;
 
     } catch (\Exception $e) {
-      return new View([$e->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
+      return new JsonResponse([$e->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
     }
   }
 

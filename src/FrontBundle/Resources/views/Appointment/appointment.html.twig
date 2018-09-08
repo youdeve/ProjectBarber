@@ -14,7 +14,11 @@
           </div>
           <div class="row">
             <div class="col offset-m1 l12 m12 s12 center-align">
-              <div id='calendar'></div>
+              <div class="card">
+                 <div class="card-content white-text">
+                   <div id='calendar'></div>
+                 </div>
+              </div>
             </div>
           </div>
         </div>
@@ -23,38 +27,61 @@
 
 {% block pagejs %}
 
-<script src='https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/jquery.min.js'></script>
+<!-- <script src='https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/jquery.min.js'></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
 <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/fr.js'></script>
+
 <script type="text/javascript">
 
-  $(function() {
+function displayCalendar() {
+  $.get(Routing.generate("api_apifullcalendar_getappointement"))
+    .done(function(appointments) {
+      showCalendars(appointments);
+    });
+}
+
+function showCalendars(appointments) {
+
+    var initialLocaleCode = 'fr';
+
     $('#calendar').fullCalendar({
-      defaultView: 'agendaWeek',
+      themeSystem: 'bootstrap3',
+      defaultView: 'month',
         header: {
         left: 'prev,next',
         center: 'title',
         right: ''
       },
+      slotLabelFormat: [
+        'MMMM YYYY', // top level of text
+        'ddd'        // lower level of text
+      ],
+      slotDuration:"1:00:00",
+      locale: initialLocaleCode,
+      maxTime:"18:00:00",
+      minTime:"9:00:00",
+      allDaySlot: false,
+      timeFormat:'H:mm',
+      slotLabelFormat:"HH:mm",
+      axisFormat: 'H:mm',
       selectable: true,
       selectHelper: true,
       select: function(start, end) {
-        // var title = $('').htlm();
         var title = prompt('Event Title:');
-        var eventData;
         if (title) {
-          // end = $.fullCalendar.formatDate(end, "yyyy-MM-dd HH:mm");
-          // start = $.fullCalendar.formatDate(start, "yyyy-MM-dd HH:mm");
-          // eventData = {
             $.ajax(Routing.generate('api_apifullcalendar_postappointement'),
             {
-              data:'title='+title+'start='+start+'end='+end,
+              data:'title='+title,
               type:"POST",
-              success: function(json) {
-                alert('OK');
-              }
+            })
+            .done(function(response) {
+                console.log([displayToast(response, 'success')]);
+                displayToast(response.message, 'success');
+            })
+            .fail(function (response) {
+                displayToast( 'Probléme avec le serveur veuillez rééssayer', 'error');
             });
-          // };
           $('#calendar').fullCalendar('renderEvent', {
             title: title,
             start: start,
@@ -63,14 +90,33 @@
         }
         $('#calendar').fullCalendar('unselect');
       },
-      // editable: true,
+      editable: true,
       eventLimit: true, // allow "more" link when too many events
-      events: [
+        eventSources: [
+          {
+            url: Routing.generate("api_apifullcalendar_getappointement"),
+            type: 'GET',
+            dataType: 'json',
+            success:function(appointments){
+              console.log(appointments);
+                    appointments
+            },
+            error: function() {
+              alert('Une erreur s\'est produite lors de la récupération des événements!');
+            },
+            color: '#F8C471',   // a non-ajax option
+            textColor: 'black' // a non-ajax option
+          }
+        ]
 
-      ]
-    })
+    });
+
+  }
+
+
+  $( document ).ready(function() {
+      displayCalendar();
 
   });
-
 </script>
 {% endblock %}
