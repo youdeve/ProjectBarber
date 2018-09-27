@@ -4,6 +4,10 @@ parameters:
     #parameter_name: value
 
 services:
+
+    AppBundle\EventListener\FullCalendarListener:
+        tags:
+            - { name: 'kernel.event_listener', event: 'fullcalendar.set_data', method: loadEvents }
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services

@@ -13,6 +13,9 @@ back:
     type:     annotation
     prefix:   /
 
+toiba_fullcalendar:
+    resource: "@FullCalendarBundle/Resources/config/routing.yaml"
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation

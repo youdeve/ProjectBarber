@@ -47,6 +47,11 @@ class Appointement
      */
     protected $barber;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User",  inversedBy="User")
+     */
+    protected $customer;
+
 
 
     /**
@@ -153,5 +158,29 @@ class Appointement
     public function getBarber()
     {
         return $this->barber;
+    }
+
+    /**
+     * Set customer.
+     *
+     * @param \AppBundle\Entity\User|null $customer
+     *
+     * @return Appointement
+     */
+    public function setCustomer(\AppBundle\Entity\User $customer = null)
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * Get customer.
+     *
+     * @return \AppBundle\Entity\User|null
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
     }
 }

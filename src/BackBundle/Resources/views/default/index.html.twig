@@ -31,7 +31,7 @@
       {% elseif app.user.hasRole('ROLE_TEAM') %}
           <a title="Gestion des rendez-vous"
              class="btn-floating white hoverable huge-floating-button btn-with-text"
-             href="">
+             href="{{path('back_manage_appointment')}}">
             <i class="material-icons">today</i>
             <span>Gestion Rendez-vous</span>
           </a>

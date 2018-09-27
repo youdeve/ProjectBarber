@@ -33,12 +33,17 @@ class ApiFullCalendarController extends FosRestController
   public function postAppointementAction(Request $request)
   {
     try {
+        $customer = $this->getUser();
+
         $barberAffected = $this->getUser()->getAffectedAgentBarber();
         $title = $request->get('title');
         $start = $request->get('start');
         $end = $request->get('end');
+        $this->get('logger')->info('0000000000000000000000000000000000000000000000000000000000000000000000000000000000000 ',[$start]);
 
         $dateStart = new \DateTime($start);
+        $this->get('logger')->info('0000000000000000000000000000000000000000000000000000000000000000000000000000000000000 ',[$barberAffected]);
+
         $dateEnd = new \DateTime($end);
         if(!$title && !$dateStart && !$dateEnd)
           return new JsonResponse('Le champ prestation ou une date n\'est pas defini', Response::HTTP_NO_CONTENT);
@@ -47,7 +52,7 @@ class ApiFullCalendarController extends FosRestController
 
         $appointment = new Appointement;
         $appointment->setTitle($title)->setStartAppointement($dateStart)
-        ->setEndAppointement($dateEnd)->setBarber($barberAffected);
+        ->setEndAppointement($dateEnd)->setBarber($barberAffected)->setCustomer($customer);
 
         $barber =$appointment->getBarber();
         $em = $this->getDoctrine()->getManager();
@@ -62,7 +67,7 @@ class ApiFullCalendarController extends FosRestController
   }
 
   /**
-   * @Get("/appoitments")
+   * @Get("/appointments")
    * @Security("has_role('ROLE_CLIENT')")
    * @param Request $request
    * @return Response

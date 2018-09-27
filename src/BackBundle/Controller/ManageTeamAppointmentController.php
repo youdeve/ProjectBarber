@@ -4,7 +4,7 @@ namespace BackBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\User;
+use AppBundle\Entity\Appointement;
 use AppBundle\Form\Type\UserType;
 
 use Symfony\Component\HttpFoundation\Response;
@@ -23,10 +23,10 @@ class ManageTeamAppointmentController extends Controller
     public function ManageTeamAppointmentAction(Request $request)
     {
         $user = $this->getUser();
-        $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findByAffectedAgentBarber($user);
+        $appointments = $this->getDoctrine()->getManager()->getRepository(Appointement::class)->findByBarber($user);
         // $this->get('logger')->info('0000000000000000000000000000000000000000000000000000000000', [$users]);
         return $this->render('@Back/ManageAppointment/manage-team-appointment.html.twig' , [
-          'users' => $users,
+          'appointments' => $appointments,
         ]);
 
     }
