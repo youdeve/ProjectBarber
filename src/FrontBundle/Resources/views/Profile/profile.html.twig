@@ -40,35 +40,37 @@
               </div>
             </div>
 
-              <div class="col m6 s6 center-align">
-                <ul class="collapsible" data-collapsible="expandable">
-                  <li>
-                    <div class="collapsible-header">
+              <div class="col m6 s6 l6">
+                <ul class="collapsible " data-collapsible="expandable">
+                  <li class="active">
+                    <div class="collapsible-header active">
                       <i class="material-icons ">person</i>
                       Compte
                       <i class="material-icons">arrow_drop_down</i>
                     </div>
-                    <div class="collapsible-body">
+                    <div class="collapsible-body ">
                       <p> Nom : {{ app.user.username }}</p>
-                       <p> Email : {{ app.user.email }}</p>
+                      <p> Email : {{ app.user.email }}</p>
+                      <p> Coiffeur référent :  <strong>{{ app.user.affectedAgentBarber }} </strong></p>
+                      <p> Dernière Connexion : <strong>{{ app.user.lastLogin|date("d/m/y") }}</strong></p>
                     </div>
                   </li>
-                  <li>
+                  <!-- <li>
                     <div class="collapsible-header">
-                      <i class="material-icons ">vpn_key</i>Modifiez votre mot de passe   <i class="material-icons ">arrow_drop_down</i></div>
+                      <i class="material-icons ">vpn_key</i>Test <i class="material-icons ">arrow_drop_down</i></div>
                     <div class="collapsible-body">
                       <div class="row">
-
+                        <span>Lorem ipsum dolor sit amet.</span>
                        </div>
 
                     </div>
                   </li>
                   <li>
                     <div class="collapsible-header">
-                      <i class="material-icons ">whatshot</i>Third<i class="material-icons  ">arrow_drop_down</i></div>
+                      <i class="material-icons ">whatshot</i>Third<i class="material-icons">arrow_drop_down</i></div>
                     <div class="collapsible-body">
                       <span>Lorem ipsum dolor sit amet.</span></div>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
             </div>
