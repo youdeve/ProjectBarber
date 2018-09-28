@@ -130,8 +130,8 @@ function showCalendars(appointments) {
           success: function(data) {
             // console.log('donnée=>',data.title);
             for (var key in data) {
-                data[key];
-                console.log(data[key]);
+                // data[key];
+                // console.log(data[key]);
             $('#calendar').fullCalendar('renderEvent', {
                 title:data[key].title,
                 start:data[key].start_appointement,
@@ -163,17 +163,23 @@ function showCalendars(appointments) {
           dateRange.css(styles);
           title.css(styles);
           $('#showEvents').modal('open');
-          $('#calendar').fullCalendar('unselect');
       },
-      unselect: function(jsEvent, view) {
+      unselect: function(jsEvent) {
+        console.log(jsEvent);
       },
       select: function(startEvent, endEvent, jsEvent, view) {
+
         start = startEvent.format('hh:mm');
         end = endEvent.format('hh:mm');
         $('#dateSelected').html(start);
         $('#dateSelectedEnd').html(end);
         console.log(end);
 
+        $('#addEvents').modal({
+          complete: function() {
+            $('#calendar').fullCalendar('unselect');
+           }
+        });
         $('#addEvents').modal('open');
         $('#btnAddEvent').on('click', function(e) {
           e.preventDefault();
@@ -182,7 +188,6 @@ function showCalendars(appointments) {
           start = startEvent.format('hh:mm:ss');
           end = endEvent.format('hh:mm:ss');
 
-          $('#calendar').fullCalendar('unselect');
           if (title) {
             $.ajax(Routing.generate('api_apifullcalendar_postappointement'),
             {
@@ -193,16 +198,16 @@ function showCalendars(appointments) {
               },
               type:"POST",
             }).done(function(response) {
-              // $('#calendar').fullCalendar('unselect');
               displayToast(response, 'success');
-              // $('#calendar').fullCalendar('refetchEvents');
+              	// $('#calendar').fullCalendar('renderEvent', data, true);
             }).fail(function (response) {
-                // $('#calendar').fullCalendar('refetchEvents');
               displayToast( 'Probléme avec le serveur veuillez rééssayer', 'error');
             });
           }else {
             displayToast("Le champ intitulé de la prestation est vide", 'notice');
           }
+
+          // $('#calendar').fullCalendar('unselect');
         });
           $('#titleEvent').val('');
           $('#startEndDate').val('');
@@ -226,6 +231,34 @@ function showCalendars(appointments) {
         $('#startEndDate').html('');
         $('#calendar').fullCalendar('unselect');
     });
+
+    var calendar = $('#availableSchedule').fullCalendar({
+               header: {
+                   left: 'prev,next today',
+                   center: 'title',
+                   right: 'month,agendaDay'
+               },
+   			editable: true,
+               selectable: true,
+   			selectHelper: true,
+               select: function(start, end) {
+
+   				var title = prompt('Event Title:');
+   				var eventData;
+   				if (title) {
+   					eventData = {
+   						title: title,
+   						start: start,
+   						end: end
+   					};
+   					$('#availableSchedule').fullCalendar('renderEvent', eventData, true); // stick? = true
+   				}
+   				$('#availableSchedule').fullCalendar('unselect');
+
+   			}
+           });
+
+
 
   $(document).ready(function() {
     // var spinner = createSpinner();

@@ -7,7 +7,7 @@ imports:
     - { resource: "@ApiBundle/Resources/config/services.yml" }
 
 parameters:
-    locale: en_EN
+    locale: fr_FR
 
 framework:
     # templating: { engines: ['twig'] }
