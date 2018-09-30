@@ -24,7 +24,7 @@ class ManageClientController extends Controller
     {
         $user = $this->getUser();
         $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findByAffectedAgentBarber($user);
-        // $this->get('logger')->info('0000000000000000000000000000000000000000000000000000000000', [$users]);
+        $this->get('logger')->info('0000000000000000000000000000000000000000000000000000000000', [$users]);
         return $this->render('@Back/ManageClient/manage-client.html.twig' , [
           'users' => $users,
         ]);

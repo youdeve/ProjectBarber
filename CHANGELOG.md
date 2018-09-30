@@ -1,27 +1,20 @@
 # Change Log
 
-
-![version](https://img.shields.io/badge/current-1.0.0-blue.svg)
-
 ## [Unreleased]
 
-## 1.0.0 - 01/11/2017
+## 1.0.0 - 30/09/2018
 
-(Completion required)
+- __Added__ : `General` CHANGELOG.md : Création d'un nouveau fichier pour garder une trace des changements
+- __Added__ : `Page Appointement` Ajout de la page d'un calendrier pour l'ajout des séances avec la librairie Fullcalendar.
+- __Added__ : `Page Message` Ajout de la page Messages.
+- __Added__ : `Page Prestation` Ajout de la page des prestations, pour visualiser les séance consommé.
+- __Added__ : `Page profil` Ajout de la page profil, avec visualisation de ses informations personnelles.
 
-- __Added__ : `Security` @Security annotations and fonctional verifications
-- __Improved__ : `Testing` Coverage of some api endpoints (ticket status, priority) and anonymous ticket consultation
-- __Improved__ : `Model` @Assert annotations on most sensitive entities (Ticket, Message).
-- __Added__ : `Ticket conversation` Add a arrow-back button on ticket-conversation header
-- __Added__ : `Ticket conversation` Prevent default on click on attachment if not logged, display a notice toast
-- __Added__ : `Ticket informations` Add public Note
-- __Added__ : `Testings` Add test coverage for attachment message
+- __Added__ : `Page -Back Admin- profil User` Ajout de la page profil user, pour voir la fiche client selectionné.
+- __Added__ : `Page -Back Admin- setting` Ajout de la page paramétre.
+- __Added__ : `Page -Back Admin- notification` Ajout de la page notification.
+- __Added__ : `Page -Back Admin- gestion utilisateurs` Ajout de la page gestion utilisateurs.
+- __Added__ : `Page -Back Admin- gestion team` Ajout de la page gestion team, visualisation des employés pour l'administrateur.
+- __Added__ : `Page -Back Admin- gestion utilisateurs` Ajout de la page gestion utilisateurs.
 
-
-- __Fixed__ : `Ticket conversation` Date messages of conversation
-- __Fixed__ : `Ticket` Fixed width column priority and status
-
-![status](https://img.shields.io/badge/✔️-up--to--date-brightgreen.svg)
-
-- __Added__ : `Testing` Add minimal test coverage
-- __Changed__ : `User roles` Refactoring FRONT_USER to ROLE_FRONT_USER ! Should be manually changed at integration !
+- __Added__ : `Fixture` Ajout fixture initialization des données.

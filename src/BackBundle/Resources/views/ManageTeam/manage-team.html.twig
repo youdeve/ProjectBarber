@@ -3,29 +3,29 @@
 
 {% block  content  %}
 <div class="container">
-    <div class="section">
+  <div class="section">
 
-      <div class="row page-title">
-        <h2>Gestion employés</h2>
-        <hr class='white' style="margin-bottom:1rem"/>
-      </div>
-      <div class="row">
-        <div class=" col offset-m1 m10 s12 center-align">
-          <div class="add_employees">
-            <a class="right" title="Ajouter un employé" href="#modal1"><i class="material-icons ">add_circle_outline</i></a>
-          </div>
-          <div id="employees" class="" style="padding-top:70px;"></div>
+    <div class="row page-title">
+      <h2>Gestion employés</h2>
+      <hr class='white' style="margin-bottom:1rem"/>
+    </div>
+    <div class="row">
+      <div class=" col offset-m1 m10 s12 center-align">
+        <div class="add_employees">
+          <a class="right" title="Ajouter un employé" href="#modal1"><i class="material-icons ">add_circle_outline</i></a>
+        </div>
+        <div id="employees" class="" style="padding-top:70px;"></div>
 
-                 <!-- Modal Structure -->
-         <div id="modal1" class="modal">
-           <div id="ajax-container" class="modal-content">
-             <div class="row">
-               <h3>Ajouter un employé</h4>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+          <div id="ajax-container" class="modal-content">
+            <div class="row">
+              <h3>Ajouter un employé</h4>
 
-               <div class="col offset-m2 offset-l2 offset-s2  l9 m9 s9 ">
+                <div class="col offset-m2 offset-l2 offset-s2  l9 m9 s9 ">
 
-                 {{ form_start(form) }}
-                 <div class="input-field col s12 m9">
+                  {{ form_start(form) }}
+                  <div class="input-field col s12 m9">
                     {{ form_row(form.Enabled) }}
                   </div>
                   <div class="input-field col s12 m10">
@@ -34,20 +34,20 @@
                   <div class="input-field col s12 m10">
                     {{ form_row(form.Username,  {'attr': {'class': 'input-field'}}) }}
                   </div>
-                   <div class="input-field col s12 m10">
-                     {{ form_row(form.plainPassword.first, {'attr': {'class': 'input-field'}}) }}
-                   </div>
                   <div class="input-field col s12 m10">
-                     {{ form_row(form.plainPassword.second, {'attr': {'class': 'input-field'}}) }}
+                    {{ form_row(form.plainPassword.first, {'attr': {'class': 'input-field'}}) }}
                   </div>
-               </div>
-             </div>
-           </div>
-             <div class="modal-footer">
-                <button type="submit" class="btn" style="width:100%" value="Créer un utilisateur">Créer un utilisateur</button>
-             </div>
-           {{ form_end(form) }}
-         </div>
+                  <div class="input-field col s12 m10">
+                    {{ form_row(form.plainPassword.second, {'attr': {'class': 'input-field'}}) }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn" style="width:100%" value="Créer un utilisateur">Créer un utilisateur</button>
+            </div>
+            {{ form_end(form) }}
+          </div>
         </div>
       </div>
     </div>
@@ -58,74 +58,74 @@
 {% endblock %}
 
 {% block pagejs %}
-  <script type="text/javascript">
+<script type="text/javascript">
 
-  function displayEmployee() {
-    $.get(Routing.generate('api_apiemployee_getemployees'))
-    .done(function(employees) {
-      showEmployee(employees);
-    });
-  }
+function displayEmployee() {
+  $.get(Routing.generate('api_apiemployee_getemployees'))
+  .done(function(employees) {
+    showEmployee(employees);
+  });
+}
 
-  function showEmployee(employees){
-    // console.log(employees);
-    var container = $('#employees');
+function showEmployee(employees){
+  // console.log(employees);
+  var container = $('#employees');
 
-    hr = document.createElement('hr');
+  hr = document.createElement('hr');
 
-    table = document.createElement('table');
-    table.className = 'responsive-table';
-    thead = document.createElement('thead');
-    table.append(thead);
+  table = document.createElement('table');
+  table.className = 'responsive-table';
+  thead = document.createElement('thead');
+  table.append(thead);
 
-    tr = document.createElement('tr');
+  tr = document.createElement('tr');
 
-    th1 = document.createElement('th');
-    th1Texte = document.createTextNode('Nom');
-    th1.append(th1Texte);
+  th1 = document.createElement('th');
+  th1Texte = document.createTextNode('Nom');
+  th1.append(th1Texte);
 
-    // th2 = document.createElement('th');
-    // th2Texte = document.createTextNode('Client Lié');
-    // th2.append(th2Texte);
+  // th2 = document.createElement('th');
+  // th2Texte = document.createTextNode('Client Lié');
+  // th2.append(th2Texte);
 
-    th3 = document.createElement('th');
-    th3Texte = document.createTextNode('Action');
-    th3.append(th3Texte);
+  th3 = document.createElement('th');
+  th3Texte = document.createTextNode('Action');
+  th3.append(th3Texte);
 
-    tr.append(th1, /*th2,*/ th3);
+  tr.append(th1, /*th2,*/ th3);
 
-    thead.append(tr);
-    tbody = document.createElement('tbody');
-    table.append(tbody);
-    $.each(employees, function(i, item) {
-      trUsername = document.createElement('tr');
-      tdUsername = document.createElement('td');
-      tdClient = document.createElement('td');
-      tdAction = document.createElement('td');
+  thead.append(tr);
+  tbody = document.createElement('tbody');
+  table.append(tbody);
+  $.each(employees, function(i, item) {
+    trUsername = document.createElement('tr');
+    tdUsername = document.createElement('td');
+    tdClient = document.createElement('td');
+    tdAction = document.createElement('td');
 
-      console.log("---------------");
-      console.log(item);
-      tdTexteUsername = document.createTextNode(item.username);
-      tdUsername.append(tdTexteUsername);
-      // tdTexteClient = document.createTextNode(item);
-      // tdClient.append(tdTexteClient);
-      tdTexteAction = document.createTextNode('Action');
-      tdAction.append(tdTexteAction);
+    console.log("---------------");
+    console.log(item);
+    tdTexteUsername = document.createTextNode(item.username);
+    tdUsername.append(tdTexteUsername);
+    // tdTexteClient = document.createTextNode(item);
+    // tdClient.append(tdTexteClient);
+    tdTexteAction = document.createTextNode('Action');
+    tdAction.append(tdTexteAction);
 
-      //action client + nom
-      trUsername.append(tdUsername,/*tdClient,*/tdAction);
+    //action client + nom
+    trUsername.append(tdUsername,/*tdClient,*/tdAction);
 
 
-      tbody.append(trUsername);
-
-    });
-      container.append(table);
-  }
-
-  $( document ).ready(function() {
-    displayEmployee();
+    tbody.append(trUsername);
 
   });
+  container.append(table);
+}
+
+$( document ).ready(function() {
+  displayEmployee();
+
+});
 //
 // $(document).ready(function() {
 //   $('#modal1').on('submit', '#ajax-form', function() {
@@ -150,14 +150,14 @@
 //   });
 // });
 
-    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-    $('.modal').modal({
-      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-      opacity: .5, // Opacity of modal background
-      inDuration: 300, // Transition in duration
-      outDuration: 200, // Transition out duration
-      startingTop: '4%', // Starting top style attribute
-      endingTop: '20%', // Ending top style attribute
-    });
-  </script>
+// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+$('.modal').modal({
+  dismissible: true, // Modal can be dismissed by clicking outside of the modal
+  opacity: .5, // Opacity of modal background
+  inDuration: 300, // Transition in duration
+  outDuration: 200, // Transition out duration
+  startingTop: '4%', // Starting top style attribute
+  endingTop: '20%', // Ending top style attribute
+});
+</script>
 {% endblock %}

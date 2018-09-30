@@ -1,0 +1,74 @@
+{% set route = app.request.get('_route') %}
+{% extends "@Front/front-base.html.twig" %}
+
+{% block pagestyle %}
+
+<link rel="stylesheet" href="{{ asset('assets/css/back/list.css') }}"/>
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="section">
+    <div class="row page-title">
+      <h2> {{ user.username  }} </h2>
+      <hr class='white' style="margin-bottom:1rem"/>
+    </div>
+    <div class="row">
+      <div class="col s12 m12 s12">
+        <div class="row">
+          <div class="col s6 l6 l6">
+            <div class="card ">
+              <div class="card-content black-text">
+                <span class="card-title"><Strong>Identification : </strong></span>
+                  <p>Email : {{ user.email }}</p>
+                  <p>Nom : {{ user.username }}</p>
+                </div>
+                <div class="card-action">
+                  <a href="#">Envoyer un message</a>
+                  <a href="#">Appeler</a>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col s6 l6 l6">
+              <ul class="collapsible white black-text">
+                <li>
+                  <div class="collapsible-header"><i class="material-icons">history</i>Historique des Séances</div>
+                  <div class="collapsible-body">
+                    {% if appointements is not null %}
+                      {% for appointement in appointements %}
+                        <span>appointement.title</span>
+                      {% endfor %}
+                    {% else %}
+                      <p>Le client n'a pas pris de séance encore..<p>
+                    {% endif %}
+                  </div>
+                </li>
+                <li>
+                  <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+                  <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                </li>
+                <li>
+                  <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+                  <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block pagejs %}
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $('.chips').chips();
+});
+</script>
+{% endblock %}

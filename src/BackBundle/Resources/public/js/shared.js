@@ -2,7 +2,7 @@
 $(".button-collapse").sideNav();
 $('.tooltipped').tooltip({delay: 50});
 $('select').material_select();
-
+ // $('.collapsible').collapsible();
 
 
 // Transformation des div.flash_message en Tooltip Materialze
