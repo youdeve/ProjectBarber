@@ -17,33 +17,42 @@
     <div class="row">
       <div class="col s12">
         <div class="row">
-          <div class="col s12">
+          <div class="col s12 m12 l12">
             <ul class="collapsible" data-collapsible="expandable">
-              <li class="active">
-                <div class="collapsible-header">
+              <li>
+                <div class="collapsible-header active">
                   <i class="material-icons black-text">people</i>
                   <span class="black-text">Clients <strong>{{ users|length }}</strong> </span>
                   <i class="material-icons black-text">arrow_drop_down</i>
                 </div>
                 <div class="collapsible-body white black-text">
-                  {% if users  %}
+                  <a href="#" alt="" title="Ajouter un nouvelle utilisateur">
+                    <i class="material-icons medium orange-text right">add_circle_outline</i></a>
+                  {% if users %}
                   <table class="responsive-table highlight">
                     <thead>
                       <tr>
                         <th>Nom</th>
                         <th>Email</th>
-                        <th>Derniere connexion</th>
-                        <th>action</th>
+                        <th>Dernière connexion</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       {% for user in users %}
-                          <tr>
-                            <td><a href="{{ path('back_profil_user', {'id': user.id  }) }}">{{ user.username }}</a></td>
-                            <td>{{ user.email }}</td>
-                            <td>{{ user.lastLogin|date('d-m-Y H:i:s') }}</td>
-                            <td><a href="{{ path('back_profil_user', {'id': user.id  }) }}">{{ user.username }}</a></td>
-                          </tr>
+                      <tr>
+                        <td>
+                          <a href="{{ path('back_profil_user', {'id': user.id  }) }}">
+                            {{ user.username }}
+                          </a>
+                        </td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.lastLogin|date('d-m-Y H:i:s') }}</td>
+                        <td>
+                          <a href="" title="Supprimer"><i class="material-icons red-text">delete_forever</i></a>
+                          <a href="" title="Supprimer"><i class="material-icons blue-text">edit</i></a>
+                        </td>
+                      </tr>
                       {% endfor %}
                       <tbody>
                       </table>
@@ -67,7 +76,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-  $('.chips').chips();
+
 });
 </script>
 {% endblock %}
