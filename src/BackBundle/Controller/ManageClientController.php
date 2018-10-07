@@ -1,11 +1,16 @@
 <?php
+/**
+ *
+ * @author Youssouf sekhari [ you.sekhari@gmail.com ]
+ * 30/09/2018
+ */
+
 
 namespace BackBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\User;
-use AppBundle\Form\Type\UserType;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;

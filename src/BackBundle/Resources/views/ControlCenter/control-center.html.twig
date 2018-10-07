@@ -1,0 +1,47 @@
+{% set route = app.request.get('_route') %}
+{% extends "@Back/back-base.html.twig" %}
+
+{% block pagestyle %}
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="section">
+    <div class="row page-title">
+      <h2>Statistiques</h2>
+      <hr class='white' style="margin-bottom:1rem"/>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="row">
+          <div class="col s12 m12 l12">
+            <ul class="collapsible" data-collapsible="expandable">
+              <li>
+                <div class="collapsible-header active">
+                  <i class="material-icons black-text">people</i>
+                  <span class="black-text">test </span>
+                  <i class="material-icons black-text">arrow_drop_down</i>
+                </div>
+                <div class="collapsible-body white black-text">
+
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
+
+{% block pagejs %}
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+});
+</script>
+{% endblock %}

@@ -10,4 +10,17 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+
+  public function getUsersSince($date) {
+    if (!$date) {
+      $date = new \DateTime();
+      $date->setTimestamp(strtotime("5 minutes ago"));
+    }
+
+    $qb = $this->createQueryBuilder('u')
+          ->where('u.lastLogin > :date')
+          ->setParameter('date', $date);
+
+    return $qb->getQuery()->getResult();
+  }
 }
