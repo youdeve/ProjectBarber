@@ -44,10 +44,12 @@
         "symfony/symfony": "3.4.*",
         "symfony/templating": "^4.1",
         "symfony/webpack-encore-pack": "^1.0",
+        "toiba/fullcalendar-bundle": "^6.2",
         "twig/twig": "^1.0||^2.0"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^2.0",
+        "phpunit/phpunit": "^7",
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.0"
     },

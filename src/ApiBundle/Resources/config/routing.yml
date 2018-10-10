@@ -12,3 +12,8 @@ app_api_employee:
     type: rest
     ressource:     "ApiBundle:ApiEmployee"
     name_prefix:   api_
+
+app_api_full_calendar:
+    type: rest
+    ressource:     "ApiBundle:ApiFullCalendar"
+    name_prefix:   api_

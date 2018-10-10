@@ -57,13 +57,13 @@
 
       {% elseif app.user.hasRole('ROLE_TEAM') %}
           <li>
-            <a  href=""  title="Gestion Client" class="icons-menu ">
-              <i class="{{ route == 'back_' ? "active" }} material-icons">people</i>
+            <a  href="{{ path('back_manage_client') }}"  title="Gestion Client" class="icons-menu ">
+              <i class="{{ route == 'back_manage_client' ? "active" }} material-icons">people</i>
             </a>
           </li>
           <li>
-            <a  href="" title="Gestion rendez-vous" class="icons-menu">
-              <i class="{{ route ==  'back_' ? "active" }} material-icons">event</i>
+            <a  href="{{ path('back_manage_appointment')}}" title="Gestion rendez-vous" class="icons-menu">
+              <i class="{{ route ==  'back_manage_appointment' ? "active" }} material-icons">event</i>
             </a>
           </li>
           <li>

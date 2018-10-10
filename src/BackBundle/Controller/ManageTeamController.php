@@ -10,14 +10,14 @@ use AppBundle\Form\Type\UserType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
 class ManageTeamController extends Controller
 {
     /**
-     * @Route("/admin/teams/", name="back_team")
+     * @Route("/admin/teams", name="back_team")
      * @Security("has_role('ROLE_BACK_ACCESS')")
      */
     public function ManageTeamAction(Request $request)

@@ -60,7 +60,6 @@
 {% block pagejs %}
   <script type="text/javascript">
 
-  console.log('test');
   function displayEmployee() {
     $.get(Routing.generate('api_apiemployee_getemployees'))
     .done(function(employees) {
@@ -69,6 +68,7 @@
   }
 
   function showEmployee(employees){
+    // console.log(employees);
     var container = $('#employees');
 
     hr = document.createElement('hr');
@@ -84,35 +84,36 @@
     th1Texte = document.createTextNode('Nom');
     th1.append(th1Texte);
 
-    th2 = document.createElement('th');
-    th2Texte = document.createTextNode('Client Lié');
-    th2.append(th2Texte);
+    // th2 = document.createElement('th');
+    // th2Texte = document.createTextNode('Client Lié');
+    // th2.append(th2Texte);
 
     th3 = document.createElement('th');
     th3Texte = document.createTextNode('Action');
     th3.append(th3Texte);
 
-    tr.append(th1, th2, th3);
+    tr.append(th1, /*th2,*/ th3);
 
     thead.append(tr);
     tbody = document.createElement('tbody');
     table.append(tbody);
     $.each(employees, function(i, item) {
-
       trUsername = document.createElement('tr');
       tdUsername = document.createElement('td');
       tdClient = document.createElement('td');
       tdAction = document.createElement('td');
 
+      console.log("---------------");
+      console.log(item);
       tdTexteUsername = document.createTextNode(item.username);
       tdUsername.append(tdTexteUsername);
-      tdTexteClient = document.createTextNode(item.username);
-      tdClient.append(tdTexteClient);
-      tdTexteAction = document.createTextNode(item.username);
+      // tdTexteClient = document.createTextNode(item);
+      // tdClient.append(tdTexteClient);
+      tdTexteAction = document.createTextNode('Action');
       tdAction.append(tdTexteAction);
 
       //action client + nom
-      trUsername.append(tdUsername,tdClient,tdAction);
+      trUsername.append(tdUsername,/*tdClient,*/tdAction);
 
 
       tbody.append(trUsername);
@@ -148,6 +149,7 @@
 //     })
 //   });
 // });
+
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('.modal').modal({
       dismissible: true, // Modal can be dismissed by clicking outside of the modal

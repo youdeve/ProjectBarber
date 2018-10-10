@@ -1,0 +1,13 @@
+i.material-icons.medium {
+    color: orangered;
+    font-size: 3.2em;
+    vertical-align: middle;
+}
+
+span.custom-card-title {
+    margin: -24px -25px 0px -25px;
+    border: 1px solid red;
+    background-color: #1A5276;
+    color: white;
+    padding: 20px 20px 20px 20px;
+}
