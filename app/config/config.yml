@@ -4,6 +4,7 @@ imports:
     - { resource: services.yml }
     - { resource: "@BackBundle/Resources/config/services.yml" }
     - { resource: "@FrontBundle/Resources/config/services.yml" }
+    - { resource: "@AppBundle/Ressources/config/services.yml" }
     - { resource: "@ApiBundle/Resources/config/services.yml" }
 
 parameters:

@@ -6,8 +6,13 @@
 * @author  SEKHARI Youssouf <you.sekhari@gmail.com
 */
 
+
+
 namespace AppBundle\Utils;
 
+use Doctrine\Bundle\DoctrineBundle\Registry;
+use AppBundle\Doctrine\DBAL\Types\JsonType;
+use AppBundle\Entity\User;
 
 /**
 * App Analytics service
@@ -16,38 +21,48 @@ class AppAnalytics
 {
 
   protected $doctrine;
-
   /**
   * AppAnalytics constructor.
   * @param Registry $doctrine
   */
   public function __construct(Registry $doctrine)
   {
+
     $this->doctrine = $doctrine;
   }
 
-  public function getActiveSince($periodName = null){
+  /**
+  * getDoctrine
+  * @return
+  * @ignore
+  */
+  private function getDoctrine()
+  {
+    return $this->doctrine;
+  }
 
+  public function getActiveSince($periodName = null)
+  {
     $period = new \DateTime();
-
     switch ($periodName) {
       case 'now':
-        $period->setTimestamp(strtotime("5 minutes ago"));
+      $period->setTimestamp(strtotime("5 minutes ago"));
       break;
       case 'month':
-        $period->setTimestamp(strtotime("1 month ago"));
+      $period->setTimestamp(strtotime("1 month ago"));
       break;
       case 'year':
-        $period->setTimestamp(strtotime("1 year ago"));
+      $period->setTimestamp(strtotime("1 year ago"));
       break;
       case 'week':
-        $period->setTimestamp(strtotime("1 week ago"));
+      $period->setTimestamp(strtotime("1 week ago"));
       break;
       default:
-        $period->setTimestamp(strtotime("5 minutes ago"));
+      $period->setTimestamp(strtotime("5 minutes ago"));
       break;
     }
-    $users = $this->getDoctrine()->getRepository(User::class)->getUsersSince($period);
+
+    $users = $this->getDoctrine()->getRepository('AppBundle:User')->getUsersSince($period);
     return count($users);
   }
 
