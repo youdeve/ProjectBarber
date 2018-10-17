@@ -6,12 +6,10 @@
 * @author  SEKHARI Youssouf <you.sekhari@gmail.com
 */
 
-
-
 namespace AppBundle\Utils;
 
-use Doctrine\Bundle\DoctrineBundle\Registry;
 use AppBundle\Doctrine\DBAL\Types\JsonType;
+use Doctrine\Bundle\DoctrineBundle\Registry;
 use AppBundle\Entity\User;
 
 /**
@@ -22,18 +20,17 @@ class AppAnalytics
 
   protected $doctrine;
   /**
-  * AppAnalytics constructor.
+  * AppSettings constructor.
   * @param Registry $doctrine
   */
   public function __construct(Registry $doctrine)
   {
-
     $this->doctrine = $doctrine;
   }
 
   /**
-  * getDoctrine
-  * @return
+  * Get doctrine
+  * @return Registry
   * @ignore
   */
   private function getDoctrine()
@@ -46,24 +43,25 @@ class AppAnalytics
     $period = new \DateTime();
     switch ($periodName) {
       case 'now':
-      $period->setTimestamp(strtotime("5 minutes ago"));
-      break;
-      case 'month':
-      $period->setTimestamp(strtotime("1 month ago"));
-      break;
-      case 'year':
-      $period->setTimestamp(strtotime("1 year ago"));
+      $period->setTimestamp(strtotime('5 minutes ago'));
       break;
       case 'week':
-      $period->setTimestamp(strtotime("1 week ago"));
+      $period->setTimestamp(strtotime('1 week ago'));
+      break;
+      case 'month':
+      $period->setTimestamp(strtotime('1 month ago'));
+      break;
+      case 'year':
+      $period->setTimestamp(strtotime('1 year ago'));
       break;
       default:
-      $period->setTimestamp(strtotime("5 minutes ago"));
+      $period->setTimestamp(strtotime('5 minutes ago'));
       break;
     }
-
-    $users = $this->getDoctrine()->getRepository('AppBundle:User')->getUsersSince($period);
+    $users = $this->getDoctrine()->getRepository(User::class)->getUserSince($period);
+    // return $users;
     return count($users);
+
   }
 
 }

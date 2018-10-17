@@ -33,11 +33,17 @@ class ControlCenterController extends Controller
     // try {
     // $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAll();
     $nbUsersY = $this->get('app.analytics')->getActiveSince('year');
-
+    $nbUsersM = $this->get('app.analytics')->getActiveSince('month');
+    $nbUsersW = $this->get('app.analytics')->getActiveSince('week');
+    $nbUsersN = $this->get('app.analytics')->getActiveSince('now');
+    
     // $nbUsersNow = $this->get('app.analytics')->getActiveSince("now");
-    // $this->get('logger')->info('0000000000000000000000000000000000000000000000000000000000', [$users]);
+    $this->get('logger')->info('0000000000000000000000000000000000000000000000000000000000', [$nbUsersY]);
     return $this->render('@Back/ControlCenter/control-center.html.twig',[
-      "nbUsersNow" => $nbUsersNow
+      "nbUsersY" => $nbUsersY,
+      "nbUsersY" => $nbUsersM,
+      "nbUsersY" => $nbUsersW,
+      "nbUsersY" => $nbUsersN
     ]);
 
     // } catch (\Exception $e) {
