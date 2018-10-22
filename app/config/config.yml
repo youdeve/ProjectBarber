@@ -8,7 +8,7 @@ imports:
     - { resource: "@ApiBundle/Resources/config/services.yml" }
 
 parameters:
-    locale: en_EN
+    locale: fr_FR
 
 framework:
     serializer: true
@@ -53,17 +53,22 @@ fos_user:
     service:                               # this lines
         mailer: fos_user.mailer.twig_swift # this lines
     from_email:
-        address: "you.sekhari@gmail.com"
-        sender_name: "test"
+        address: "%default_from_email%"
+        sender_name: "Application BARBER"
     service:
         mailer: fos_user.mailer.twig.swift
     registration:
         confirmation:
             enabled: true
             from_email:
-                address: noreply@barber.com
-                sender_name: Admin du tuto FosUserBundle
-            template: 'email/registration.email.twig'
+                address: %default_from_email%
+                sender_name: Inscription BARBER
+    resetting:
+        email:
+            from_email:
+                address: %default_from_email%
+                sender_name: Application BARBER
+            template: email/password_resetting.email.twig
 
 # Twig Configuration
 twig:
