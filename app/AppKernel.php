@@ -25,7 +25,6 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
 
             //Bundle
-            new Toiba\FullCalendarBundle\FullCalendarBundle(),
             new AppBundle\AppBundle(),
             new BackBundle\BackBundle(),
             new FrontBundle\FrontBundle(),
