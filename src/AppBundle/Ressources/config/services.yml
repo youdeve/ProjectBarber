@@ -2,3 +2,7 @@ services:
     app.analytics:
         class: AppBundle\Utils\AppAnalytics
         arguments: ["@doctrine"]
+
+    app.email.sender:
+        class: Appbundle\utils\EmailSender
+        arguments: ["@doctrine", "@mailer", "%default_from_email%"]

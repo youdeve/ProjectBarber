@@ -23,8 +23,8 @@ class UserRepository extends EntityRepository
     }
 
     $qb = $this->createQueryBuilder('u')
-    ->where("u.lastLogin > :date")
-    ->setParameter("date", $date);
+        ->where("u.lastLogin > :date")
+        ->setParameter('date', $date);
 
     return $qb->getQuery()->getResult();
   }
