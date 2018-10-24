@@ -5,4 +5,4 @@ services:
 
     app.email.sender:
         class: Appbundle\utils\EmailSender
-        arguments: ["@doctrine", "@mailer", "%default_from_email%"]
+        arguments: ["@doctrine", "@mailer", "@templating", "@logger", "%default_from_email%"]

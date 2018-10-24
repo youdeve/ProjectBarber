@@ -11,6 +11,8 @@ parameters:
     locale: fr_FR
 
 framework:
+    templating:
+        engines: ['twig']
     serializer: true
     #esi: ~
     translator: { fallbacks: ['%locale%'] }
