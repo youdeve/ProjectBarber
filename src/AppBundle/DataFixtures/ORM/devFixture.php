@@ -353,8 +353,6 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
 
       function createTeamMember(ObjectManager $manager) {
 
-
-
            $teamMemberBarber = new TeamMember();
            $teamMemberBarber->setUser($agentTeam);
            $teamMemberBarber->addAffectedClient($client);
