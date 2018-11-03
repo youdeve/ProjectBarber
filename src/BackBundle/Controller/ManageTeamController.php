@@ -36,6 +36,8 @@ class ManageTeamController extends Controller
           $em->flush();
           $request->getSession()->getFlashBag()->add('success', 'L\'utilisateur a bien été ajouté');
           return  $this->redirectToRoute('back_team');
+        }else{
+            $request->getSession()->getFlashBag()->add('error', 'Probleme');
         }
 
         return $this->render('@Back/ManageTeam/manage-team.html.twig' , [

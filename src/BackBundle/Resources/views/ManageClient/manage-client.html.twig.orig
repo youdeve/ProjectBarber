@@ -7,6 +7,65 @@
 {% endblock %}
 
 {% block content %}
+<<<<<<< HEAD
+    <div class="container">
+        <div class="section">
+          <div class="row page-title">
+            <h2>Gestion clients</h2>
+            <hr class='white' style="margin-bottom:1rem"/>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <div class="row">
+                <div class="col s8 l8 m8">
+                  <ul class="collapsible" data-collapsible="expandable">
+                    <li>
+                      <div class="collapsible-header">
+                        <i class="material-icons black-text">people</i>
+                        <span class="black-text">Clients <strong>{{ users|length }}</strong> </span>
+                        <i class="material-icons black-text">arrow_drop_down</i>
+                      </div>
+                      <div class="collapsible-body white black-text">
+                        {% if users is defined %}
+                              {% for user in users %}
+                              <div class="chip">
+                                <a href="#">{{ user.username }}</a>
+                                <i class="close material-icons">close</i>
+                              </div>
+                              {% endfor %}
+                          {% else %}
+                              <h4>Aucun Epmoyée</h4>
+                        {% endif %}
+                      </div>
+                    </li>
+                  </ul>
+                  </div>
+
+                  <div class="col s4 l4 m4">
+                    <ul class="collapsible" data-collapsible="expandable">
+                      <li>
+                        <div class="collapsible-header">
+                          <i class="material-icons black-text">people</i>
+                          <span class="black-text">Clients <strong>{{ users|length }}</strong> </span>
+                          <i class="material-icons black-text">arrow_drop_down</i>
+                        </div>
+                        <div class="collapsible-body white black-text">
+                          {% if users is defined %}
+                                {% for user in users %}
+                                <div class="chip">
+                                  <a href="#">{{ user.username }}</a>
+                                  <i class="close material-icons">close</i>
+
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <h4>Aucun Epmoyée</h4>
+                          {% endif %}
+                        </div>
+                      </li>
+                    </ul>
+                    </div>
+=======
 <div class="container">
   <div class="section">
     <div class="row page-title">
@@ -23,6 +82,7 @@
                   <i class="material-icons black-text">people</i>
                   <span class="black-text">Clients <strong>{{ users|length }}</strong> </span>
                   <i class="material-icons black-text">arrow_drop_down</i>
+>>>>>>> feature/gestionClients
                 </div>
                 <div class="collapsible-body white black-text">
                   <a href="#" alt="" title="Ajouter un nouvelle utilisateur">

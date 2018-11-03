@@ -1,11 +1,16 @@
 <?php
+/**
+ *
+ * @author Youssouf sekhari [ you.sekhari@gmail.com ]
+ * 30/09/2018
+ */
+
 
 namespace BackBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\User;
-use AppBundle\Form\Type\UserType;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -24,7 +29,7 @@ class ManageClientController extends Controller
     {
         $user = $this->getUser();
         $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findByAffectedAgentBarber($user);
-        // $this->get('logger')->info('0000000000000000000000000000000000000000000000000000000000', [$users]);
+        $this->get('logger')->info('0000000000000000000000000000000000000000000000000000000000', [$users]);
         return $this->render('@Back/ManageClient/manage-client.html.twig' , [
           'users' => $users,
         ]);

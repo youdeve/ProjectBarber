@@ -54,6 +54,32 @@
         <i class="{{ route == 'back_setting' ? "active" }} material-icons">settings</i>
       </a>
     </li>
+
+<<<<<<< HEAD
+      {% elseif app.user.hasRole('ROLE_TEAM') %}
+          <li>
+            <a  href="{{ path('back_manage_client') }}"  title="Gestion Client" class="icons-menu ">
+              <i class="{{ route == 'back_manage_client' ? "active" }} material-icons">people</i>
+            </a>
+          </li>
+          <li>
+            <a  href="{{ path('back_manage_appointment')}}" title="Gestion rendez-vous" class="icons-menu">
+              <i class="{{ route ==  'back_manage_appointment' ? "active" }} material-icons">event</i>
+            </a>
+          </li>
+          <li>
+            <a href="{{ path('back_notification') }}"  title="Centre de notification" class="icons-menu">
+              <i class="{{ route ==  'back_notification' ? "active" }} material-icons">notifications</i>
+            </a>
+          </li>
+      {% endif %}
+      <li>
+        <a href="{{ path('fos_user_security_logout') }}" title="Déconnexion" class="icons-menu ">
+          <i class="material-icons">lock_open</i>
+        </a>
+      </li>
+    </ul>
+=======
     {% elseif app.user.hasRole('ROLE_TEAM') %}
     <li>
       <a  href="{{ path('back_manage_client') }}"  title="Gestion Client" class="icons-menu ">
@@ -77,5 +103,6 @@
       </a>
     </li>
   </ul>
+>>>>>>> feature/gestionClients
   <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
 </div>

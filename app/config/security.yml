@@ -43,3 +43,4 @@ security:
         - { path: ^/user/, role: ROLE_FRONT_ACCESS }
         - { path: ^/api, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /, roles: [ROLE_BACK_ACCESS, ROLE_FRONT_ACCESS] }
+        - { path: ^/profile/, role: ROLE_FRONT_ACCESS }
