@@ -43,6 +43,11 @@ class User extends BaseUser
     protected $affectedAgentBarber;
 
     /**
+     * @ORM\ManyToOne(targetEntity="user")
+     */
+    protected $affectedBarberByAdmin;
+
+    /**
      * @ORM\OneToMany(targetEntity="ServiceList", mappedBy="affectedCustomer")
      */
     protected $affectedService;
@@ -208,5 +213,29 @@ class User extends BaseUser
     public function getAffectedAgentBarber()
     {
         return $this->affectedAgentBarber;
+    }
+
+    /**
+     * Set affectedBarberByAdmin.
+     *
+     * @param \AppBundle\Entity\user|null $affectedBarberByAdmin
+     *
+     * @return User
+     */
+    public function setAffectedBarberByAdmin(\AppBundle\Entity\user $affectedBarberByAdmin = null)
+    {
+        $this->affectedBarberByAdmin = $affectedBarberByAdmin;
+
+        return $this;
+    }
+
+    /**
+     * Get affectedBarberByAdmin.
+     *
+     * @return \AppBundle\Entity\user|null
+     */
+    public function getAffectedBarberByAdmin()
+    {
+        return $this->affectedBarberByAdmin;
     }
 }

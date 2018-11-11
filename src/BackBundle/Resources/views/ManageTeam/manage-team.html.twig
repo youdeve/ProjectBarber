@@ -12,10 +12,9 @@
     <div class="row">
       <div class=" col offset-m1 m10 s12 center-align">
         <div class="add_employees">
-          <a class="right" title="Ajouter un employé" href="#modal1"><i class="material-icons ">add_circle_outline</i></a>
+          <a class="right waves-effect waves-light modal-trigger" title="Ajouter un employé" href="#modal1"><i class="material-icons ">add_circle_outline</i></a>
         </div>
         <div id="employees" class="" style="padding-top:70px;"></div>
-
         <!-- Modal Structure -->
         <div id="modal1" class="modal">
           <div id="ajax-container" class="modal-content">
@@ -63,12 +62,13 @@
 function displayEmployee() {
   $.get(Routing.generate('api_apiemployee_getemployees'))
   .done(function(employees) {
+    console.log(employees);
     showEmployee(employees);
   });
 }
 
 function showEmployee(employees){
-  // console.log(employees);
+  console.log(employees);
   var container = $('#employees');
 
   hr = document.createElement('hr');
@@ -84,15 +84,15 @@ function showEmployee(employees){
   th1Texte = document.createTextNode('Nom');
   th1.append(th1Texte);
 
-  // th2 = document.createElement('th');
-  // th2Texte = document.createTextNode('Client Lié');
-  // th2.append(th2Texte);
+  th2 = document.createElement('th');
+  th2Texte = document.createTextNode('Client Lié');
+  th2.append(th2Texte);
 
   th3 = document.createElement('th');
   th3Texte = document.createTextNode('Action');
   th3.append(th3Texte);
 
-  tr.append(th1, /*th2,*/ th3);
+  tr.append(th1, th2, th3);
 
   thead.append(tr);
   tbody = document.createElement('tbody');
@@ -105,15 +105,15 @@ function showEmployee(employees){
 
     console.log("---------------");
     console.log(item);
-    tdTexteUsername = document.createTextNode(item.username);
+    tdTexteUsername = document.createTextNode("jesuis");
     tdUsername.append(tdTexteUsername);
-    // tdTexteClient = document.createTextNode(item);
-    // tdClient.append(tdTexteClient);
+    tdTexteClient = document.createTextNode("test");
+    tdClient.append(tdTexteClient);
     tdTexteAction = document.createTextNode('Action');
     tdAction.append(tdTexteAction);
 
     //action client + nom
-    trUsername.append(tdUsername,/*tdClient,*/tdAction);
+    trUsername.append(tdUsername,tdClient, tdAction);
 
 
     tbody.append(trUsername);
@@ -125,39 +125,29 @@ function showEmployee(employees){
 $( document ).ready(function() {
   displayEmployee();
 
-});
-//
-// $(document).ready(function() {
-//   $('#modal1').on('submit', '#ajax-form', function() {
-//     console.log('click');
-//     data = {};
-//     var $this = $(this);
-//     $.ajax({
-//       url : $this.attr('action'),
-//       type : $this.attr('method'),
-//       data : new FormData($this[0]),
-//       processData: false,
-//       contentType: false
-//     })
-//     .done(function(response) {
-//       // console.log(response);
-//       displayToast(response, 'success');
-//       // $("#modal1").modal('close');
-//     })
-//     .fail(function(response) {
-//       displayToast(response, 'error');
-//     })
-//   });
-// });
+  $("#modal1").modal();
 
-// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-$('.modal').modal({
-  dismissible: true, // Modal can be dismissed by clicking outside of the modal
-  opacity: .5, // Opacity of modal background
-  inDuration: 300, // Transition in duration
-  outDuration: 200, // Transition out duration
-  startingTop: '4%', // Starting top style attribute
-  endingTop: '20%', // Ending top style attribute
+  $('#modal1').on('submit', '#ajax-form', function() {
+    console.log('click');
+    data = {};
+    var $this = $(this);
+    $.ajax({
+      url : $this.attr('action'),
+      type : $this.attr('method'),
+      data : new FormData($this[0]),
+      processData: false,
+      contentType: false
+    })
+    .done(function(response) {
+      // console.log(response);
+      displayToast(response, 'success');
+      // $("#modal1").modal('close');
+    })
+    .fail(function(response) {
+      displayToast(response, 'error');
+    })
+  });
 });
+
 </script>
 {% endblock %}

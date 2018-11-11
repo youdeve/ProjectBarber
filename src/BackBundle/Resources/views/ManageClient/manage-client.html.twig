@@ -25,57 +25,72 @@
                   <i class="material-icons black-text">arrow_drop_down</i>
                 </div>
                 <div class="collapsible-body white black-text">
-                  <a href="#" alt="" title="Ajouter un nouvelle utilisateur">
+                  <a href="#modal1" alt="" class="waves-effect waves-light modal-trigger" title="Ajouter un nouvelle utilisateur">
                     <i class="material-icons medium orange-text right">add_circle_outline</i></a>
-                  {% if users %}
-                  <table class="responsive-table highlight">
-                    <thead>
-                      <tr>
-                        <th>Nom</th>
-                        <th>Email</th>
-                        <th>Dernière connexion</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% for user in users %}
-                      <tr>
-                        <td>
-                          <a href="{{ path('back_profil_user', {'id': user.id  }) }}">
-                            {{ user.username }}
-                          </a>
-                        </td>
-                        <td>{{ user.email }}</td>
-                        <td>{{ user.lastLogin|date('d-m-Y H:i:s') }}</td>
-                        <td>
-                          <a href="" title="Supprimer"><i class="material-icons red-text">delete_forever</i></a>
-                          <a href="" title="Supprimer"><i class="material-icons blue-text">edit</i></a>
-                        </td>
-                      </tr>
-                      {% endfor %}
+                    {% if users %}
+                    <table class="responsive-table highlight">
+                      <thead>
+                        <tr>
+                          <th>Nom</th>
+                          <th>Email</th>
+                          <th>Dernière connexion</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
                       <tbody>
-                      </table>
-                      {% else %}
-                      <h4>Aucun Client</h4>
-                      {% endif %}
+                        {% for user in users %}
+                        <tr>
+                          <td>
+                            <a href="{{ path('back_profil_user', {'id': user.id  }) }}">
+                              {{ user.username }}
+                            </a>
+                          </td>
+                          <td>{{ user.email }}</td>
+                          <td>{{ user.lastLogin|date('d-m-Y H:i:s') }}</td>
+                          <td>
+                            <a href="" title="Supprimer"><i class="material-icons red-text">delete_forever</i></a>
+                            <a href="" title="Supprimer"><i class="material-icons blue-text">edit</i></a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                        <tbody>
+                        </table>
+                        {% else %}
+                        <h4>Aucun Client</h4>
+                        {% endif %}
+                      </div>
                     </div>
-                  </div>
-                </li>
-              </ul>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+
+      <!-- Modal Structure -->
+      <div id="modal1" class="modal">
+        <div id="ajax-container" class="modal-content">
+          <div class="row">
+            <h3>Ajouter un employé</h4>
+
+              <div class="col offset-m2 offset-l2 offset-s2  l9 m9 s9 ">
+
+                <h2>TEST</h2>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn" value="Créer un utilisateur">Créer un utilisateur</button>
+          </div>
+        </div>
 {% endblock %}
 
-{% block pagejs %}
-<script type="text/javascript">
+    {% block pagejs %}
+    <script type="text/javascript">
 
-$(document).ready(function(){
-
-});
-</script>
+    $(document).ready(function(){
+      $("#modal1").modal();
+    });
+  </script>
 {% endblock %}

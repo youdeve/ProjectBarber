@@ -29,17 +29,29 @@ class ApiEmployeeController extends FOSRestController
   public function getEmployeesAction(Request $request)
   {
     try {
-        // $employees = $this->getDoctrine()->getRepository("AppBundle:User")->findBy(['roles'=> 'ROLE_TEAM']);
-        $employees = $this->getDoctrine()->getRepository("AppBundle:User")->findAll();
-        // $employees = $this->getDoctrine()->getRepository(User::class)->findOneByEmail("Team@kabolt.fr");
-        $this->get('logger')->info('0000000000000000000000000000000000000000000000000000000000', [  $employees]);
+        // $employees = $this->getDoctrine()->getRepository(User::class)->findByRolesTeam('ROLE_TEAM');
+        // $test = $employees->getUsername();
+        // foreach ($employees as $employee) {
+        //     $test = $employee->getUsername();
+        //     $this->get('logger')->info('0000000000000000000000000000000000000000000000000000000000', [$test ]);
+        // }
+        $admin = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $employees = $em->getRepository(User::class)->findOneByAffectedBarberByAdmin($admin);
+        $adminsa = $employees->getId();
+        $this->get('logger')->info('00000000000000000000000000ALO', [$adminsa]);
+        // $employees = $this->getDoctrine()->getRepository(User::class)->findOneByEmail("");
+        // $this->get('logger')->info('0000000000000000000000000000000000000000000000000000000000', [  $employees]);
 
-        $view = View::create($employees);
-         $view->setFormat('json');
-         if($view == null)
-         return new JsonResponse(['message' => 'Les utilisateurs n\'existes pas'], Response::HTTP_UNPROCESSABLE_ENTITY);
+        return new JsonResponse($employees, Response::HTTP_OK);
+        // return new View($employees Response::HTTP_OK);
 
-       return $view;
+         // $view = View::create($admin);
+         // $view->setFormat('json');
+         // if($view == null)
+         // return new JsonResponse(['message' => 'Les utilisateurs n\'existes pas'], Response::HTTP_UNPROCESSABLE_ENTITY);
+
+       // return $view;
 
     } catch (\Exception $e) {
       return new JsonResponse([$e->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);

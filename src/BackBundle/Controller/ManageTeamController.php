@@ -23,7 +23,7 @@ class ManageTeamController extends Controller
     public function ManageTeamAction(Request $request)
     {
         $user = new User();
-        $formTeam = $this->createForm(UserType::class, $user);
+        $formTeam = $this->createForm(RegistrationFormType::class, $user);
 
         if( $request->isMethod('POST') && $formTeam->handleRequest($request)->isValid()) {
 
