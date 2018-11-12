@@ -31,7 +31,7 @@ class ProfilClientController extends Controller
 
       return $this->render('@Back/ProfilClient/profil-client.html.twig',[
         'user' => $users,
-        'appointement' => $appointements
+        'appointements' => $appointements
       ]);
 
     } catch (\Exception $e) {
