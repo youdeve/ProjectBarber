@@ -1,19 +1,19 @@
 // Initialize Materialize components
-$(".button-collapse").sideNav();
 $('.tooltipped').tooltip({delay: 50});
 $('select').material_select();
 
-$('.sidenav').sidenav();
+$(".button-collapse").sideNav();
 
 
 function createSpinner() {
   var spinner = $('<div style="color:#fff" class="center-align loader"></div>').css('display', 'none');
-  var spinnerLayer = $('<div class="spinner-layer"></div>').css('border-color', '#1cb7f9');
+  var spinnerLayer = $('<div class="spinner-layer spinner-red-only"></div>').css('border-color', 'red');
   var circle = $('<div class="circle"></div>');
   spinner.append($('<div class="preloader-wrapper small active center-align"></div>').append(spinnerLayer));
   $('<div class="circle-clipper left"></div>').append(circle).appendTo(spinnerLayer);
   $('<div class="gap-patch"></div>').append(circle).appendTo(spinnerLayer);
   $('<div class="circle-clipper right"></div>').append(circle).appendTo(spinnerLayer);
+  console.log('spinner',spinner);
   return spinner;
 }
 

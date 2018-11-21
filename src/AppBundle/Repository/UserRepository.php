@@ -29,12 +29,16 @@ class UserRepository extends EntityRepository
     return $qb->getQuery()->getResult();
   }
 
-  public function findByRolesTeam($role)
+  /**
+   * [findByRolesTeam description]
+   * @param  [type] $role [description]
+   * @return [type]       [description]
+   */
+  public function findByRolesTeam($roles)
   {
     $qb = $this->createQueryBuilder('u')
-        ->where("u.roles = :role")
-        ->setParameter('role', $role);
-
+        ->where("u.roles Like :roles")
+        ->setParameter('roles', $roles);
     return $qb->getQuery()->getResult();
   }
 

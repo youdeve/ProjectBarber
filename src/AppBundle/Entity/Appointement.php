@@ -53,7 +53,6 @@ class Appointement
     protected $customer;
 
 
-
     /**
      * Get id.
      *

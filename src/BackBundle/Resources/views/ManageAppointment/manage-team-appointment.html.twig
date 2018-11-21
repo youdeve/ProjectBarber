@@ -2,63 +2,67 @@
 {% extends "@Back/back-base.html.twig" %}
 
 {% block pagestyle %}
-  <link rel="stylesheet" href="{{ asset('assets/css/back/manage.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/back/manage.css') }}">
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="section">
-          <div class="row page-title">
-            <h2>Gestion des Rendez-vous</h2>
-            <hr class='white' style="margin-bottom:1rem"/>
-          </div>
-          <div class="row">
-            <div class="col s12 m12 l12">
-              <div class="card">
-                 <div class="card-content black-text">
-                   <span class="card-title">Card Title</span>
-
-                 </div>
-              </div>
-
-              <div class="col l6 m6 s6 ">
-                <div class="card">
-                   <div class="card-content black-text">
-                     <span class="card-title custom-card-title center-align">Rendez-vous à venir </span>
-
-                     {% if appointments is defined %}
-                       {% for appointment in appointments %}
-                            <p><i class="material-icons medium" >description</i> {{appointment.title}}</p>
-                            <p><i class="material-icons medium" >access_time</i> {{appointment.startAppointement|date("d/m/Y h:i")}}</p>
-                            <p><i class="material-icons medium" >person</i> Client : <strong>{{appointment.customer}}</strong> </p>
-                            <hr>
-                       {% endfor %}
-                     {% else %}
-                        <h5> Vous n'avez aucun rendez-vous<h5>
-                     {% endif %}
-
-                   </div>
-                </div>
+<div class="container">
+  <div class="section">
+    <div class="row page-title">
+      <h2>Gestion des Rendez-vous</h2>
+      <hr class='white' style="margin-bottom:1rem"/>
+    </div>
+    <div class="row">
+      <div class="col s7 m7 l7">
+        <ul class="collapsible" data-collapsible="expandable">
+          <li>
+            <div class="collapsible-header active">
+              <span class="black-text">Calendar</span>
+              <i class="material-icons black-text">arrow_drop_down</i>
             </div>
-              <div class="col l6 m6 s6 center-align">
-                <div class="card">
-                   <div class="card-content black-text">
-                     <span class="card-title">test</span>
+            <div class="collapsible-body white black-text">
 
-                   </div>
-                </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col l5 m5 s5 ">
+        <ul class="collapsible" data-collapsible="expandable">
+          <li>
+            <div class="collapsible-header active">
+              <span class="black-text">Rendez-vous à venir</span>
+              <i class="material-icons black-text">arrow_drop_down</i>
+            </div>
+            <div class="collapsible-body white black-text">
+              {% if appointments is defined %}
+                {% for appointment in appointments %}
+                  <p><i class="material-icons medium" >description</i>
+                  {{appointment.title}}</p>
+                  <p><i class="material-icons medium" >access_time</i>
+                  {{appointment.startAppointement|date("d/m/Y h:i")}}</p>
+                  <p><i class="material-icons medium" >person</i> Client :
+                  <strong>{{appointment.customer}}</strong> </p>
+                  <hr>
+                  {% endfor %}
+                  {% else %}
+                  <h5> Vous n'avez aucun rendez-vous<h5>
+                    {% endif %}
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-{% endblock %}
+    {% endblock %}
 
-{% block pagejs %}
+    {% block pagejs %}
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-  $( document ).ready(function() {
+    $( document ).ready(function() {
 
-  });
-</script>
+    });
+  </script>
 {% endblock %}

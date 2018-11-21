@@ -25,17 +25,17 @@ function displayToast(message, flag, time) {
   var color = "white", iconId ="", icon;
   switch (flag) {
     case 'error':
-      iconId = 'fa-times-circle-o';
+      iconId = 'error';
       color = 'red';
         break;
     case 'success':
-      iconId = 'fa-check-circle-o';
+      iconId = 'check_circle';
       color = 'green';
         break;
     case 'notice':
-      iconId = 'fa-info-circle';
+      iconId = 'info';
         break;
   }
-  icon = '<i style="color:' + color + '; margin-right:5px;" class="fa ' + iconId + '"></i> ';
+  icon = '<i style="color:' + color + '; margin-right:5px;" class="material-icons">'+ iconId +'</i> ';
   if (message !== undefined) Materialize.toast(icon + message, time);
 }

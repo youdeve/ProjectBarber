@@ -4,6 +4,10 @@ body
     background-attachment: fixed;
     background: linear-gradient(631deg,#FD6814,#FD6814,#E0280C);
 }
+.text-align {
+  text-align: center;
+}
+
 .hidden {
   display: none;
 }
@@ -16,8 +20,8 @@ li.logo {
 }
 
 #addEvents{
-  max-width:400px;
-  max-height:350px;
+  width:400px;
+  max-height: 400px
 }
 
 .title-background{
