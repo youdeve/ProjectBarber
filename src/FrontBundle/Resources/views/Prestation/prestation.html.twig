@@ -8,53 +8,64 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="section">
-          <div class="row page-title">
-            <h2>Vos prestations</h2>
-            <hr class='white' style="margin-bottom:1rem"/>
-          </div>
-          <div class="row">
-            <div class="col s12">
-              <div class="row">
-                <div class="col s12">
-                  <div class="card">
-                    <span class="card-title center-align">
-                      Barber : <i class="material-icons vertical-align ">person</i>
-                      <strong style="color:#FD6814; padding-right:20px; font-weight: 700;">Mr. {{ affectedAgentBarber }}</strong></span>
-                    <div class="card-content center-align">
+<div class="container">
+  <div class="section">
+    <div class="row page-title">
+      <h2>Vos prestations</h2>
+      <hr class='white' style="margin-bottom:1rem"/>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="col s12 m12 l12">
+          <ul class="collapsible white black-text">
+            <li>
+              <div class="collapsible-header">
+                <i class="material-icons vertical-align ">person</i>
+                Coiffeur Référent :
 
-                    {% if serviceLists is defined %}
-                      <table class="highlight responsive-table">
-                         <thead>
-                           <tr>
-                               <th>Prestation</th>
-                               <th>Date</th>
-                               <th>Prix</th>
-                           </tr>
-                         </thead>
-
-                         <tbody>
-                          {% for serviceList in serviceLists %}
-                            <tr>
-                              <td>{{ serviceList.haircut }}</td>
-                               <td>{{ serviceList.dateHaircut|date("d/m/Y") }}</td>
-                               <td>{{ serviceList.price }} euro</td>
-                             </tr>
-                           {% endfor %}
-                         </tbody>
-                       </table>
-                    {% else %}
-                        <h4>Aucune prestation..</h4>
-                    {% endif %}
-                    </div>
-                  </div>
-                </div>
+                {% if not affectedAgentBarber %}
+                Vous n'avez pas de coiffeur référent pour l'instant
+                {% else %}
+                <strong style="padding-left:5px;"> {{ affectedAgentBarber }}</strong>
+                {% endif %}
               </div>
+            </li>
+          </ul>
+        </div>
+        <div class="col s12 m12 l12">
+          <div class="card">
+            <div class="card-content center-align">
+              {% if serviceLists is defined %}
+                <table class="highlight responsive-table">
+                  <thead>
+                    <tr>
+                      <th>Prestation</th>
+                      <th>Date</th>
+                      <th>Prix</th>
+                      <th>Facture</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for serviceList in serviceLists %}
+                    <tr>
+                      <td>{{ serviceList.haircut }}</td>
+                      <td>{{ serviceList.dateHaircut|date("d/m/Y") }}</td>
+                      <td>{{ serviceList.price }} euro</td>
+                      <td><a class="waves-effect waves-light btn">button</a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              {% else %}
+                <h4>Aucune prestation..</h4>
+              {% endif %}
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 
 {% block pagejs %}

@@ -84,7 +84,7 @@ class ApiFullCalendarController extends FosRestController
           //get aleatoirement un coiffeur
           $barber = $teamUsers[array_rand($teamUsers)];
           $this->get('logger')->info('0000000000000000000000000000000000000000000000000000000000000000000000000000000000000 ',[$barber]);
-
+          $barberAffected = $customer->setAffectedAgentBarber($barber);
           $barber = $appointment->setBarber($barber);
         } else {
           $barber = $this->getDoctrine()->getRepository(User::class)->find($request->get('selectedBarber'));
