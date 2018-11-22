@@ -40,6 +40,9 @@ class InitCommand extends ContainerAwareCommand
       '--force' => true
     ];
 
+    $doctrineInitBase = new ArrayInput($arguments);
+    $command->run($doctrineInitBase, $output);
+
     $command = $this->getApplication()->find('doctrine:schema:update');
 
     // RECREATE BASE
@@ -56,6 +59,7 @@ class InitCommand extends ContainerAwareCommand
     if ($input->getOption('dev')) {
 
       $this->loadFixture('src/AppBundle/DataFixtures/ORM/devFixture.php', true);
+
       // Data loading ok
       $output->writeln('Database default data loading successfully!');
 
@@ -72,7 +76,6 @@ class InitCommand extends ContainerAwareCommand
     }  else {
       // Data loading ok
       $output->writeln('Database default data loading successfully!');
-      $output->writeln('Oecko server ready for production!');
     }
 
   }

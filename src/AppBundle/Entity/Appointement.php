@@ -43,11 +43,6 @@ class Appointement
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User",  inversedBy="affectedAgentBarber")
-     */
-    protected $barber;
-
-    /**
      * @ORM\ManyToOne(targetEntity="User",  inversedBy="User")
      */
     protected $customer;

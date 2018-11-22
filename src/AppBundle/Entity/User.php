@@ -33,17 +33,12 @@ class User extends BaseUser
   protected $id;
 
   /**
-  * @ORM\ManyToOne(targetEntity="Groups", inversedBy="users")
-  */
-  protected $groups;
-
-  /**
-  * @ORM\ManyToOne(targetEntity="user", cascade={"all"})
+  * @ORM\ManyToOne(targetEntity="user", inversedBy="barber", cascade={"all"})
   */
   protected $affectedAgentBarber;
 
   /**
-  * @ORM\ManyToOne(targetEntity="user", cascade={"all"})
+  * @ORM\ManyToOne(targetEntity="user", inversedBy="User", cascade={"all"})
   */
   protected $affectedBarberByAdmin;
 
@@ -58,20 +53,6 @@ class User extends BaseUser
   */
   public function hasGroup($role) {
     return in_array( (array) $role, (array) $this->getGroups());
-  }
-
-
-  /**
-  * {@inheritdoc}
-  */
-  public function getGroupNames()
-  {
-    $names = array();
-    foreach ($this->getGroups() as $group) {
-      $names[] = $group->getName();
-    }
-
-    return $names;
   }
 
   /**
@@ -92,29 +73,6 @@ class User extends BaseUser
       $roles = array_merge( (array) $roles, (array) $this->getGroups()->getRoles());
     }
     return $roles;
-  }
-
-  /**
-  * Get groups
-  * @return array
-  */
-  public function getGroups()
-  {
-    return $this->groups;
-  }
-
-  /**
-  * Set groups.
-  *
-  * @param \AppBundle\Entity\Groups|null $groups
-  *
-  * @return User
-  */
-  public function setGroups(\AppBundle\Entity\Groups $groups = null)
-  {
-    $this->groups = $groups;
-
-    return $this;
   }
 
   /**

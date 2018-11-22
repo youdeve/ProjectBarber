@@ -66,8 +66,6 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
     user_class: AppBundle\Entity\User
-    group:
-        group_class: AppBundle\Entity\Group
     service:                               # this lines
         mailer: fos_user.mailer.twig_swift # this lines
     from_email:

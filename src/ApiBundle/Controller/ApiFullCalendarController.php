@@ -52,16 +52,12 @@ class ApiFullCalendarController extends FosRestController
         // if(!$barberAffected)
         //    return new JsonResponse('l\'utilisateur barber affecté n\'existe pas',Response::HTTP_UNPROCESSABLE_ENTITY);
 
-        //insertion du serviceList
+        // insertion du serviceList
         $service = new ServiceList;
         $service->setHaircut($title)
                 ->setDateHaircut($dateStart)
                 ->setPrice(5)
                 ->setAffectedCustomer($customer);
-
-        $this->get('logger')->info('00000000000000000000000000000000000000000000
-        00000000000000000000000000000000000000000 toto',[$service]);
-
 
         $appointment = new Appointement;
         $appointment->setTitle($title)
