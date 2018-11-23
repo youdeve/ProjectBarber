@@ -28,17 +28,18 @@ class User extends BaseUser
   * @ORM\Id
   * @ORM\Column(type="integer")
   * @ORM\ManyToOne(targetEntity="affectedAgentBarber")
+  * @ORM\ManyToOne(targetEntity="affectedBarberByAdmin")
   * @ORM\GeneratedValue(strategy="AUTO")
   */
   protected $id;
 
   /**
-  * @ORM\ManyToOne(targetEntity="user", inversedBy="barber", cascade={"all"})
+  * @ORM\ManyToOne(targetEntity="user", cascade={"all"})
   */
   protected $affectedAgentBarber;
 
   /**
-  * @ORM\ManyToOne(targetEntity="user", inversedBy="User", cascade={"all"})
+  * @ORM\ManyToOne(targetEntity="user", cascade={"all"})
   */
   protected $affectedBarberByAdmin;
 
@@ -70,7 +71,7 @@ class User extends BaseUser
   {
     $roles = $this->roles;
     if (null !== $this->getGroups()) {
-      $roles = array_merge( (array) $roles, (array) $this->getGroups()->getRoles());
+      $roles = array_merge( (array) $roles);
     }
     return $roles;
   }

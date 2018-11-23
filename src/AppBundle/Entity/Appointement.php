@@ -43,7 +43,7 @@ class Appointement
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User",  inversedBy="User")
+     * @ORM\ManyToOne(targetEntity="User")
      */
     protected $customer;
 

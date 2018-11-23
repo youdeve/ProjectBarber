@@ -38,7 +38,7 @@
                 <select>
                   <option value="0">Choisissez votre référent</option>
                   {% for teamUser in teamUsers %}
-                  <option id="barberAffetedSelected" value="{{teamUser.id}}" '{% if app.user.affectedAgentBarber == teamUser %}' selected '{% endif %}'>{{teamUser}}</option>
+                    <option class="barberAffectedSelected" value="{{ teamUser.id }}" '{% if app.user.affectedAgentBarber == teamUser %}' selected '{% endif %}'>{{ teamUser }}</option>
                   {% endfor %}
                 </select>
                 <label>Choisissez votre coiffeur référent</label>
@@ -196,7 +196,7 @@ function showCalendars(appointments) {
       $('#btnAddEvent').on('click', function(e) {
         e.preventDefault();
         var title = $('#titleEvent').val();
-        var selectedBarber = $('#barberAffetedSelected').val();
+        var selectedBarber = $('.barberAffectedSelected:selected').text();
         console.log('test', selectedBarber);
         // start = $.fullCalendar.startEvent.moment(startEvent);
         var start = startEvent.format('hh:mm:ss');
