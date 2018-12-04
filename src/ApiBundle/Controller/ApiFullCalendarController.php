@@ -19,6 +19,7 @@ use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Get;
 
 use AppBundle\Entity\ServiceList;
+use AppBundle\Entity\ServiceCatalog;
 use AppBundle\Entity\Appointement;
 
 
@@ -37,26 +38,30 @@ class ApiFullCalendarController extends FosRestController
     try {
       $customer = $this->getUser();
 
-      $title = $request->get('title');
       $start = $request->get('start');
       $end = $request->get('end');
+      $selectedPrestation = $request->get('prestation');
+      $selectedPrestationId = $request->get('idPrestation');
+
+      //TODO verification sil existe dans la base de donnée
+
       $this->get('logger')->info('00000000000000000000000000000000000000000000
       00000000000000000000000000000000000000000 ',[$request->get('selectedBarber')]);
       $dateStart = new \DateTime($start);
       $dateEnd = new \DateTime($end);
 
-      if(!$title && !$dateStart && !$dateEnd)
+      if(!$selectedPrestation && !$dateStart && !$dateEnd)
         return new JsonResponse('Le champ prestation ou une date n\'est pas defini', Response::HTTP_NO_CONTENT);
 
-      // insertion du serviceList
+      // // insertion du serviceList
       $service = new ServiceList;
-      $service->setHaircut($title)
+      $service->setHaircut($selectedPrestation)
       ->setDateHaircut($dateStart)
-      ->setPrice(5)
+      ->setPrice($selectedPrestationId)
       ->setAffectedCustomer($customer);
 
       $appointment = new Appointement;
-      $appointment->setTitle($title)
+      $appointment->setTitle($selectedPrestation)
       ->setStartAppointement($dateStart)
       ->setEndAppointement($dateEnd)
       ->setCustomer($customer);
@@ -78,8 +83,6 @@ class ApiFullCalendarController extends FosRestController
       } else {
 
         $barber = $this->getDoctrine()->getRepository(User::class)->find($request->get('selectedBarber'));
-        // $this->get('logger')->info('0000000000000000000000000000000000000000000
-        // 000000000000000000000000000000000000000000 ',[$barber]);
         $barberAffected = $customer->setAffectedAgentBarber($barber);
       }
 
@@ -123,14 +126,16 @@ class ApiFullCalendarController extends FosRestController
         }
       }
       $barber = $teamUsers[array_rand($teamUsers)];
-      $appointments = $em->getRepository(Appointement::class)->find($barber);
+      $this->get('logger')->info('0000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000 TEST',[$barber]);
+      $appointments = $em->getRepository(Appointement::class)->findAll();
 
-      // $view = View::create($appointment);
-      // $view->setFormat('json');
-      // return $view;
+      $this->get('logger')->info('0000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000 ',[$appointments]);
 
-      return new JsonResponse($appointments, Response::HTTP_OK);
-      // return new View($view, Response::HTTP_OK);
+      $view = View::create($appointments);
+      $view->setFormat('json');
+      return $view;
 
     } catch (\Exception $e) {
       return new JsonResponse([$e->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);

@@ -6,6 +6,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 use AppBundle\Entity\User;
+use AppBundle\Entity\ServiceCatalog;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -25,8 +26,11 @@ class AppointmentController extends Controller
             $teamUsers[] = $user;
         }
     }
+
+    $prestations = $this->getDoctrine()->getRepository(ServiceCatalog::class)->findAll();
     return $this->render('@Front/Appointment/appointment.html.twig', [
-      'teamUsers' => $teamUsers
+      'teamUsers' => $teamUsers,
+      'prestations' => $prestations
     ]);
   }
 }
