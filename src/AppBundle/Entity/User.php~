@@ -203,28 +203,4 @@ class User extends BaseUser
   {
     return $this->affectedBarberByAdmin;
   }
-
-    /**
-     * Set soldeCredit.
-     *
-     * @param \Integer $soldeCredit
-     *
-     * @return User
-     */
-    public function setSoldeCredit(\Integer $soldeCredit)
-    {
-        $this->soldeCredit = $soldeCredit;
-
-        return $this;
-    }
-
-    /**
-     * Get soldeCredit.
-     *
-     * @return \Integer
-     */
-    public function getSoldeCredit()
-    {
-        return $this->soldeCredit;
-    }
 }
