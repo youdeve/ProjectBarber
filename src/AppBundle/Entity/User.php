@@ -50,7 +50,7 @@ class User extends BaseUser
 
   /**
    * @var string
-   * @ORM\Column(name="soldeCredit", type="Integer")
+   * @ORM\Column(name="soldeCredit", type="integer", nullable=true)
    */
   protected $soldeCredit;
 
@@ -207,11 +207,11 @@ class User extends BaseUser
     /**
      * Set soldeCredit.
      *
-     * @param \Integer $soldeCredit
+     * @param int|null $soldeCredit
      *
      * @return User
      */
-    public function setSoldeCredit(\Integer $soldeCredit)
+    public function setSoldeCredit($soldeCredit = null)
     {
         $this->soldeCredit = $soldeCredit;
 
@@ -221,7 +221,7 @@ class User extends BaseUser
     /**
      * Get soldeCredit.
      *
-     * @return \Integer
+     * @return int|null
      */
     public function getSoldeCredit()
     {

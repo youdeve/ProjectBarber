@@ -12,6 +12,8 @@
         {% endif %}
         <!-- *********** LOGO **********-->
         {% if app.user.hasRole('ROLE_CLIENT')  %}
+
+        <p>Crédits</p>
         <li>
           <a  href="{{ path('front_profile') }}"  title="Gestion du compte" class="icons-menu ">
             <i class="{{ route == 'front_profile' ? "active" }} material-icons">account_circle</i>
