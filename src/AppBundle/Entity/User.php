@@ -49,11 +49,18 @@ class User extends BaseUser
   protected $affectedService;
 
   /**
-   * @var string
-   * @ORM\Column(name="soldeCredit", type="integer", nullable=true)
+   * @var integer
+   * @ORM\Column(name="soldeCredit", type="integer")
    */
   protected $soldeCredit;
 
+  /**
+   * [credited description]
+   * @return [type] [description]
+   */
+  public function credited() {
+
+  }
   /**
   * @param $role
   * @return bool
@@ -207,11 +214,11 @@ class User extends BaseUser
     /**
      * Set soldeCredit.
      *
-     * @param int|null $soldeCredit
+     * @param int $soldeCredit
      *
      * @return User
      */
-    public function setSoldeCredit($soldeCredit = null)
+    public function setSoldeCredit($soldeCredit)
     {
         $this->soldeCredit = $soldeCredit;
 
@@ -221,7 +228,7 @@ class User extends BaseUser
     /**
      * Get soldeCredit.
      *
-     * @return int|null
+     * @return int
      */
     public function getSoldeCredit()
     {

@@ -45,6 +45,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $newUser->setEmail('jean@barber.fr');
         $newUser->setPlainPassword('123456');//123456
         $newUser->setEnabled(true);
+        $newUser->setSoldeCredit(10);
         $newUser->addRole("ROLE_CLIENT");
 
         $userManager->updateUser($newUser, true);
@@ -54,7 +55,8 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $newUserT->setEmail('francTeam@barber.fr');
         $newUserT->setPlainPassword('123456');//123456
         $newUserT->setEnabled(true);
-        $newUserT->addRole("ROLE_CLIENT");
+        $newUserT->setSoldeCredit(0);
+        $newUserT->addRole("ROLE_TEAM");
 
         $userManager->updateUser($newUserT, true);
 
@@ -63,6 +65,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $newUserT->setEmail('Thomas@barber.fr');
         $newUserT->setPlainPassword('123456');//123456
         $newUserT->setEnabled(true);
+        $newUserT->setSoldeCredit(0);
         $newUserT->addRole("ROLE_CLIENT");
 
         $userManager->updateUser($newUserT, true);
@@ -72,6 +75,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $newUser2->setEmail('antoineTeam@barber.fr');
         $newUser2->setPlainPassword('123456');//123456
         $newUser2->setEnabled(true);
+        $newUser2->setSoldeCredit(0);
         $newUser2->addRole("ROLE_TEAM");
 
         $userManager->updateUser($newUser2, true);
@@ -81,6 +85,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $newUser21->setEmail('philipTeam@barber.fr');
         $newUser21->setPlainPassword('123456');//123456
         $newUser21->setEnabled(true);
+        $newUser21->setSoldeCredit(0);
         $newUser21->addRole("ROLE_TEAM");
 
         $userManager->updateUser($newUser21, true);
@@ -90,6 +95,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $newUser3->setEmail('admin@barber.fr');
         $newUser3->setPlainPassword('123456');//123456
         $newUser3->setEnabled(true);
+        $newUser3->setSoldeCredit(0);
         $newUser3->addRole("ROLE_ADMIN");
         $userManager->updateUser($newUser3, true);
 
@@ -100,6 +106,8 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
           "mail" => "vernon@barber.fr",
           "password" => "123456",
           "enabled" => true,
+          "SoldeCredit" => 0,
+          "SoldeCredit" => 0,
           "roles" => "ROLE_CLIENT"
         ];
 
@@ -108,6 +116,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
           "mail" => "Charles@barber.fr",
           "password" => "123456",
           "enabled" => true,
+          "SoldeCredit" => 0,
           "roles" => "ROLE_CLIENT"
         ];
 
@@ -116,6 +125,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
           "mail" => "Patricia@barber.fr",
           "password" => "123456",
           "enabled" => true,
+          "SoldeCredit" => 0,
           "roles" => "ROLE_CLIENT"
         ];
         $clients[] = [
@@ -123,6 +133,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
           "mail" => "Edna@barber.fr",
           "password" => "123456",
           "enabled" => true,
+          "SoldeCredit" => 0,
           "roles" => "ROLE_CLIENT"
         ];
         $clients[] = [
@@ -130,6 +141,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
           "mail" => "Iris@barber.fr",
           "password" => "123456",
           "enabled" => true,
+          "SoldeCredit" => 0,
           "roles" => "ROLE_CLIENT"
         ];
         $clients[] = [
@@ -137,6 +149,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
           "mail" => "Eva@barber.fr",
           "password" => "123456",
           "enabled" => true,
+          "SoldeCredit" => 0,
           "roles" => "ROLE_CLIENT"
         ];
         $clients[] = [
@@ -144,6 +157,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
           "mail" => "John@barber.fr",
           "password" => "123456",
           "enabled" => true,
+          "SoldeCredit" => 0,
           "roles" => "ROLE_CLIENT"
         ];
         $clients[] = [
@@ -151,6 +165,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
           "mail" => "Call@barber.fr",
           "password" => "123456",
           "enabled" => true,
+          "SoldeCredit" => 0,
           "roles" => "ROLE_CLIENT"
         ];
         $clients[] = [
@@ -158,6 +173,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
           "mail" => "King@barber.fr",
           "password" => "123456",
           "enabled" => true,
+          "SoldeCredit" => 0,
           "roles" => "ROLE_CLIENT"
         ];
         $clients[] = [
@@ -165,6 +181,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
           "mail" => "Johnson@barber.fr",
           "password" => "123456",
           "enabled" => true,
+          "SoldeCredit" => 0,
           "roles" => "ROLE_CLIENT"
         ];
         foreach ($clients as $client) {
@@ -173,6 +190,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
               $clients->setEmail($client['mail']);
               $clients->setPlainPassword($client['password']);//123456
               $clients->setEnabled($client['enabled']);
+              $clients->setSoldeCredit($client['SoldeCredit']);
               $clients->addRole($client['roles']);
 
               $userManager->updateUser($clients, true);
@@ -327,8 +345,6 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
             "price" => "3",
             'user' => 'call@barber.fr'
           ];
-
-
           foreach ($ServiceLists as $ServiceList) {
             $u = $manager->getRepository(User::class)->findOneByEmail($ServiceList['user']);
             if(null === $u) {
@@ -337,7 +353,6 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
               ->setPassword('123456')//123456
               ->addRole("ROLE_CLIENT");
             }
-
 
             $s = new ServiceList();
             $s->setAffectedCustomer($u);
@@ -352,18 +367,13 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
       }
 
       function createTeamMember(ObjectManager $manager) {
-
            $teamMemberBarber = new TeamMember();
            $teamMemberBarber->setUser($agentTeam);
            $teamMemberBarber->addAffectedClient($client);
-
-
          $manager->persist($teamMemberBarber);
          $affectedAgentBarber = $client->addAffectedAgentBarber($teamMemberBarber);
          $manager->persist($affectedAgentBarber);
          $manager->flush();
-
-
       }
 
       function createServiceCatalog(ObjectManager $manager) {
@@ -373,29 +383,27 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $ServiceCatalogs[] = [
           "hairCuts" => "Coiffure homme",
           "price" => "35",
+          "credit" => 1
         ];
-
         $ServiceCatalogs[] = [
           "hairCuts" => "Coiffure femme",
           "price" => "19",
+          "credit" => 2
         ];
-
         $ServiceCatalogs[] = [
           "hairCuts" => "Bruhsing",
           "price" => "10",
+          "credit" => 3
         ];
-
         foreach ($ServiceCatalogs as $ServiceCatalog) {
           $catalogue = new ServiceCatalog();
           $catalogue->setHairCuts($ServiceCatalog['hairCuts']);
           $catalogue->setPrice($ServiceCatalog['price']);
+          $catalogue->setCredit($ServiceCatalog['credit']);
           $manager->persist($catalogue);
         }
         $manager->flush();
-
-
       }
-
 
       /**
        * @param ContainerInterface|null $container

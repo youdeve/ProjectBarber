@@ -92,6 +92,7 @@ function showCalendars(appointments) {
       $('#btnAddEvent').on('click', function(e) {
         e.preventDefault();
         var selectedPrestationId = $("#selectedPrestation").find(':selected').data('price');
+        var SelectedCredit = $("#selectedPrestation").find(':selected').data('credit');
         var selectedPrestation = $("#selectedPrestation option:selected").text();
         var selectedBarber = $("#selectedBarber option:selected").val();
         console.log(selectedPrestationId);
@@ -106,7 +107,8 @@ function showCalendars(appointments) {
               end: endAppointment,
               selectedBarber: selectedBarber,
               prestation: selectedPrestation,
-              idPrestation:selectedPrestationId
+              idPrestation:selectedPrestationId,
+              SelectedCredit: SelectedCredit
             },
             type:"POST",
           }).done(function(response) {

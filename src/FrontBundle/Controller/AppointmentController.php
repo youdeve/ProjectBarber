@@ -26,11 +26,13 @@ class AppointmentController extends Controller
             $teamUsers[] = $user;
         }
     }
-
+    $currentUser = $this->getUser();
+    $soldeCredit = $currentUser->getSoldeCredit();
     $prestations = $this->getDoctrine()->getRepository(ServiceCatalog::class)->findAll();
     return $this->render('@Front/Appointment/appointment.html.twig', [
       'teamUsers' => $teamUsers,
-      'prestations' => $prestations
+      'prestations' => $prestations,
+      'soldeCredit' => $soldeCredit
     ]);
   }
 }

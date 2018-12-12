@@ -35,7 +35,13 @@ class ServiceCatalog
      */
     private $price;
 
-    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="credit", type="integer")
+     */
+    private $credit;
+
     /**
      * Get id.
      *
@@ -92,5 +98,29 @@ class ServiceCatalog
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * Set credit.
+     *
+     * @param int $credit
+     *
+     * @return ServiceCatalog
+     */
+    public function setCredit($credit)
+    {
+        $this->credit = $credit;
+
+        return $this;
+    }
+
+    /**
+     * Get credit.
+     *
+     * @return int
+     */
+    public function getCredit()
+    {
+        return $this->credit;
     }
 }

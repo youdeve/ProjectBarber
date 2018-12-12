@@ -4,80 +4,86 @@
   <ul id="slide-out" class="side-nav fixed hoverable">
     <!-- *********** LOGO **********-->
     {% if app.user.hasRole('ROLE_CLIENT')  %}
-    <li class="logo"><a id="logo-container" href="{{ path('front_homepage') }}"
-      class="brand-logo"><img src="{{ asset('logo-menu.png') }}"/></a></li>
-      {% elseif (app.user.hasRole('ROLE_ADMIN')) or (app.user.hasRole('ROLE_TEAM')) %}
-      <li class="logo"><a id="logo-container" href="{{ path('back_homepage') }}"
-        class="brand-logo"><img src="{{ asset('logo-menu.png') }}"/></a></li>
-        {% endif %}
-        <!-- *********** LOGO **********-->
-        {% if app.user.hasRole('ROLE_CLIENT')  %}
-
-        <p>Crédits</p>
-        <li>
-          <a  href="{{ path('front_profile') }}"  title="Gestion du compte" class="icons-menu ">
-            <i class="{{ route == 'front_profile' ? "active" }} material-icons">account_circle</i>
-          </a>
-        </li>
-        <li>
-          <a  href="{{ path('front_prestation') }}" title="Vos prestations" class="icons-menu">
-            <i class="{{ route ==  'front_prestation' ? "active" }} material-icons">mode_edit</i>
-          </a>
-        </li>
-        <li>
-          <a href="{{ path('front_appointment') }}" title="Gestion rendez-vous" class="icons-menu ">
-            <i class="{{ route == 'front_appointment' ? "active" }} material-icons">today</i>
-          </a>
-        </li>
-        <li>
-          <a href="{{ path('front_credit_purchase') }}"  title="Achat de credit" class="icons-menu">
-            <i class="{{ route ==  'front_credit_purchase' ? "active" }} material-icons">shopping_cart</i>
-          </a>
-        </li>
-        {% elseif app.user.hasRole('ROLE_ADMIN') %} {# USER ADMIN  #}
-
-        <li>
-          <a  href="{{ path('back_team') }}"  title="Gestion Employés" class="icons-menu ">
-            <i class="{{ route == 'back_team' ? "active" }} material-icons">people</i>
-          </a>
-        </li>
-        <li>
-          <a  href="{{ path('back_control_center') }}" title="Centre de controle" class="icons-menu">
-            <i class="{{ route ==  'back_control_center' ? "active" }} material-icons">show_chart</i>
-          </a>
-        </li>
-        <!-- <li>
-        <a href="{{ path('back_notification') }}" title="Centre de notification" class="icons-menu ">
-        <i class="{{ route ==  'back_notification' ? "active" }} material-icons">notifications</i>
-      </a>
-    </li> -->
-    <li>
-      <a href="{{ path('back_setting') }}"  title="Gestion Administrateur" class="icons-menu">
-        <i class="{{ route == 'back_setting' ? "active" }} material-icons">settings</i>
-      </a>
-    </li>
-    {% elseif app.user.hasRole('ROLE_TEAM') %}
-    <li>
-      <a  href="{{ path('back_manage_client') }}"  title="Gestion Client" class="icons-menu ">
-        <i class="{{ route == 'back_manage_client' ? "active" }} material-icons">people</i>
-      </a>
-    </li>
-    <li>
-      <a  href="{{ path('back_manage_appointment')}}" title="Gestion rendez-vous" class="icons-menu">
-        <i class="{{ route ==  'back_' ? "active" }} material-icons">event</i>
-      </a>
-    </li>
-    <!-- <li>
-    <a href="{{ path('back_notification') }}"  title="Centre de notification" class="icons-menu">
-    <i class="{{ route ==  'back_notification' ? "active" }} material-icons">notifications</i>
-  </a>
-</li> -->
-{% endif %}
-<li>
-  <a href="{{ path('fos_user_security_logout') }}" title="Déconnexion" class="icons-menu ">
-    <i class="material-icons">lock_open</i>
+    <li class="logo">
+      <a id="logo-container" href="{{ path('front_homepage') }}"
+      class="brand-logo"><img src="{{ asset('logo-menu.png') }}"/>
+    </a>
+  </li>
+  {% elseif (app.user.hasRole('ROLE_ADMIN')) or (app.user.hasRole('ROLE_TEAM')) %}
+  <li class="logo">
+    <a id="logo-container" href="{{ path('back_homepage') }}"
+    class="brand-logo"><img src="{{ asset('logo-menu.png') }}"/>
   </a>
 </li>
+{% endif %}
+<!-- *********** LOGO **********-->
+{% if app.user.hasRole('ROLE_CLIENT')  %}
+<li>
+  <a  href="{{ path('front_profile') }}"  title="Gestion du compte" class="icons-menu ">
+    <i class="{{ route == 'front_profile' ? "active" }} material-icons">account_circle</i>
+  </a>
+</li>
+<li>
+  <a  href="{{ path('front_prestation') }}" title="Vos prestations" class="icons-menu">
+    <i class="{{ route ==  'front_prestation' ? "active" }} material-icons">mode_edit</i>
+  </a>
+</li>
+<li>
+  <a href="{{ path('front_appointment') }}" title="Gestion rendez-vous" class="icons-menu ">
+    <i class="{{ route == 'front_appointment' ? "active" }} material-icons">today</i>
+  </a>
+</li>
+<li>
+  <a href="{{ path('front_credit_purchase') }}"  title="Achat de credit" class="icons-menu">
+    <i class="{{ route ==  'front_credit_purchase' ? "active" }} material-icons">shopping_cart</i>
+  </a>
+</li>
+{% elseif app.user.hasRole('ROLE_ADMIN') %} {# USER ADMIN  #}
+
+<li>
+  <a  href="{{ path('back_team') }}"  title="Gestion Employés" class="icons-menu ">
+    <i class="{{ route == 'back_team' ? "active" }} material-icons">people</i>
+  </a>
+</li>
+<li>
+  <a  href="{{ path('back_control_center') }}" title="Centre de controle" class="icons-menu">
+    <i class="{{ route ==  'back_control_center' ? "active" }} material-icons">show_chart</i>
+  </a>
+</li>
+<!-- <li>
+<a href="{{ path('back_notification') }}" title="Centre de notification" class="icons-menu ">
+<i class="{{ route ==  'back_notification' ? "active" }} material-icons">notifications</i>
+</a>
+</li> -->
+<li>
+  <a href="{{ path('back_setting') }}"  title="Gestion Administrateur" class="icons-menu">
+    <i class="{{ route == 'back_setting' ? "active" }} material-icons">settings</i>
+  </a>
+</li>
+{% elseif app.user.hasRole('ROLE_TEAM') %}
+<li>
+  <a  href="{{ path('back_manage_client') }}"  title="Gestion Client" class="icons-menu ">
+    <i class="{{ route == 'back_manage_client' ? "active" }} material-icons">people</i>
+  </a>
+</li>
+<li>
+  <a  href="{{ path('back_manage_appointment')}}" title="Gestion rendez-vous" class="icons-menu">
+    <i class="{{ route ==  'back_' ? "active" }} material-icons">event</i>
+  </a>
+</li>
+<!-- <li>
+<a href="{{ path('back_notification') }}"  title="Centre de notification" class="icons-menu">
+<i class="{{ route ==  'back_notification' ? "active" }} material-icons">notifications</i>
+</a>
+</li> -->
+  {% endif %}
+  <li>
+    <a href="{{ path('fos_user_security_logout') }}" title="Déconnexion" class="icons-menu ">
+      <i class="material-icons">lock_open</i>
+    </a>
+  </li>
 </ul>
-<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+<a href="#" data-activates="slide-out" class="button-collapse">
+  <i class="material-icons">menu</i>
+</a>
 </div>
