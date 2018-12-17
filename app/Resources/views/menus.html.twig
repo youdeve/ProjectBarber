@@ -39,15 +39,14 @@
   </a>
 </li>
 {% elseif app.user.hasRole('ROLE_ADMIN') %} {# USER ADMIN  #}
-
 <li>
   <a  href="{{ path('back_team') }}"  title="Gestion Employés" class="icons-menu ">
     <i class="{{ route == 'back_team' ? "active" }} material-icons">people</i>
   </a>
 </li>
 <li>
-  <a  href="{{ path('back_control_center') }}" title="Centre de controle" class="icons-menu">
-    <i class="{{ route ==  'back_control_center' ? "active" }} material-icons">show_chart</i>
+  <a  href="{{ path('back_edit_Prestation') }}" title="Gestion prestation(s)" class="icons-menu">
+    <i class="{{ route ==  'back_edit_Prestation' ? "active" }} material-icons">content_cut</i>
   </a>
 </li>
 <!-- <li>
