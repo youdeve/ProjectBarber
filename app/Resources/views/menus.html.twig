@@ -45,6 +45,11 @@
   </a>
 </li>
 <li>
+  <a  href="{{ path('back_credit') }}"  title="Gestion crédit" class="icons-menu ">
+    <i class="{{ route == 'back_credit' ? "active" }} material-icons">monetization_on</i>
+  </a>
+</li>
+<li>
   <a  href="{{ path('back_edit_Prestation') }}" title="Gestion prestation(s)" class="icons-menu">
     <i class="{{ route ==  'back_edit_Prestation' ? "active" }} material-icons">content_cut</i>
   </a>
@@ -75,12 +80,12 @@
 <i class="{{ route ==  'back_notification' ? "active" }} material-icons">notifications</i>
 </a>
 </li> -->
-  {% endif %}
-  <li>
-    <a href="{{ path('fos_user_security_logout') }}" title="Déconnexion" class="icons-menu ">
-      <i class="material-icons">lock_open</i>
-    </a>
-  </li>
+{% endif %}
+<li>
+  <a href="{{ path('fos_user_security_logout') }}" title="Déconnexion" class="icons-menu ">
+    <i class="material-icons">lock_open</i>
+  </a>
+</li>
 </ul>
 <a href="#" data-activates="slide-out" class="button-collapse">
   <i class="material-icons">menu</i>

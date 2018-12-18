@@ -22,6 +22,11 @@ class PromoCredit
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="User")
+     */
+    protected $affectedAdmin;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="code", type="string", length=255)
@@ -92,5 +97,29 @@ class PromoCredit
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set affectedAdmin.
+     *
+     * @param \AppBundle\Entity\User|null $affectedAdmin
+     *
+     * @return PromoCredit
+     */
+    public function setAffectedAdmin(\AppBundle\Entity\User $affectedAdmin = null)
+    {
+        $this->affectedAdmin = $affectedAdmin;
+
+        return $this;
+    }
+
+    /**
+     * Get affectedAdmin.
+     *
+     * @return \AppBundle\Entity\User|null
+     */
+    public function getAffectedAdmin()
+    {
+        return $this->affectedAdmin;
     }
 }

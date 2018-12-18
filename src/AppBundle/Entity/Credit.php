@@ -22,6 +22,18 @@ class Credit
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=30)
+     */
+    private $title;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     */
+    protected $affetedAdmin;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="credit", type="integer")
@@ -92,5 +104,53 @@ class Credit
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * Set title.
+     *
+     * @param string $title
+     *
+     * @return Credit
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title.
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set affetedAdmin.
+     *
+     * @param \AppBundle\Entity\User|null $affetedAdmin
+     *
+     * @return Credit
+     */
+    public function setAffetedAdmin(\AppBundle\Entity\User $affetedAdmin = null)
+    {
+        $this->affetedAdmin = $affetedAdmin;
+
+        return $this;
+    }
+
+    /**
+     * Get affetedAdmin.
+     *
+     * @return \AppBundle\Entity\User|null
+     */
+    public function getAffetedAdmin()
+    {
+        return $this->affetedAdmin;
     }
 }

@@ -23,6 +23,11 @@ class ServiceList
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="User")
+     */
+    private $affectedAdmin;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="haircut", type="string", length=255)
@@ -199,5 +204,29 @@ class ServiceList
     public function getAffectedCustomer()
     {
         return $this->affectedCustomer;
+    }
+
+    /**
+     * Set affectedAdmin.
+     *
+     * @param \AppBundle\Entity\User|null $affectedAdmin
+     *
+     * @return ServiceList
+     */
+    public function setAffectedAdmin(\AppBundle\Entity\User $affectedAdmin = null)
+    {
+        $this->affectedAdmin = $affectedAdmin;
+
+        return $this;
+    }
+
+    /**
+     * Get affectedAdmin.
+     *
+     * @return \AppBundle\Entity\User|null
+     */
+    public function getAffectedAdmin()
+    {
+        return $this->affectedAdmin;
     }
 }

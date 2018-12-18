@@ -1,0 +1,65 @@
+{% set route = app.request.get('_route') %}
+{% extends "@Back/back-base.html.twig" %}
+
+{% block pagestyle %}
+<link rel="stylesheet" href="{{ asset('assets/css/back/back.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="section">
+    <div class="row page-title">
+      <h2>Gestion crédit(s)</h2>
+      <hr class='white' style="margin-bottom:1rem"/>
+    </div>
+    <div class="row">
+      <div class="s12 l12 m12">
+        <div class="col s12 m6">
+          <div class="card">
+            <div class="card-content black-text">
+              <span class="card-title">Ajouter des crédits</span>
+              <form>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">create</i>
+                    <input id="offre_credit" type="tel" class="validate">
+                    <label for="icon_telephone">Nom de l'offre</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">euro_symbol</i>
+                    <input id="price_credit" type="tel" class="validate">
+                    <label for="icon_telephone">Prix</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">monetization_on</i>
+                    <input id="credit" type="tel" class="validate">
+                    <label for="icon_telephone">Crédit</label>
+                  </div>
+                </div>
+                <div class="center-align">
+                  <button id="addCredit" class="btn waves-effect waves-light red " type="submit" name="action">Ajouter
+                    <i class="material-icons right">send</i>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l6">
+          <div class="card">
+            <div class="card-content black-text">
+              <div id="showCredit"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block pagejs %}
+
+<script type="text/javascript">
+
+</script>
+{% endblock %}

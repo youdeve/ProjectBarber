@@ -1,7 +1,63 @@
+{% set route = app.request.get('_route') %}
 {% extends "@Back/back-base.html.twig" %}
 
-{% block  content  %}
+{% block pagestyle %}
+<link rel="stylesheet" href="{{ asset('assets/css/back/back.css') }}">
+{% endblock %}
 
+{% block content %}
+<div class="container">
+  <div class="section">
+    <div class="row page-title">
+      <h2>Gestion prestation(s)</h2>
+      <hr class='white' style="margin-bottom:1rem"/>
+    </div>
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <ul class="collapsible" data-collapsible="expandable">
+          <li>
+            <div class="collapsible-header active">
+              <i class="material-icons black-text">create</i>
+              <span class="black-text">Création de prestation</span>
+            </div>
+            <div class="collapsible-body white black-text">
+              <div class="row">
+                <form class="col s12">
+                  <div class="row">
+                    <div class="input-field col s4">
+                      <i class="material-icons prefix">account_circle</i>
+                      <input id="icon_prefix" type="text" class="validate">
+                      <label for="icon_prefix">Nom de prestation</label>
+                    </div>
+                    <div class="input-field col s4">
+                      <i class="material-icons prefix">euro_symbol</i>
+                      <input id="icon_telephone" type="tel" class="validate">
+                      <label for="icon_telephone">Prix</label>
+                    </div>
+                    <div class="input-field col s4">
+                      <i class="material-icons prefix">monetization_on</i>
+                      <input id="icon_telephone" type="tel" class="validate">
+                      <label for="icon_telephone">Crédit</label>
+                    </div>
+                  </div>
+                  <button class="btn waves-effect waves-light right" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                  </button>
+                </form>
+              </div>
 
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
 
+{% block pagejs %}
+
+<script type="text/javascript">
+
+</script>
 {% endblock %}
