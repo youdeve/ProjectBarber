@@ -16,6 +16,9 @@ class CreditController extends Controller
    **/
   public function creditAction(Request $request)
   {
-    return $this->render('@Back/Credit/credit.html.twig');
+    $currentAdmin =  $this->getUser()->getId();
+    return $this->render('@Back/Credit/credit.html.twig', [
+      "currentAdmin" => $currentAdmin
+    ]);
   }
 }

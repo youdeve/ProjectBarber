@@ -1,4 +1,4 @@
 services:
-#    api.example:
-#        class: ApiBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+   # app.manage.credit:
+   #     class: AppBundle/utils/ManageCredit
+   #     arguments: ["@", "plain_value", "%parameter%"]

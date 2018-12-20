@@ -16,6 +16,10 @@ class PurchaseController extends Controller
    **/
   public function PurchaseAction(Request $request)
   {
-    return $this->render('@Front/CreditPurchase/credit-purchase.html.twig');
+    $this->getUser()->getAffected
+    $Credit = $this->getDoctrines()->getRepository(Credit::class)->findByAffectedAdmin('')
+    return $this->render('@Front/CreditPurchase/credit-purchase.html.twig', [
+
+    ]);
   }
 }

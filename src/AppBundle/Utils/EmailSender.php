@@ -65,7 +65,7 @@ class EmailSender
                   'newUser' => $newUser
               ]), 'text/html'
         );
-    $this->logger->error('------------------------------------------000000', [$message]);
+      $this->logger->error('------------------------------------------000000', [$message]);
       $this->mailer->send($message);
   }
 

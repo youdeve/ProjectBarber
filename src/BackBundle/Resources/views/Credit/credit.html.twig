@@ -15,33 +15,31 @@
     <div class="row">
       <div class="s12 l12 m12">
         <div class="col s12 m6">
-          <div class="card">
+          <div id="component-credit" class="card">
             <div class="card-content black-text">
               <span class="card-title">Ajouter des crédits</span>
-              <form>
-                <div class="row">
-                  <div class="input-field col s12">
-                    <i class="material-icons prefix">create</i>
-                    <input id="offre_credit" type="tel" class="validate">
-                    <label for="icon_telephone">Nom de l'offre</label>
-                  </div>
-                  <div class="input-field col s6">
-                    <i class="material-icons prefix">euro_symbol</i>
-                    <input id="price_credit" type="tel" class="validate">
-                    <label for="icon_telephone">Prix</label>
-                  </div>
-                  <div class="input-field col s6">
-                    <i class="material-icons prefix">monetization_on</i>
-                    <input id="credit" type="tel" class="validate">
-                    <label for="icon_telephone">Crédit</label>
-                  </div>
+              <div id="ajax-form" data-currentAdmin="{{currentAdmin}}" class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">create</i>
+                  <input id="title_credit" type="text" max="5" class="validate">
+                  <label for="title">titre</label>
                 </div>
-                <div class="center-align">
-                  <button id="addCredit" class="btn waves-effect waves-light red " type="submit" name="action">Ajouter
-                    <i class="material-icons right">send</i>
-                  </button>
+                <div class="input-field col s6">
+                  <i class="material-icons prefix">euro_symbol</i>
+                  <input id="price_credit" type="number" min="0" max='50' class="validate">
+                  <label for="price">Prix</label>
                 </div>
-              </form>
+                <div class="input-field col s6">
+                  <i class="material-icons prefix">monetization_on</i>
+                  <input id="credit" type="number" min="0" max='50' class="validate">
+                  <label for="credit">Crédit</label>
+                </div>
+              </div>
+              <div class="container-button center-align">
+                <button id="btnAddCredit" class="btn waves-effect waves-light red " type="submit" name="action">Ajouter
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -59,7 +57,143 @@
 
 {% block pagejs %}
 
+<!-- <script src="/bundles/back/js/back.js"></script> -->
 <script type="text/javascript">
 
+function displayCredit () {
+  $.get(Routing.generate("api_apicredit_getcredit"))
+  .done(function(data) {
+    showCredit(data);
+  });
+}
+
+function showItemArray(data, tbody) {
+  $.each(data, function(i,item) {
+    // console.log(item.id);
+    trbody = document.createElement('tr');
+    td1 = document.createElement('td');
+    tdcontent = document.createTextNode(item.title)
+    td1.append(tdcontent);
+
+    td2 = document.createElement('td');
+    td2content = document.createTextNode(item.price)
+    td2.append(td2content);
+
+    td3 = document.createElement('td');
+    td3content = document.createTextNode(item.credit)
+    td3.append(td3content);
+
+    td5 = document.createElement('td');
+    i = document.createElement('i');
+
+    a = document.createElement('a');
+    a.href = "#";
+
+    a.dataset.Creditdelete = item.id;
+
+    i.className = "material-icons red-text";
+    text_i = document.createTextNode('delete_forever');
+    i.append(text_i);
+    a.append(i);
+    td5.append(a);
+
+    a = document.createElement('a');
+    a.href = "#";
+    a.dataset.CreditUpdate = item.id;
+    i2 = document.createElement('i');
+    i2.className = "material-icons blue-text";
+    text_i2 = document.createTextNode('create');
+    i2.append(text_i2);
+    a.append(i2);
+    td5.append(a);
+
+    trbody.append(td1, td2, td3, td5);
+    tbody.append(trbody);
+  });
+}
+
+function showCredit (data) {
+  // console.log(data)
+  var container = $('#showCredit');
+  $('table').remove();
+  var table = document.createElement('table');
+  table.className = "responsive-table highlight";
+  if (data.length == 0) {
+    p = document.createElement('p');
+    p.className= "text-align"
+    textP = document.createTextNode('Vous n\'avez aucune offre actuellement..');
+    p.append(textP);
+    table.append(p);
+  }
+  var thead = document.createElement('thead');
+  var tr = document.createElement('tr');
+  var tbody = document.createElement('tbody');
+  var td = document.createElement('td');
+
+  th1 = document.createElement('th');
+  th1Texte = document.createTextNode('intitulé');
+  th1.append(th1Texte);
+
+  th2 = document.createElement('th');
+  th2Texte = document.createTextNode('price');
+  th2.append(th2Texte);
+
+  th3 = document.createElement('th');
+  th3Texte = document.createTextNode('credit');
+  th3.append(th3Texte);
+
+  th4 = document.createElement('th');
+  th4Texte = document.createTextNode('Action');
+  th4.append(th4Texte);
+
+  tr.append(th1, th2, th3, th4);
+  thead.append(tr);
+  table.append(thead);
+  showItemArray(data, tbody);
+  table.append(tbody);
+  container.append(table);
+}
+
+//-----------delete offre
+$('#showCredit').on('click', 'a', function () {
+  Creditdelete = $(this).data('Creditdelete');
+  $.ajax(Routing.generate('api_apicredit_deletecredit',
+  {
+    id: Creditdelete
+  }), {
+    type: 'DELETE'
+  })
+  .done(function(response){
+    displayToast(response.message, 'success');
+    console.log(response);
+    displayCredit();
+  })
+  .done(function(response){
+      displayToast(response, 'success');
+  });
+})
+
+//-------add offre
+$('#btnAddCredit').on('click', function() {
+  let titleCredit = $('#title_credit').val();
+  let priceCredit = $('#price_credit').val();
+  let credit = $('#credit').val();
+  var data = {titleCredit, priceCredit, credit};
+  $.post(Routing.generate('api_apicredit_postcredit'), data)
+  .done(function(response) {
+    displayToast(response, 'success');
+    displayCredit();
+  })
+  .fail(function(response) {
+    displayToast(response, 'error');
+  })
+  $('#title_credit').val('');
+  $('#price_credit').val('');
+  $('#credit').val('');
+});
+
+$(document).ready(function (data) {
+  displayCredit();
+})
 </script>
 {% endblock %}
