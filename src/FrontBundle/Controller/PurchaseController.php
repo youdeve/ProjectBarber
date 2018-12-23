@@ -4,8 +4,11 @@ namespace FrontBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+
+use AppBundle\Entity\Credit;
 
 class PurchaseController extends Controller
 {
@@ -16,10 +19,10 @@ class PurchaseController extends Controller
    **/
   public function PurchaseAction(Request $request)
   {
-    $this->getUser()->getAffected
-    $Credit = $this->getDoctrines()->getRepository(Credit::class)->findByAffectedAdmin('')
+    $userAdminOrganization = $this->getUser()->getAffectedAgentBarber()->getAffectedBarberByAdmin();
+    $credits = $this->getDoctrine()->getRepository(Credit::class)->findByAffetedAdmin($userAdminOrganization);
     return $this->render('@Front/CreditPurchase/credit-purchase.html.twig', [
-
+      'credits' => $credits
     ]);
   }
 }

@@ -31,7 +31,7 @@ class Credit
     /**
      * @ORM\ManyToOne(targetEntity="User")
      */
-    protected $affectedAdmin;
+    protected $affetedAdmin;
 
     /**
      * @var int

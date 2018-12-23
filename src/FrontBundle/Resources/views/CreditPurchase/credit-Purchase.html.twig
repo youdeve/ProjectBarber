@@ -1,21 +1,63 @@
 {% extends "@Front/front-base.html.twig" %}
 
+
 {% block content %}
-    <div class="container">
-        <div class="section">
-          <div class="row page-title">
-            <h2>Purchase</h2>
-            <hr class='white' style="margin-bottom:1rem"/>
-          </div>
-          <div class="row">
-            <div class="col m12 s12 center-align">
-              <h3>Credit</h3>
+<div class="container">
+  <div class="section">
+    <div class="row page-title">
+      <h2>Purchase</h2>
+      <hr class='white' style="margin-bottom:1rem"/>
+    </div>
+    <div class="row">
+      <p>Séléctionner une offre pour acheter des crédits, celui-ci permettra de les utilisés pour acheter une prestation</p>
+      <p>* 1 crédit coûte 5 euro </p>
+      <div class="col m12 s12 center-align">
+        {% if credits != null %}
+        <div id="bannerOffer" class="col l12 s12">
+          {% for credit in credits %}
+          <a title="{{credit.title}}" data-credit="{{credit.id}}" class="btn-purchase btn-floating white btn-with-text" href="#">
+            <div class="container-title-offre">
+              <div class="arrow-down"></div>
+              <span class="offre-title">{{credit.title}}</span>
             </div>
-          </div>
+            <p class="offre-price">{{credit.credit}} C*</p>
+            <div class="container-footer-offre">
+              <div class="arrow-down-footer"></div>
+              <p class="btn-purchase-now"> <strong>{{credit.price}} € </strong></p>
+            </div>
+          </a>
+          {% endfor %}
         </div>
+        <hr>
+        <div class="col l12 s12">
+          <a href="#" id="purchaseCredit" class="btn red right">Acheter</a>
+        </div>
+        {% endif %}
       </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 
 {% block pagejs %}
+<script type="text/javascript">
+  $('#bannerOffer').on('click', 'a', function() {
+    var selectCurrent = $(this);
+    $('#bannerOffer').children('a.hoverable-custom').removeClass('hoverable-custom').addClass('hoverable');
+    selectCurrent.addClass('hoverable-custom').removeClass('hoverable');
+  });
+
+  $("#purchaseCredit").on("click", function(){
+    console.log("click");
+    var selectCurrent = $("#bannerOffer").children('a.hoverable-custom');
+    var idOffer = selectCurrent.data('credit');
+    console.log(idOffer);
+  });
+
+  $(document).ready(function() {
+    var banner = $('#bannerOffer').children('a').eq(1);
+    banner.addClass("hoverable-custom");
+  });
+</script>
 
 {% endblock %}

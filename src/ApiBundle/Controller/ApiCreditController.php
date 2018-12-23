@@ -44,7 +44,7 @@ class ApiCreditController extends FosRestController
       $currentAdmin = $this->getUser();
       // $this->get('logger')->info('000000000000000000000000000000000000', [$title, $price, $credit]);
       $this->get('app.manage_credit')->createCredit($credit, $price, $title, $currentAdmin, true);
-      return new JsonResponse("L'offre à bien été ajouter", Response::HTTP_OK);
+      return new JsonResponse("L'offre à bien été ajouté", Response::HTTP_OK);
     } catch (\Exception $e) {
       return new JsonResponse([$e->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
     }
@@ -60,7 +60,8 @@ class ApiCreditController extends FosRestController
   {
     try {
         if (!$this->getUser()->hasRole('ROLE_ADMIN')) return new JsonResponse('Permission invalide', Response::HTTP_FORBIDDEN);
-        $credit = $this->getDoctrine()->getRepository(Credit::class)->find(['affetedAdmin' => $affetedAdmin]);
+        $admin = $this->getUser();
+        $credit = $this->getDoctrine()->getRepository(Credit::class)->findByAffetedAdmin($admin);
         $view = View::create($credit);
         $view->setFormat('json');
         return $view;

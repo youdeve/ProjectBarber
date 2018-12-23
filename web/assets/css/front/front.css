@@ -1,3 +1,68 @@
 #calendar {
   color:black;
 }
+
+
+/***** BANNER PURCHASE *****/
+.offre-title {
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: 500;
+  color:white;
+}
+.container-title-offre {
+  border: 2px solid #E74C3C;
+  background: #E74C3C;
+}
+.container-footer-offre {
+  border: 2px solid #E74C3C;
+  background: #E74C3C;
+  color:white;
+  padding-bottom: 20px;
+}
+.btn-purchase.btn-floating {
+  height: 220px!important;
+}
+.btn-purchase.hoverable-custom {
+    z-index:99;
+    box-shadow: 0 3px 16px 0px rgba(0,0,0,0.5), 0 13px 24px 0 rgba(0,0,0,0.4);
+}
+.btn-purchase.hoverable-custom:hover {
+    z-index:99;
+    box-shadow: 0 3px 16px 0px rgba(0,0,0,0.5), 0 13px 24px 0 rgba(0,0,0,0.4);
+}
+.btn-purchase-now
+{
+  margin: 10px;
+  border: 1px solid white;
+}
+.offre-price {
+  font-size: 2.5em
+}
+i.small-icon {
+  font-size: 1em;
+}
+.offre-price-credit {
+  color: #2874A6;
+  font-size: 1em;
+}
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  position: absolute;
+  top: 46px;
+  right: 100px;
+  border-top: 10px solid #E74C3C;
+}
+.arrow-down-footer {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  position: absolute;
+  top: 142px;
+  right: 100px;
+  border-top: 10px solid white;
+}
