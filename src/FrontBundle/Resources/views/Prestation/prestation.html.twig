@@ -51,7 +51,7 @@
                       <td>{{ serviceList.haircut }}</td>
                       <td>{{ serviceList.dateHaircut|date("d/m/Y") }}</td>
                       <td>{{ serviceList.price }} euro</td>
-                      <td><a class="waves-effect waves-light btn">button</a></td>
+                      <td><a href="{{ path('invoicePage', { id: serviceList.id }) }}" class="waves-effect waves-light btn blue">facture</a></td>
                     </tr>
                     {% endfor %}
                   </tbody>

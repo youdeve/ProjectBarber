@@ -1,0 +1,64 @@
+{% extends "base.html.twig" %}
+
+
+{% block stylesheets %}
+  <style media="screen">
+    body {
+      background: #ECF0F1;
+      color: #17202A;
+    }
+    #invoice {
+      margin:100px auto;
+      width: 60%;
+    }
+  </style>
+      {% block pagestyle %}{% endblock %}
+{% endblock %}
+
+
+{% block body %}
+
+<main class="row">
+  <div id="invoice">
+    <div class="row head-invoice">
+      <div class="col s6 l6">
+        test
+      </div>
+      <div class="col s6 l6">
+        test
+      </div>
+    </div>
+    <div class="table-invoice">
+      {% for invoice in invoice %}
+        <table>
+          <thead>
+            <tr>
+              <th>Periode</th>
+              <th>Products</th>
+              <th>date</th>
+              <th>TTC</th>
+              <th>Montant</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>{{invoices.id}}</td>
+              <td>{{invoices.id}}</td>
+              <td>{{invoices.id}}</td>
+              <td>{{invoices.id}}</td>
+              <td>{{invoices.id}}</td>
+              <td>{{invoices.id}}</td>
+            </tr>
+          </tbody>
+        </table>
+      {% endfor %}
+    </div>
+  </div>
+</main>
+
+{% endblock %}
+
+{% block javascripts %}
+  {% block pagejs %}{% endblock %}
+{% endblock %}
