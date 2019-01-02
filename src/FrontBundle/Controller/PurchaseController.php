@@ -28,10 +28,10 @@ class PurchaseController extends Controller
 
       //create Customer
       \Stripe\Stripe::setApiKey("pk_test_iGX1WWt4cmBmvG86JCZTknAy");
-      // \Stripe\Customer::create([
-      //   "description" => 'Customer for barberTEST.com',
-      //   "source" => $formStripe->getData()
-      // ]);
+      \Stripe\Customer::create([
+        "description" => 'Customer for barberTEST.com',
+        "source" => $formStripe->getData()
+      ]);
       //payment
       $payment = \Stripe\Charge::create([
         "amount" => 2000,

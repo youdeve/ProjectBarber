@@ -39,11 +39,11 @@
   </a>
 </li>
 {% elseif app.user.hasRole('ROLE_ADMIN') %} {# USER ADMIN  #}
-<li>
+<!-- <li>
   <a  href="{{ path('back_team') }}"  title="Gestion Employés" class="icons-menu ">
     <i class="{{ route == 'back_team' ? "active" }} material-icons">people</i>
   </a>
-</li>
+</li> -->
 <li>
   <a  href="{{ path('back_credit') }}"  title="Gestion crédit" class="icons-menu ">
     <i class="{{ route == 'back_credit' ? "active" }} material-icons">monetization_on</i>
@@ -59,11 +59,11 @@
 <i class="{{ route ==  'back_notification' ? "active" }} material-icons">notifications</i>
 </a>
 </li> -->
-<li>
+<!-- <li>
   <a href="{{ path('back_setting') }}"  title="Gestion Administrateur" class="icons-menu">
     <i class="{{ route == 'back_setting' ? "active" }} material-icons">settings</i>
   </a>
-</li>
+</li> -->
 {% elseif app.user.hasRole('ROLE_TEAM') %}
 <li>
   <a  href="{{ path('back_manage_client') }}"  title="Gestion Client" class="icons-menu ">

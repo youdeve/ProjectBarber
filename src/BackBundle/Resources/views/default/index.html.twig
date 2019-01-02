@@ -11,11 +11,11 @@
         <div class="col m12 s12 l12 center-align">
 
       {% if app.user.hasRole('ROLE_ADMIN') %}
-          <a title="Gestion Employés" class="btn-floating hoverable white huge-floating-button btn-with-text"
+          <!-- <a title="Gestion Employés" class="btn-floating hoverable white huge-floating-button btn-with-text"
              href="{{ path('back_team') }}">
              <i class="material-icons">people</i>
             <span>Gestion Employés</span>
-          </a>
+          </a> -->
           <a title="Gestion des prestation" class="btn-floating hoverable white huge-floating-button btn-with-text"
              href="{{ path('back_edit_Prestation') }}">
              <i class="material-icons">content_cut</i>
@@ -32,11 +32,11 @@
             <i class="material-icons">wifi_tethering</i>
             <span>Centre de controle</span>
           </a> -->
-          <a title="Gestion Administrateur" class="btn-floating white hoverable huge-floating-button btn-with-text"
+          <!-- <a title="Gestion Administrateur" class="btn-floating white hoverable huge-floating-button btn-with-text"
              href="{{ path('back_setting') }}">
             <i class="material-icons">settings</i>
             <span>Compte</span>
-          </a>
+          </a> -->
           <!-- Connecté en tant que TEAM -->
       {% elseif app.user.hasRole('ROLE_TEAM') %}
           <a title="Gestion des rendez-vous"

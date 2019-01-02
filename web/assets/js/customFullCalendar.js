@@ -51,66 +51,71 @@ function showCalendars(appointments) {
     //            });
     //        });
     //    },
-    // events: function(start, end, timezone, callback) {
-    //    $.ajax({
-    //      url: Routing.generate('api_apifullcalendar_getappointement'),
-    //      type: 'GET',
-    //      dataType: 'json',
-    //      // data: {
-    //      //   // our hypothetical feed requires UNIX timestamps
-    //      //   start: start.unix(),
-    //      //   end: end.unix()
-    //      // },
-    //      success: function(data) {
-    //        for (var key in data) {
-    //          var dataEvent = {
-    //            title:data[key].title,
-    //            start:data[key].start_appointement,
-    //            end:data[key].end_appointement
-    //          }
-    //          console.log(dataEvent);
-    //          $('#calendar').fullCalendar('renderEvents', dataEvent, true);
-    //          $('#calendar').fullCalendar('addEventSource', dataEvent);
-    //          $('#calendar').fullCalendar('refetchEvents');
-    //        };
-    //      },
-    //      error: function() {
-    //         displayToast( 'Un probléme est survenue au moment de la récupération des événements', 'error');
-    //       }
-    //   });
-    // },
-    eventSources: [
-      // your event source
-      {
+    events: function(start, end, timezone, callback) {
+      $.ajax({
         url: Routing.generate('api_apifullcalendar_getappointement'),
         type: 'GET',
-        color: "#65a9d7",
-        textColor: "#3c3d3d",
+        dataType: 'json',
+        // data: {
+        //   // our hypothetical feed requires UNIX timestamps
+        //   start: start.unix(),
+        //   end: end.unix()
+        // },
         success: function(data) {
-          $('#calendar').fullCalendar('refetchEvents');
+          var dataEvent = [];
           for (var key in data) {
-            var dataEvent = {
-              title:data[key].title,
-              start:data[key].start_appointement,
-              end:data[key].end_appointement
-            }
+            dataEvent = [
+              data[key].title,
+              data[key].start_appointement,
+              data[key].end_appointement
+            ];
+              // title: data[key].title,
+              // start: data[key].start_appointement,
+              // end: data[key].end_appointement
+            };
+            // dataEvent.push(event);
             console.log(dataEvent);
-          };
-          $('#calendar').fullCalendar('renderEvent', dataEvent, true);
-          $('#calendar').fullCalendar('addEventSource', dataEvent);
-          $('#calendar').fullCalendar('rerenderEvents')
+            $('#calendar').fullCalendar('renderEvents', dataEvent, true);
+            $('#calendar').fullCalendar('refetchEvents');
         },
         error: function() {
-           displayToast( 'Un probléme est survenue au moment de la récupération des événements', 'error');
-         }
-      }
-    ],
-    eventAfterAllRender: function() {
-      if (hasAlreadyRun ===  false ) {
-          hasAlreadyRun = true;
-          $('#calendar').fullCalendar ('rerenderEvents');
-      }
+          displayToast( 'Un probléme est survenue au moment de la récupération des événements', 'error');
+        }
+      });
     },
+    // eventSources: [
+    //   // your event source
+    //   {
+    //     url: Routing.generate('api_apifullcalendar_getappointement'),
+    //     type: 'GET',
+    //     color: "#65a9d7",
+    //     textColor: "#3c3d3d",
+    //     success: function(data) {
+    //       // $('#calendar').fullCalendar('refetchEvents');
+    //       var dataEvent = [];
+    //       for (var key in data) {
+    //         event = {
+    //           title: data[key].title,
+    //           start: data[key].start_appointement,
+    //           end: data[key].end_appointement
+    //         };
+    //         dataEvent.push(event);
+    //       };
+    //       $('#calendar').fullCalendar('refetchEvents');
+    //       console.log(dataEvent);
+    //       $('#calendar').fullCalendar('renderEvents', dataEvent, true);
+    //     },
+    //     error: function() {
+    //        displayToast( 'Un probléme est survenue au moment de la récupération des événements', 'error');
+    //      }
+    //   }
+    // ],
+    // eventAfterAllRender: function() {
+    //   if (hasAlreadyRun ===  false ) {
+    //       hasAlreadyRun = true;
+    //       $('#calendar').fullCalendar ('rerenderEvents');
+    //   }
+    // },
     // events: function() {
     //   $('#calendar').fullCalendar('renderEvents', events, 'stick');
     //
