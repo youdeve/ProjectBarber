@@ -56,6 +56,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $newUserT->setPlainPassword('123456');//123456
         $newUserT->setEnabled(true);
         $newUserT->setSoldeCredit(0);
+        $newUserT->setAffectedBarberByAdmin();
         $newUserT->addRole("ROLE_TEAM");
 
         $userManager->updateUser($newUserT, true);
@@ -75,6 +76,7 @@ class devFixture  implements FixtureInterface, ContainerAwareInterface
         $newUser2->setEmail('antoineTeam@barber.fr');
         $newUser2->setPlainPassword('123456');//123456
         $newUser2->setEnabled(true);
+        $newUser2->setAffectedBarberByAdmin();
         $newUser2->setSoldeCredit(0);
         $newUser2->addRole("ROLE_TEAM");
 

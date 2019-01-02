@@ -49,11 +49,6 @@ class User extends BaseUser
   protected $affectedService;
 
   /**
-   *@ORM\OneToOne(targetEntity="User")
-   */
-  protected $tokenStipe;
-
-  /**
    * @var integer
    * @ORM\Column(name="soldeCredit", type="integer")
    */

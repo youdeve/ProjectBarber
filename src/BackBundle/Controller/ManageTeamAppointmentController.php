@@ -23,7 +23,7 @@ class ManageTeamAppointmentController extends Controller
     public function ManageTeamAppointmentAction(Request $request)
     {
         $user = $this->getUser();
-        $appointments = $this->getDoctrine()->getManager()->getRepository(Appointement::class)->findByBarber($user);
+        $appointments = $this->getDoctrine()->getManager()->getRepository(Appointement::class)->findAll();
         // $this->get('logger')->info('0000000000000000000000000000000000000000000000000000000000', [$users]);
         return $this->render('@Back/ManageAppointment/manage-team-appointment.html.twig' , [
           'appointments' => $appointments,

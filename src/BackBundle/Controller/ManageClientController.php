@@ -29,7 +29,8 @@ class ManageClientController extends Controller
     public function ManageClientAction(Request $request)
     {
         $user = $this->getUser();
-        $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findByAffectedAgentBarber($user);
+        // $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findByAffectedAgentBarber($user);
+        $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAll();
 
         $user = new User();
         $formCustomer = $this->createForm(RegistrationFormType::class, $user);

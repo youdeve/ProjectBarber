@@ -1,7 +1,6 @@
 function displayCalendar() {
-  var spinner = createSpinner();
-  $('#calendar').empty().append(spinner);
-
+  // var spinner = createSpinner();
+  // $('#calendar').empty().append(spinner);
   $.get(Routing.generate("api_apifullcalendar_getappointement"))
   .done(function(appointments) {
     showCalendars(appointments);
@@ -10,7 +9,7 @@ function displayCalendar() {
 
 function showCalendars(appointments) {
   var initialLocaleCode = 'fr';
-
+  var hasAlreadyRun = false;
   $('#calendar').fullCalendar({
     defaultView: 'agendaWeek',
     header: {
@@ -24,7 +23,7 @@ function showCalendars(appointments) {
       // days of week. an array of zero-based day of week integers (0=Sunday)
       dow: [ 1, 2, 3, 4, 5, 6 ], // Monday - sunday
       start: '9:00', // a start time (10am in this example)
-      end: '20:00', // an end time (6pm in this example)
+      end: '21:00', // an end time (6pm in this example)
     },
     slotLabelFormat: [
       'MMMM YYYY', // top level of text
@@ -34,7 +33,7 @@ function showCalendars(appointments) {
     // displayEventTime: true,
     locale: initialLocaleCode,
     nowIndicator:true,
-    maxTime:"19:00",
+    maxTime:"21:00",
     minTime:"9:00",
     selectOverlap: false,
     unselectAuto: true,
@@ -43,28 +42,75 @@ function showCalendars(appointments) {
     slotLabelFormat:"HH:mm",
     axisFormat: 'H:mm',
     selectable: true,
+    // eventRender: function (event, element) {
+    //        element.attr('href', 'javascript:void(0);');
+    //        element.click(function() {
+    //            bootbox.alert({
+    //                  message: 'Description : '+event.description,
+    //                  title: event.title,
+    //            });
+    //        });
+    //    },
+    // events: function(start, end, timezone, callback) {
+    //    $.ajax({
+    //      url: Routing.generate('api_apifullcalendar_getappointement'),
+    //      type: 'GET',
+    //      dataType: 'json',
+    //      // data: {
+    //      //   // our hypothetical feed requires UNIX timestamps
+    //      //   start: start.unix(),
+    //      //   end: end.unix()
+    //      // },
+    //      success: function(data) {
+    //        for (var key in data) {
+    //          var dataEvent = {
+    //            title:data[key].title,
+    //            start:data[key].start_appointement,
+    //            end:data[key].end_appointement
+    //          }
+    //          console.log(dataEvent);
+    //          $('#calendar').fullCalendar('renderEvents', dataEvent, true);
+    //          $('#calendar').fullCalendar('addEventSource', dataEvent);
+    //          $('#calendar').fullCalendar('refetchEvents');
+    //        };
+    //      },
+    //      error: function() {
+    //         displayToast( 'Un probléme est survenue au moment de la récupération des événements', 'error');
+    //       }
+    //   });
+    // },
     eventSources: [
       // your event source
       {
-        url: '/api/appointments',
+        url: Routing.generate('api_apifullcalendar_getappointement'),
         type: 'GET',
         color: "#65a9d7",
         textColor: "#3c3d3d",
         success: function(data) {
+          $('#calendar').fullCalendar('refetchEvents');
           for (var key in data) {
-            $('#calendar').fullCalendar('renderEvent', {
-              // title:data[key].title,
+            var dataEvent = {
+              title:data[key].title,
               start:data[key].start_appointement,
               end:data[key].end_appointement
-            }, "stick");
+            }
+            console.log(dataEvent);
           };
-          console.log(data[key]);
+          $('#calendar').fullCalendar('renderEvent', dataEvent, true);
+          $('#calendar').fullCalendar('addEventSource', dataEvent);
+          $('#calendar').fullCalendar('rerenderEvents')
         },
         error: function() {
-          displayToast( 'Un probléme est survenue au moment de la récupération des événements', 'error');
-        }
+           displayToast( 'Un probléme est survenue au moment de la récupération des événements', 'error');
+         }
       }
     ],
+    eventAfterAllRender: function() {
+      if (hasAlreadyRun ===  false ) {
+          hasAlreadyRun = true;
+          $('#calendar').fullCalendar ('rerenderEvents');
+      }
+    },
     // events: function() {
     //   $('#calendar').fullCalendar('renderEvents', events, 'stick');
     //
@@ -93,7 +139,7 @@ function showCalendars(appointments) {
         console.log(selectedPrestationId);
         var start = startEvent.format('hh:mm:ss');
         var end = endEvent.format('hh:mm:ss');
-        
+
         if (selectedPrestation) {
           $.ajax(Routing.generate('api_apifullcalendar_postappointement'),
           {
@@ -114,10 +160,10 @@ function showCalendars(appointments) {
             displayToast( 'Probléme avec le serveur veuillez rééssayer', 'error');
           });
 
-          $("#calendar").fullCalendar('addEventSource', [{
-            startAppointment,
-            endAppointment
-          }, ]);
+          // $("#calendar").fullCalendar('addEventSource', [{
+          //   startAppointment,
+          //   endAppointment
+          // }, ]);
 
           $('#calendar').fullCalendar('unselect');
         }else {

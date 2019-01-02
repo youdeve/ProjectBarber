@@ -1,15 +1,13 @@
 {% extends "@Front/front-base.html.twig" %}
-
-
 {% block content %}
 <div class="container">
-  <div class="section">
+  <div id="credit-" class="section">
     <div class="row page-title">
       <h2>Purchase</h2>
       <hr class='white' style="margin-bottom:1rem"/>
     </div>
     <div class="row">
-      <p>Séléctionner une offre pour acheter des crédits, celui-ci permettra de les utilisés pour acheter une prestation</p>
+      <p>Séléctionner une offre pour acheter des crédits, celui-ci permettra de les utilisés pour prendre un rendez-vous</p>
       <p>* 1 crédit coûte 5 euro </p>
       <div class="col m12 s12 center-align">
         {% if credits != null %}
@@ -29,10 +27,25 @@
           {% endfor %}
         </div>
         <hr>
-        <div class="col l12 s12">
-          <a href="#" id="purchaseCredit" class="btn red right">Acheter</a>
-        </div>
-        {% endif %}
+        <div class="col l8 s8 m8 right">
+          <!-- <div class="form-stripe">
+            <div id="card-errors" role="alert"></div>
+            <div id="card-element"></div>
+          </div>
+          <a href="#" id="purchaseCredit" class="btn red right">Acheter</a> -->
+          {{form_start (form, {attr: {id: form.vars.id}})}}
+            <div class = "form-group" >
+              <label for = "card-element" >
+                Carte de crédit ou de débit
+              </label>
+              <div id = "card-element" class = "form-control" > </div>
+              <div id = "erreurs de carte" class = "help-block" role = "alert" > </div>
+            </div>
+            {{form_widget (form.token)}}
+            <button type="button" name="button"></button>
+          {{form_end (form)}}
+       </div>
+      {% endif %}
       </div>
     </div>
   </div>
@@ -40,24 +53,55 @@
 {% endblock %}
 
 {% block pagejs %}
+
 <script type="text/javascript">
-  $('#bannerOffer').on('click', 'a', function() {
-    var selectCurrent = $(this);
-    $('#bannerOffer').children('a.hoverable-custom').removeClass('hoverable-custom').addClass('hoverable');
-    selectCurrent.addClass('hoverable-custom').removeClass('hoverable');
-  });
 
-  $("#purchaseCredit").on("click", function(){
-    console.log("click");
-    var selectCurrent = $("#bannerOffer").children('a.hoverable-custom');
-    var idOffer = selectCurrent.data('credit');
-    console.log(idOffer);
-  });
+// $("#purchaseCredit").on("click", () =>{
+//   console.log("click");
+//   var selectCurrent = $("#bannerOffer").children('a.hoverable-custom');
+//   var idOffer = selectCurrent.data('credit');
+//   console.log(idOffer);
+// });
 
-  $(document).ready(function() {
-    var banner = $('#bannerOffer').children('a').eq(1);
-    banner.addClass("hoverable-custom");
+// $('#bannerOffer').on('click', 'a', () => {
+//   var selectCurrent = $(this);
+//   console.log(selectCurrent);
+//   $('#bannerOffer').children('a.hoverable-custom').removeClass('hoverable-custom').addClass('hoverable');
+//   selectCurrent.addClass('hoverable-custom').removeClass('hoverable');
+// });
+
+var form = document.getElementById('{{ form.vars.id }}');
+var errors = document.getElementById('card-errors');
+
+var stripe = Stripe('pk_test_iGX1WWt4cmBmvG86JCZTknAy');
+var elements = stripe.elements();
+var card = elements.create('card');
+
+card.mount('#card-element');
+card.addEventListener('change', function(event) {
+  if (event.error) {
+    errors.textContent = event.error.message;
+    form.classList.add('has-error');
+  } else {
+    errors.textContent = '';
+    form.classList.remove('has-error');
+  }
+});
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  stripe.createToken(card).then(function(result) {
+    if (result.error) {
+      errors.textContent = result.error.message;
+      form.classList.add('has-error');
+    } else {
+      document.getElementById('{{ form.children.token.vars.id }}').setAttribute('value', result.token.id);
+      form.submit();
+    }
   });
+});
 </script>
 
+<!-- <script src="/assets/js/stripe.js"></script> -->
 {% endblock %}
