@@ -38,7 +38,8 @@
               <select id="selectedPrestation">
                 <option value="0">Choisissez votre prestation</option>
                 {% for prestation in prestations %}
-                <option class="title-prestation" data-price='{{ prestation.price }}' data-credit="{{ prestation.credit }}" value="{{ prestation.id }}">{{ prestation.hairCuts }}</option>
+                <option class="title-prestation" data-price='{{ prestation.price }}'
+                data-credit="{{ prestation.credit }}" value="{{ prestation.id }}">{{ prestation.hairCuts }}</option>
                 {% endfor %}
               </select>
               <label>Intitulé prestation :</label>
@@ -51,14 +52,17 @@
               <i class="material-icons medium">schedule</i>
               <strong><div id="dateSelectedEnd"></div></strong>
             </div>
-            <div class="input-field col s12">
+            <div class="input-field col s12 l6">
               <select id="selectedBarber">
                 <option value="0">Choisissez votre référent</option>
                 {% for teamUser in teamUsers %}
-                <option class="barberAffectedSelected" value="{{ teamUser.id }}" '{% if app.user.affectedAgentBarber == teamUser %}' selected '{% endif %}'>{{ teamUser }}</option>
+                <option class="barberAffectedSelected" value="{{ teamUser.id }}">{{ teamUser }}</option>
                 {% endfor %}
               </select>
-              <label>Choisissez votre coiffeur référent</label>
+              <label>Choisissez votre coiffeur</label>
+            </div>
+            <div class="col l6 center" id="affectedBarber" data-affectedAgentBarber="{{ currentUser.affectedAgentBarber.id }}">
+              <p>ou votre coiffeur referent <strong>{{ app.user.affectedAgentBarber }}</strong></p>
             </div>
           </div>
         </div>

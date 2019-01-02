@@ -30,7 +30,8 @@ function showCalendars(appointments) {
       'ddd'        // lower level of text
     ],
     slotDuration:"00:30:00",
-    // displayEventTime: true,
+    defaultTimedEventDuration: "01:00:00",
+    displayEventTime: true,
     locale: initialLocaleCode,
     nowIndicator:true,
     maxTime:"21:00",
@@ -38,9 +39,9 @@ function showCalendars(appointments) {
     selectOverlap: false,
     unselectAuto: true,
     allDaySlot: false,
-    timeFormat:'H:mm',
+    timeFormat:'HH:mm',
     slotLabelFormat:"HH:mm",
-    axisFormat: 'H:mm',
+    axisFormat: 'HH:mm',
     selectable: true,
     // eventRender: function (event, element) {
     //        element.attr('href', 'javascript:void(0);');
@@ -51,11 +52,12 @@ function showCalendars(appointments) {
     //            });
     //        });
     //    },
-    events: function(start, end, timezone, callback) {
-      $.ajax({
-        url: Routing.generate('api_apifullcalendar_getappointement'),
-        type: 'GET',
-        dataType: 'json',
+    eventSources: [
+      {
+       url: Routing.generate('api_apifullcalendar_getappointement'),
+       type: 'GET',
+       color: "#65a9d7",
+       textColor: "#3c3d3d",
         // data: {
         //   // our hypothetical feed requires UNIX timestamps
         //   start: start.unix(),
@@ -64,25 +66,18 @@ function showCalendars(appointments) {
         success: function(data) {
           var dataEvent = [];
           for (var key in data) {
-            dataEvent = [
-              data[key].title,
-              data[key].start_appointement,
-              data[key].end_appointement
-            ];
-              // title: data[key].title,
-              // start: data[key].start_appointement,
-              // end: data[key].end_appointement
+                // title: data[key].title,
+                // start: moment(data[key].start_appointement)
+                console.log(moment(data[key].start_appointement).format());
+              $('#calendar').fullCalendar('renderEvents',  [ {start: moment(data[key].start_appointement).format() } ], 'stick');
             };
-            // dataEvent.push(event);
-            console.log(dataEvent);
-            $('#calendar').fullCalendar('renderEvents', dataEvent, true);
-            $('#calendar').fullCalendar('refetchEvents');
+            // $('#calendar').fullCalendar('refetchEvents');
         },
         error: function() {
           displayToast( 'Un probléme est survenue au moment de la récupération des événements', 'error');
         }
-      });
-    },
+      }
+    ],
     // eventSources: [
     //   // your event source
     //   {
@@ -124,9 +119,10 @@ function showCalendars(appointments) {
       var startAppointment = moment().format(date.format());
     },
     select: function(startEvent, endEvent, jsEvent, view) {
-      var startAppointment = moment().format(startEvent.format('hh:mm'));
-      var endAppointment = moment().format(endEvent.format('hh:mm'));
-      $('#dateSelected').html(startAppointment);
+      var startAppointment = moment(startEvent.format('YYYY/MM/DD HH:mm:ss')).format('YYYY/MM/DD HH:mm:ss');
+      var datedisplay =  moment().format(startEvent.format('HH:mm'));
+      var endAppointment = moment().format(endEvent.format('HH:mm'));
+      $('#dateSelected').html(datedisplay);
       $('#dateSelectedEnd').html(endAppointment);
 
       $('#addEvents').modal({
@@ -134,17 +130,19 @@ function showCalendars(appointments) {
         }
       });
       $('#addEvents').modal('open');
-
+      var selectedBarber = $("#affectedBarber").data('affectedagentBarber');
+      console.log(selectedBarber);
       $('#btnAddEvent').on('click', function(e) {
         e.preventDefault();
         var selectedPrestationId = $("#selectedPrestation").find(':selected').data('price');
         var SelectedCredit = $("#selectedPrestation").find(':selected').data('credit');
         var selectedPrestation = $("#selectedPrestation option:selected").text();
         var selectedBarber = $("#selectedBarber option:selected").val();
-        console.log(selectedPrestationId);
-        var start = startEvent.format('hh:mm:ss');
-        var end = endEvent.format('hh:mm:ss');
-
+        if(selectedBarber === "") {
+          console.log("entre dans la condition");
+          selectedBarber = $("div").data('affectedagentBarber');
+          console.log(selectedBarber);
+        };
         if (selectedPrestation) {
           $.ajax(Routing.generate('api_apifullcalendar_postappointement'),
           {
