@@ -31,6 +31,7 @@ class AppointmentController extends Controller
     $prestations = $this->getDoctrine()->getRepository(ServiceCatalog::class)->findAll();
     return $this->render('@Front/Appointment/appointment.html.twig', [
       'teamUsers' => $teamUsers,
+      'currentUser' => $currentUser,
       'prestations' => $prestations,
       'soldeCredit' => $soldeCredit
     ]);
